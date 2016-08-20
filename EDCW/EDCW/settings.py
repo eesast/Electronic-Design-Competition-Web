@@ -122,4 +122,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-MEDIA_ROOT = '/home/alxl'
+MEDIA_ROOT = '/home/alxl/'
+
+MEDIA_URL = '/media/'

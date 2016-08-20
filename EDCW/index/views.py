@@ -14,7 +14,7 @@ def welcome(request):
 def noticeIndex(request):
 
     notice_list = Notification.objects.all()
-    render(request, 'index/notice.html', {'notice_list' : notice_list})
+    return render(request, 'index/notice.html', {'notice_list' : notice_list})
 
 def download(request):
 
@@ -27,10 +27,14 @@ def download(request):
                 else:
                     break
 
-    the_file_name = Notification.objects.get(pk=request.POST['choice']).file_attached.filename
+    the_partial_file_name = Notification.objects.get(pk=request.POST['choice']).file_attached.name
+    the_file_name = u'/home/alxl/' + the_partial_file_name
 
     response = StreamingHttpResponse(file_iterator(the_file_name))
     response['Content-Type'] = 'application/octet-stream'
-    reaponse['Content-Disposition'] = 'attachment;filename="{0}"'.format(the_file_name)
+    response['Content-Disposition'] = 'attachment;filename="{0}"'.format(the_file_name)
 
     return response
+#    with open(the_file_name) as f:
+#        c = f.read()
+#    return HttpResponse(c)
