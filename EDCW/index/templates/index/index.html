@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿{% load static %}
+<!DOCTYPE html>
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8">
@@ -9,10 +10,12 @@
 
 <title>第十八届电子设计大赛官网</title>
 
+
+
 <!-- Bootstrap core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet">
-<link href="../css/docs.min.css" rel="stylesheet">
-<link href="../css/index.css" rel="stylesheet">
+<link href="{% static 'index/css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'index/css/docs.min.css' %}" rel="stylesheet">
+<link href="{% static 'index/css/index.css' %}" rel="stylesheet">
 
 <style type="text/css">
 
@@ -50,19 +53,20 @@ a:active {
         <li>
           <a href="#" class="active">主页</a>
         </li>
+        <!-- 我觉得弄一个论坛就可以了，文件在论坛里，通知也在论坛里-->
         <li>
-          <a href="community.html" target="_blank">论坛</a>
+          <a href="login.html" target="_blank">论坛</a>
         </li>
         <li>
           <a href="file.html" target="_blank">文件发布</a>
         </li>
         <li>
-          <a href="team.html" target="_blank">组建队伍</a>
+          <a href="team.html"  target="_blank">组建队伍</a>
         </li>
         <li>
           <a href="login.html">登录</a>
         </li>
-        <li><a href="contact.html" target="_blank">联系我们</a></li>
+        <li><a href="contacts.html" target="_blank">联系我们</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#">电子系科协官网</a></li>
@@ -181,17 +185,17 @@ a:active {
 
          <div class="bs-docs-section">
 		 <h1 id="photo">精彩照片<h1>
-		    <img class="img-responsive" src="../img/电设/1.jpg"></img>
-			<img class="img-responsive" src="../img/电设/2.jpg"></img>
-			<img class="img-responsive" src="../img/电设/3.jpg"></img>
-			<img class="img-responsive" src="../img/电设/4.jpg"></img>
-			<img class="img-responsive" src="../img/电设/5.jpg"></img>
-			<img class="img-responsive" src="../img/电设/6.jpg"></img>
-			<img class="img-responsive" src="../img/电设/7.jpg"></img>
-			<img class="img-responsive" src="../img/电设/8.jpg"></img>
-			<img class="img-responsive" src="../img/电设/9.jpg"></img>
-			<img class="img-responsive" src="../img/电设/10.jpg"></img>
-			<img class="img-responsive" src="../img/电设/11.jpg"></img>
+                 <img class="img-responsive" src="{% static "index/image/1.jpg" %}"></img>
+			<img class="img-responsive" src="{% static "index/image/2.jpg" %}"></img>
+			<img class="img-responsive" src="{% static "index/image/3.jpg" %}"></img>
+			<img class="img-responsive" src="{% static "index/image/4.jpg" %}"></img>
+			<img class="img-responsive" src="{% static "index/image/5.jpg" %}"></img>
+			<img class="img-responsive" src="{% static "index/image/7.jpg" %}"></img>
+			<img class="img-responsive" src="{% static "index/image/8.jpg" %}"></img>
+			<img class="img-responsive" src="{% static "index/image/9.jpg" %}"></img>
+            <img class="img-responsive" src="{% static "index/image/10.jpg" %}"></img>
+			<img class="img-responsive" src="{% static "index/image/11.jpg" %}"></img>
+			<img class="img-responsive" src="{% static "index/image/12.jpg" %}"></img>
 
 		</div>
 			
