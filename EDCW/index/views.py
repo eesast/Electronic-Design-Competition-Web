@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, StreamingHttpResponse
 from django.urls import reverse
 from .models import Notification
+from django.conf import settings
+import os
 def index(request):
 
     return render(request, 'index/index.html')
@@ -28,7 +30,7 @@ def download(request):
                     break
 
     the_partial_file_name = Notification.objects.get(pk=request.POST['choice']).file_attached.name
-    the_file_name = u'/home/alxl/' + the_partial_file_name
+    the_file_name = os.path.join(settings.MEDIA_ROOT, the_partial_file_name)
 
     response = StreamingHttpResponse(file_iterator(the_file_name))
     response['Content-Type'] = 'application/octet-stream'
