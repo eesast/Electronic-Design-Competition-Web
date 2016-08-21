@@ -1,9 +1,10 @@
 # Electronic-Design-Competition-Web
-电子设计大赛官网
 
-8.4-8.15计划进度
-前端完成基本网页的编写（赵旺）
-后端 实现注册及登录功能（黄羽丰）
-由于宗泽方同学15号前实践，就等回来再做
 
-大家把每天的进展都放到git上来便于前后端沟通，各功能文件独立放置，负责各个功能同学各自新建文件夹
+
+
+* index app 实现欢迎页，主页，通知及相应文件下载功能。相应的js css image在index/static/index文件夹中，
+  html在index/template/index中, 需要对url的引用进行一些修改。具体请见文件
+
+
+

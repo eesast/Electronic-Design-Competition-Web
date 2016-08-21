@@ -6,7 +6,9 @@
   {% for notice in notice_list %}
     <li>{{ notice.title }}</li>
     <li>{{ notice.content }}</li>
-    <input type="submit" name="choice" value="{{ notice.id }}">
+    {% if notice.file_attached %}
+      <input type="submit" name="choice" value="{{ notice.id }}">
+    {% endif %}
   {% endfor %}
 </form>
 {% else %}
