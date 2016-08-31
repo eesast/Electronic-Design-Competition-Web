@@ -1,0 +1,68 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+}
+
+#file-block  {
+	height: 1000px;
+	margin-left:20px;
+	padding:20px;
+    
+	
+}
+
+
+
+.bs-docs-section > p, .bs-docs-section > ul, 
+.bs-docs-section > ol, .bs-callout > p, 
+.bs-callout > ol, .bs-callout > ul {
+	font-size: 16px;
+	line-height: 2.00;
+	margin-bottom: 1em;
+}
+
+.bs-callout *:last-child {
+	margin-bottom: 0;
+}
+
+p {
+	text-indent:2 em;
+}
+
+#btn-block {
+
+	font-size: 20px;
+	font-family: arial;
+	margin-right:20px;
+	height: 900px;
+	background-color: Royalblue;
+	padding-top:80px;
+
+}
+
+#btn-block > p {
+	margin-top:35px;
+}
+#content {
+	background-color: #4B0091;
+	color:white;
+	padding:40px;
+}
+
+
+table, th,td {
+	border: 2px solid black;
+	text-align: center;
+}
+
+table {
+	width: 100%;
+}
+
+tr {
+	height:50px;
+}
+
+th {
+	
+	background-color:#d3d3d3;
+}
