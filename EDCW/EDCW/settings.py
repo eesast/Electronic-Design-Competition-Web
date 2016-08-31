@@ -120,7 +120,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = '/var/www/EDCWstatic'
+STATIC_ROOT = '/var/www/thedc/EDCW/static'
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
