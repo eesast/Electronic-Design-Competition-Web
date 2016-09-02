@@ -58,7 +58,7 @@ a:active {
           <a href="login.html" target="_blank">论坛</a>
         </li>
         <li>
-          <a href="file.html" target="_blank">文件发布</a>
+          <a href="{% url 'index:notice' %}" target="_blank">文件发布</a>
         </li>
         <li>
           <a href="team.html"  target="_blank">组建队伍</a>
@@ -91,7 +91,7 @@ a:active {
 	    <div class="col-md-2" role="complementary" id="btn-block">
 		 
 		    <p><a href="login.html"><button type="button" class="btn btn-block btn-info btn-lg">登录</button></a></p>
-			<p><a href="file.html" target="_blank"><button type="button" class="btn btn-block btn-warning btn-lg">文件发布</button></a></p>
+            <p><a href="{% url 'index:notice' %}" target="_blank"><button type="button" class="btn btn-block btn-warning btn-lg">文件发布</button></a></p>
 			<p><a href="community.html" target="_blank"><button type="button" class="btn btn-block btn-danger btn-lg">论坛</button></a></p>
 			<p><a href="contact.html" target="_blank"><button type="button" class="btn btn-block btn-default btn-lg">联系我们</button></a></p>
 		
