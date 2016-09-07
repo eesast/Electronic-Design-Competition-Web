@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="index">
+	<meta name="description" content="file">
 	<meta name="author" content="zw">
 
 <title>第十八届电子设计大赛官网</title>
@@ -13,6 +13,7 @@
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <link href="../css/docs.min.css" rel="stylesheet">
 <link href="../css/file.css" rel="stylesheet">
+
 
 <style type="text/css">
 
@@ -32,79 +33,91 @@ a:active {
 </style> 
 
 
-  </head>
-  <body>
-    <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
-  <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a href="#" class="navbar-brand">EESAST</a>
-    </div>
-    <nav id="bs-navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li>
-          <a href="index.html">主页</a>
-        </li>
-        <li>
-          <a href="community.html" target="_blank">论坛</a>
-        </li>
-        <li>
-          <a href="#">文件发布</a>
-        </li>
-        <li>
-          <a href="team.html" target="_blank">组建队伍</a>
-        </li>
-        <li>
-          <a href="login.html">登录</a>
-        </li>
-        <li><a href="contact.html" target="_blank">联系我们</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">电子系科协官网</a></li>
-		<li><a href="#">自动化系科协官网</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
 
 
-    <!-- Docs page layout -->
-    <div id="content">
-      <div class="container">
-        <h1 style="font-size:50px;">第十八届电子设计大赛</h1>
-        <h3>开始你的设计</h3>
-      </div>
-    </div>
+<!-- Start of Header -->
+                <div class="header-wrapper">
+                        <header>
+                                <div class="container">
+								
+                                        <div class="logo-container">
+                                                <!-- Website Logo -->
+                                                <a href="www.eesast.com"  id="eesast" >
+                                                      EESAST
+                                                </a>
+                                             
+                                        </div>
 
-    <div class="container-fluid bs-docs-container">
+
+                                        <!-- Start of Main Navigation -->
+                                        <nav class="main-nav">
+                                                <div class="menu-top-menu-container" id="bs-navbar">
+                                                        <ul id="menu-top-menu" class="clearfix">
+                                                                <li><a href="index.html">主页</a></li>
+                                                                <li><a href="team.html">组建队伍</a></li>
+                                                                <li><a href="login.html">登录</a></li>
+                                                                <li><a href="community_index.html">论坛</a></li>
+                                                                <li  class="current-menu-item"><a href="file.html">文件</a></li>
+                                                                <li><a href="#">更多</a>
+                                                                        <ul class="sub-menu">
+                                                                                <li><a href="www.eesast.com">关于我们</a></li>
+                                                                                <li><a href="contact.html">联系我们</a></li>
+                                                                        </ul>
+                                                                </li>
+                                                        </ul>
+														<ul id="menu-top-right" class="clearfix">
+														        <li><a href="www.eesast.com">电子系科协</a></li>
+																<li><a href="#">自动化系科协</a></li>
+														</ul>
+                                                </div>
+                                        </nav>
+                                        <!-- End of Main Navigation -->
+
+                                </div>
+                        </header>
+                </div>
+                <!-- End of Header -->
+
+
+                 <!-- Start of Search Wrapper -->
+                <div class="search-area-wrapper">
+                        <div class="search-area container">
+                                <h2 class="search-header">第十八届电子设计大赛</h2>
+                                <p class="search-tag-line">开始你的设计</p>
+                        </div>
+                </div>
+                <!-- End of Search Wrapper -->
+
+ <div class="container-fluid bs-docs-container">
 
       <div class="row">
 	    <div class="col-md-2" role="complementary" id="btn-block">
 		 
-		    <p><a href="login.html"><button type="button" class="btn btn-block btn-info btn-lg">登录</button></a></p>
-			<p><a href="file.html" target="_blank"><button type="button" class="active btn btn-block btn-warning btn-lg">文件发布</button></a></p>
-			<p><a href="community.html" target="_blank"><button type="button" class="btn btn-block btn-danger btn-lg">论坛</button></a></p>
-			<p><a href="contact.html" target="_blank"><button type="button" class="btn btn-block btn-default btn-lg">联系我们</button></a></p>
-			
-	    </div>
+		    <p><a href="login.html"><button type="button" class="button xl glass oval" id="a">登录注册</button></a></p>
+			<p><a href="file.html" target="_blank"><button type="button" class="button xl glass oval" id="b">文件发布</button></a></p>
+			<p><a href="community_index.html" target="_blank"><button type="button" class="button xl glass oval" id="c">进入论坛</button></a></p>
+			<p><a href="contact.html" target="_blank"><button type="button" class="button xl glass oval" id="d">联系我们</button></a></p>
+		
+		</div>
 		<div role="file" id="file-block" class="col-md-8">
-		  <table>
-		    <tr>
-		      <th>文件名</th>
-			  <th>文件概述</th>
-			  <th>发布时间</th>
-			</tr>
-            <tr>
-              <td><form name="choice" action="#" method="post"><input type="hidden" name="choice" value="notice.id"></form><a href="javascript:choice.submit();">FileName1</a></td>
-              <td>FileContent1</td>
-              <td>Time1</td>
-            </tr>
-          </table>			
+		  <form action="#" method="post">
+		  {% csrf_token %}
+		    {% for notice in notice_list %}
+			  <div id="notice">
+              <li id="lititle">{{notice.title}}</li>
+              <p id="licontent">{{notice.content}}</p>
+			  {% if notice.file_attached %}
+                <p id="file">文件：<input type="hidden" name="choice" value="{{notice.id}}"><a href="javascript:choice.submit();">{{notice.title}}</a></p>
+				{% endif %} 
+			  </div>
+            {% endfor %} 
+          </form> 
+              {% else %} 
+                <p> No Notices </p> 
+              {% endif %} 
+
+		 
+          			
 		</div>
 	  </div>
 		
