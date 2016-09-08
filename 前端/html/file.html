@@ -1,41 +1,39 @@
-﻿<!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="file">
-	<meta name="author" content="zw">
+﻿<!doctype html>
+        <!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en-US"> <![endif]-->
+        <!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en-US"> <![endif]-->
+        <!--[if IE 8]>    <html class="lt-ie9" lang="en-US"> <![endif]-->
+        <!--[if gt IE 8]><!--> <html lang="zh-CN"> <!--<![endif]-->
+        <head>
+                <!-- META TAGS -->
+                <meta charset="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<meta name="description" content="community">
+	            <meta name="author" content="zw">
 
-<title>第十八届电子设计大赛官网</title>
+                <title>第十八届电子设计大赛</title>
 
-<!-- Bootstrap core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet">
-<link href="../css/docs.min.css" rel="stylesheet">
-<link href="../css/file.css" rel="stylesheet">
-
-
-<style type="text/css">
-
-a:link {
- text-decoration: none;
-}
-a:visited {
- text-decoration: none;
-}
-a:hover {
- text-decoration: none;
-}
-a:active {
- text-decoration: none;
-}
-
-</style> 
+                <link rel="shortcut icon" href="images/favicon.png">
+				
+                <!-- Style Sheet-->
+                
+                <link rel='stylesheet' id='bootstrap-css-css'  href='../css/bootstrap.css' type='text/css' media='all' />
+                <link rel='stylesheet' id='responsive-css-css'  href='../css/responsive.css' type='text/css' media='all' /> 
+                <!--<link rel='stylesheet' id='pretty-photo-css-css'  href='js/prettyphoto/prettyPhotoaeb9.css?ver=3.1.4' type='text/css' media='all' />-->
+                <link rel='stylesheet' id='main-css-css'  href='../css/file.css' type='text/css' media='all' />
+                <!--<link rel='stylesheet' id='custom-css-css'  href='css/custom5152.html?ver=1.0' type='text/css' media='all' />-->
 
 
+                <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+                <!--[if lt IE 9]>
+                <script src="js/html5.js"></script></script>
+                <![endif]-->
 
 
-<!-- Start of Header -->
+        </head>
+
+        <body>
+
+                <!-- Start of Header -->
                 <div class="header-wrapper">
                         <header>
                                 <div class="container">
@@ -51,7 +49,7 @@ a:active {
 
                                         <!-- Start of Main Navigation -->
                                         <nav class="main-nav">
-                                                <div class="menu-top-menu-container" id="bs-navbar">
+                                                <div class="menu-top-menu-container">
                                                         <ul id="menu-top-menu" class="clearfix">
                                                                 <li><a href="index.html">主页</a></li>
                                                                 <li><a href="team.html">组建队伍</a></li>
@@ -78,8 +76,7 @@ a:active {
                 </div>
                 <!-- End of Header -->
 
-
-                 <!-- Start of Search Wrapper -->
+                <!-- Start of Search Wrapper -->
                 <div class="search-area-wrapper">
                         <div class="search-area container">
                                 <h2 class="search-header">第十八届电子设计大赛</h2>
@@ -91,7 +88,7 @@ a:active {
  <div class="container-fluid bs-docs-container">
 
       <div class="row">
-	    <div class="col-md-2" role="complementary" id="btn-block">
+	    <div class="span4" role="complementary" id="btn-block">
 		 
 		    <p><a href="login.html"><button type="button" class="button xl glass oval" id="a">登录注册</button></a></p>
 			<p><a href="file.html" target="_blank"><button type="button" class="button xl glass oval" id="b">文件发布</button></a></p>
@@ -99,7 +96,7 @@ a:active {
 			<p><a href="contact.html" target="_blank"><button type="button" class="button xl glass oval" id="d">联系我们</button></a></p>
 		
 		</div>
-		<div role="file" id="file-block" class="col-md-8">
+		<div role="file" id="file-block" class="span6">
 		  <form action="#" method="post">
 		  {% csrf_token %}
 		    {% for notice in notice_list %}
@@ -125,5 +122,8 @@ a:active {
 		
 		
     </div>
+	<!-- script -->
+                <script type='text/javascript' src='../js/jquery.min.js'></script>
+				<script type='text/javascript' src='../js/custom.js'></script>
   </body>
   </html>
