@@ -9,21 +9,16 @@ def community_content(request):
     return render(request,'community_content.html')
 
 def community_create(request):
-    errors = []
     if request.method == 'POST':
-        if not request.POST.get('title', ''):
-            errors.append('Enter a title.')
-        if not request.POST.get('body', ''):
-            errors.append('Enter a body.')
-        if not errors:
-            post = Post(title=request.POST.get('title', ''),content=request.POST.get('body', ''),summary=request.POST.get('outline', ''),)
+        form = PostForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            cd.save()
             return HttpResponseRedirect('/community_index')
-    return render_to_response('community_create.html', {
-        'errors': errors,
-        'title': request.POST.get('title', ''),
-        'outline': request.POST.get('outline', ''),
-        'body': request.POST.get('body', ''),
-    })
+    else:
+        form = PostForm()
+    return render_to_response('community_create.html', {'form': form})
+
 
 
     
