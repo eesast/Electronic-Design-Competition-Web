@@ -4,8 +4,9 @@ body {
 
 #file-block  {
 	height: 1000px;
-	margin-left:20px;
-	padding:20px;
+	margin-left:0px;
+	padding-top:60px;
+	line-height: 1.60;
     
 	
 }
@@ -34,7 +35,7 @@ p {
 	font-family: arial;
 	margin-right:20px;
 	background-color: #fff;
-	padding-top:40px;
+	padding-top:30px;
 
 }
 
