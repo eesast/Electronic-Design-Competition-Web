@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
         <!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en-US"> <![endif]-->
         <!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en-US"> <![endif]-->
         <!--[if IE 8]>    <html class="lt-ie9" lang="en-US"> <![endif]-->
@@ -28,14 +28,14 @@
                 <script src="js/html5.js"></script></script>
                 <![endif]-->
 				<style>
-				#noreply {
+				#replybottom {
 				display:none;
 				position:fixed;
-				bottom:50%;
-				left:50%;
+				bottom:0px;
+				left:0px;
 				border: 0.2px solid;
 				background-color:#fff;
-				width:20%;
+				width:100%;
 				z-index:1000;
 				padding:15px;
 				}
@@ -63,19 +63,19 @@
                                         <nav class="main-nav">
                                                 <div class="menu-top-menu-container">
                                                         <ul id="menu-top-menu" class="clearfix">
-                                                                <li><a href="index.html">主页</a></li>
-                                                                <li><a href="team.html">组建队伍</a></li>
-                                                                <li><a href="login.html">登录</a></li>
-                                                                <li  class="current-menu-item"><a href="community_index.html">论坛</a></li>
-                                                                <li><a href="file.html">文件</a></li>
+                                                                <li><a href="index_after_login.html?username={{username}}">主页</a></li>
+                                                                <li><a href="team_after_login.html?username={{username}}">组建队伍</a></li>
+                                                                <li  class="current-menu-item"><a href="community_index_after_login.html?username={{username}}">论坛</a></li>
+                                                                <li><a href="file_after_login.html?username={{username}}">文件</a></li>
                                                                 <li><a href="#">更多</a>
                                                                         <ul class="sub-menu">
                                                                                 <li><a href="www.eesast.com">关于我们</a></li>
-                                                                                <li><a href="contact.html">联系我们</a></li>
+                                                                                <li><a href="contact_after_login.html?username={{username}}">联系我们</a></li>
                                                                         </ul>
                                                                 </li>
                                                         </ul>
 														<ul id="menu-top-right" class="clearfix">
+														        <li style="font-size:18px;bold">Welcome! {{username}}</li>
 														        <li><a href="www.eesast.com">电子系科协</a></li>
 																<li><a href="#">自动化系科协</a></li>
 														</ul>
@@ -142,19 +142,25 @@
                                                                                                 <cite class="fn">
                                                                                                         {{post.replier}} 回复 {{post.who-to-reply}}
                                                                                                 </cite>
-                                                                                                - <a href = "javascript:void(0)" onclick = "document.getElementById('noreply').style.display='block'" class="comment-reply-link">回复</a>
+                                                                                                - <a href = "javascript:void(0)" onclick = "document.getElementById('replybottom').style.display='block'" class="comment-reply-link">回复</a>
 																								
 																								
 																								
-																								<div id='noreply'>
+																								<div id='replybottom'>
 																								
 																								<div class="container">
-																								<p style="font-size:20px;">您还没有登录，不能发帖和回复</p>
-																								<p style="font-size:20px;"><a href="login.html">点此登录</a></p>
-																								<p style="font-size:20px;"><a href="community_content.html">退出</a></p>
+																								<div class="row">
+																								<form action="#" method="post">
+																								<div class="span9">
+																								<p style="font-size:20px;">回复 {{post.replier}}</p>
+																								<textarea name="comment-place" id="comment-place" rows="10" class="required span9"></textarea>
+																								</div>
+																								<div class="span6">
+																								<input type="submit" value="submit" class="btn btn-primary btn-block">
+																								</div>
 																								</div>
 													
-																								
+																								</form>
 																								</div>
 																								
 																								
@@ -186,7 +192,7 @@
 
                                                                                                         <h5 class="author">
                                                                                                                 <cite class="fn">{{post.replier}} 回复 {{post.who-to-reply}}</cite>
-                                                                                                                - <a href = "javascript:void(0)" onclick = "document.getElementById('noreply').style.display='block'" class="comment-reply-link">回复</a>
+                                                                                                                - <a href = "javascript:void(0)" onclick = "document.getElementById('replybottom').style.display='block'" class="comment-reply-link">回复</a>
                                                                                                         </h5>
 
                                                                                                         <p class="date">
@@ -226,10 +232,10 @@
 
                                                                         <p class="allowed-tags">You can use these HTML tags and attributes <small><code>&lt;a href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>
 																		
-																		<p style="font-size:20px">您还没有登录，不能发帖和回复</p>
+																		
 
                                                                         <div>
-                                                                                <input class="btn" name="submit" type="submit" id="submit"  value="Submit Comment" >
+                                                                                <input class="btn" name="submit" type="submit" id="submit"  value="Submit Comment">
                                                                         </div>
 																		
 
@@ -248,7 +254,7 @@
 
                                                 <section class="widget">
                                                         <div class="support-widget">
-                                                                <a href="javascript:void(0)" onclick = "document.getElementById('noreply').style.display='block'" class="comment-reply-link""><button class="clean-gray">创建新的帖子</button></a>
+                                                                <a href="community_create.html"><button class="clean-gray">创建新的帖子</button></a>
                                                         </div>
                                                 </section>
 
@@ -257,19 +263,19 @@
                                                         <h3 class="title">Featured Articles</h3>
                                                         <ul class="articles">
                                                                 <li class="article-entry standard">
-                                                                        <h4><a href="community_content.html?post.tilte={{post.title}}">Integrating WordPress with Your Website</a></h4>
+                                                                        <h4><a href="community_content_after_login.html?post.tilte={{post.title}}">Integrating WordPress with Your Website</a></h4>
                                                                         <span class="article-meta">{{post.timestamp}} by {{post.sender}}</span>
                                                                 </li>
                                                                 <li class="article-entry standard">
-                                                                        <h4><a href="community_content.html?post.tilte={{post.title}}">Integrating WordPress with Your Website</a></h4>
+                                                                        <h4><a href="community_content_after_login.html?post.tilte={{post.title}}">Integrating WordPress with Your Website</a></h4>
                                                                         <span class="article-meta">{{post.timestamp}} by {{post.sender}}</span>
                                                                 </li>
                                                                 <li class="article-entry standard">
-                                                                        <h4><a href="community_content.html?post.tilte={{post.title}}">Integrating WordPress with Your Website</a></h4>
+                                                                        <h4><a href="community_content_after_login.html?post.tilte={{post.title}}">Integrating WordPress with Your Website</a></h4>
                                                                         <span class="article-meta">{{post.timestamp}} by {{post.sender}}</span>
                                                                 </li>
                                                                 <li class="article-entry standard">
-                                                                        <h4><a href="community_content.html?post.tilte={{post.title}}">Integrating WordPress with Your Website</a></h4>
+                                                                        <h4><a href="community_content_after_login.html?post.tilte={{post.title}}">Integrating WordPress with Your Website</a></h4>
                                                                         <span class="article-meta">{{post.timestamp}} by {{post.sender}}</span>
                                                                 </li>
                                                         </ul>
@@ -277,7 +283,10 @@
 
 
 
-                                                <section class="widget"><h3 class="title">您还没有登录！</h3>
+                                                <section class="widget"><h3 class="title">{{username}},欢迎你的到来！</h3>
+												      <p style="font-size:18px;">天赐良机，机不可失！</p>
+													<p style="font-size:18px;">锲而舍之，朽木不折；锲而不舍，金石可镂</p>
+													<p style="font-size:18px;">青，取之于蓝而胜于蓝；冰，水为之而寒于水</p>
                                                         
                                                 </section>
 
@@ -297,7 +306,7 @@
                                         <div class="row">
                                                 <div class="span6">
                                                         <p class="copyright">
-                                                                Copyright © All Rights Reserved by EESAST from Tsinghua
+                                                                Copyright ? All Rights Reserved by EESAST from Tsinghua
                                                         </p>
                                                 </div>
                                                 
