@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'', include('contact.urls')),
     url(r'', include('community.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'', include('login.urls')),
 ]

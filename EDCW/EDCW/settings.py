@@ -37,10 +37,31 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'index',
-	'login',
-	'contact',
-	'community',
+    'login',
+    'contact',
+    'community',
+    'usera',
+    'rest_framework',
 ]
+
+EESAST_AUTHORIZE_URL = 'www.eesast.com/'
+EESAST_CLIENTID = 'client_id'
+EESAST_CLIENTSECRET = 'client_secret'
+EESAST_CALLBACK = 'http://localhost:8000/'
+
+REST_FRAMEWORK = {
+     # Use Django's standard `django.contrib.auth` permissions,
+     # or allow read-only access for unauthenticated users.
+     'DEFAULT_PERMISSION_CLASSES': [
+         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+     ],
+     'DEFAULT_RENDERER_CLASSES': (
+         'rest_framework.renderers.JSONRenderer',
+     ),
+     'DEFAULT_PARSER_CLASSES': (
+         'rest_framework.parsers.JSONParser',
+     )
+ }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
