@@ -49,7 +49,7 @@ def check_user(data):
 		user2 = User.objects.get.create_user(username=data[username],
 		password=data[password])
 		user2.save()
-		member = Member(user=user2)
+		member = Member(user=user2,group="管理员")
 		member.save()
 		return user2
 		
@@ -63,7 +63,7 @@ def login(request):
 				data = get_user_info(access_token)
 				user = check_user(data)
 				login(request, user)
-				return render_to_response('login_done.html',{'mes':"您已成功登陆！"})
+				return render_to_response('logindone.html',{'mes':"您已成功登陆！"})
 			except:
 				error = '登录申请失败！请先注册！'
 	else:
@@ -71,12 +71,13 @@ def login(request):
 	return render_to_response('login.html',{'form':form},{'error':error})
 				
 def Logout(request):
-	
+	logout(request)
+	return HttpResponseRedirect("/index")
 
 
 
 def ResetPassword(request):
-	
+	return HttpResponseRedirect("www.EESAST/account/resetpasswordrequest")
 	
 	
 	

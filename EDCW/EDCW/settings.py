@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'login',
     'contact',
     'community',
-    'usera',
     'rest_framework',
+    'pagination',
 ]
 
 EESAST_AUTHORIZE_URL = 'www.eesast.com/'

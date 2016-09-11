@@ -17,7 +17,17 @@ class Post(models.Model):
     def __unicode__(self):
         return self.title
 
-
+class PostFile(models.Model):
+    PERMISSION_CHOICES = {
+        ('1',"公开"),
+        ('2','登陆可见'),
+    }
+    lecture = models.ForeignKey(LecturePost, on_delete = models.CASCADE)
+    file_attached = models.FileField(upload_to='uploads/', blank=True,null=True)
+    permissions = models.CharField(max_length=1,choices=PERMISSION_CHOICES)
+	
+	
+	
 class Comment(models.Model):
     post = models.ForeignKey(Post)
     user = models.ForeignKey("UserProfile")
@@ -35,17 +45,7 @@ class Category(models.Model):
     def __unicode__(self):
         return self.name	
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User)
-    name = models.CharField(max_length=32)
-    groups = models.ManyToManyField("UserGroup")
-    def __unicode__(self):
-        return self.name
 
-class UserGroup(models.Model):
-    name = models.CharField(max_length=64,unique=True)
-    def __unicode__(self):
-        return self.name
 
 
 	
