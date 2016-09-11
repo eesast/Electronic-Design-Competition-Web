@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponseRedirect,render_to_response
 from django.contrib.auth.models import User
+from django.conf import settings
 from login.models import Member
 import urllib
 
@@ -27,7 +28,7 @@ def	get_access_token(username,password):
 	resp = resp.decode('utf-8')
 	data = json.loads(resp)
 	return data['access_token']
-	
+
 def get_user_info(access_token):
 	if access_token:
 		headers = {'Authorization': Access_Token}
@@ -40,7 +41,7 @@ def get_user_info(access_token):
 		return data
 	else:
 		return none
-	
+
 def check_user(data):
 	try:
 		user1 = User.objects.get(username=data[username])
@@ -52,7 +53,7 @@ def check_user(data):
 		member = Member(user=user2)
 		member.save()
 		return user2
-		
+
 def login(request):
 	if request.method =='POST':
 		form = LoginForm(request.Post)
@@ -69,30 +70,31 @@ def login(request):
 	else:
 		form = LoginForm()
 	return render_to_response('login.html',{'form':form},{'error':error})
-				
+
 def Logout(request):
-	
+    pass
 
 
 
 def ResetPassword(request):
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
-	
-	
+    pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Create your views here.

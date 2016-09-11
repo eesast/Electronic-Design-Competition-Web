@@ -40,8 +40,6 @@ INSTALLED_APPS = [
     'login',
     'contact',
     'community',
-    'usera',
-    'rest_framework',
 ]
 
 EESAST_AUTHORIZE_URL = 'www.eesast.com/'
@@ -144,7 +142,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = '/var/www/thedc/EDCW/static'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
