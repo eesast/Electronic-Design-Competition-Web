@@ -17,10 +17,19 @@ class Post(models.Model):
     def __unicode__(self):
         return self.title
 
+class PostFile(models.Model):
+    PERMISSION_CHOICES = {
+        ('1',"公开"),
+        ('2','登陆可见'),
+    }
+    post = models.ForeignKey(Post, on_delete = models.CASCADE)
+    file_attached = models.FileField(upload_to='uploads/', blank=True,null=True)
+    permissions = models.CharField(max_length=1,choices=PERMISSION_CHOICES)
+
+
 
 class Comment(models.Model):
     post = models.ForeignKey(Post)
-    user = models.ForeignKey("UserProfile")
     comment_content= models.TextField(max_length=1000)
     date = models.DateTimeField(auto_now=True)
     parent_comment = models.ForeignKey("self",related_name='p_comment',blank=True,null=True)
@@ -28,30 +37,20 @@ class Comment(models.Model):
     def __unicode__(self):
         return self.user
 
-	
-	
+
+
 class Category(models.Model):
     name = models.CharField(max_length=64,unique=True,verbose_name="板块名称")
     def __unicode__(self):
-        return self.name	
-
-class UserProfile(models.Model):
-    user = models.OneToOneField(User)
-    name = models.CharField(max_length=32)
-    groups = models.ManyToManyField("UserGroup")
-    def __unicode__(self):
-        return self.name
-
-class UserGroup(models.Model):
-    name = models.CharField(max_length=64,unique=True)
-    def __unicode__(self):
         return self.name
 
 
-	
-		
-		
-		
-		
-		
+
+
+
+
+
+
+
+
 # Create your models here.

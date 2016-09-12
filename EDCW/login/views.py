@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponseRedirect,render_to_response
 from django.contrib.auth.models import User
 from django.conf import settings
 from login.models import Member
+from .forms import LoginForm
 import urllib
 
 
@@ -12,22 +13,21 @@ EESAST_AUTHORIZE_URL = settings.EESAST_AUTHORIZE_URL
 
 
 def	get_access_token(username,password):
-	auth_url = 'http://www.eesast.com/o/token'
-	body = urllib.parse.urlencode({
-		'client_id':EESAST_CLIENTID,
-		'grant_type':'password',
-		'username':username,
-		'password':password,
-		})
-	body = urllib.parse.urlencode(body)
-	body = body.encode('utf-8')
-	headers = {'Content-Type':'application/x-www-form-urlencoded'}
-	req = urllib.request.Request(url, body, headers)
-	resp = urllib.request.urlopen(req)
-	resp = resp.read()
-	resp = resp.decode('utf-8')
-	data = json.loads(resp)
-	return data['access_token']
+    auth_url = 'http://www.eesast.com/o/token'
+    body = urllib.parse.urlencode({
+    'client_id':EESAST_CLIENTID,
+    'grant_type':'password',
+    'username':username,
+    'password':password,
+    })
+    body = body.encode('utf-8')
+    headers = {'Content-Type':'application/x-www-form-urlencoded'}
+    req = urllib.request.Request(auth_url, body, headers)
+    resp = urllib.request.urlopen(req)
+    resp = resp.read()
+    resp = resp.decode('utf-8')
+    data = json.loads(resp)
+    return data['access_token']
 
 def get_user_info(access_token):
 	if access_token:
@@ -50,35 +50,41 @@ def check_user(data):
 		user2 = User.objects.get.create_user(username=data[username],
 		password=data[password])
 		user2.save()
-		member = Member(user=user2)
+		member = Member(user=user2,group="管理员")
 		member.save()
 		return user2
 
 def login(request):
-	if request.method =='POST':
-		form = LoginForm(request.Post)
-		if form.os_valid():
-			cd = form.cleaned_data
-			try:
-				access_token = get_access_token(cd['username'],cd['password'])
-				data = get_user_info(access_token)
-				user = check_user(data)
-				login(request, user)
-				return render_to_response('login_done.html',{'mes':"您已成功登陆！"})
-			except:
-				error = '登录申请失败！请先注册！'
-	else:
-		form = LoginForm()
-	return render_to_response('login.html',{'form':form},{'error':error})
+    error = ''
+    if request.method =='POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            print(3)
+            cd = form.cleaned_data
+            access_token = get_access_token(cd['username'],cd['password'])
+            data = get_user_info(access_token)
+            user = check_user(data)
+            login(request, user)
+            print(access_token)
+            if access_token:
+                return render_to_response('logindone.html',{'mes':"您已成功登陆！"})
+            else:
+                error = '登录申请失败！请先注册！'
+                print(error)
+    else:
+        form = LoginForm()
+    return render(request, 'login.html', {'error':error})
 
 def Logout(request):
-    pass
+	logout(request)
+	return HttpResponseRedirect("/index")
 
 
 
 def ResetPassword(request):
 
-    pass
+
+	return HttpResponseRedirect("www.EESAST/account/resetpasswordrequest")
 
 
 

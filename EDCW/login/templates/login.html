@@ -1,4 +1,4 @@
-﻿{% load staitic %}
+﻿{% load static %}
 <!doctype html>
         <!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en-US"> <![endif]-->
         <!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en-US"> <![endif]-->
@@ -13,14 +13,14 @@
 
                 <title>第十八届电子设计大赛</title>
 
-                <link rel="shortcut icon" href="{% static 'images/favicon.png'%}">
+                <link rel="shortcut icon" href="{% static '/login/images/favicon.png'%}">
 				
                 <!-- Style Sheet-->
                 
-                <link rel='stylesheet' id='bootstrap-css-css'  href="{% static 'css/bootstrap.css' %}" type='text/css' media='all' />
-                <link rel='stylesheet' id='responsive-css-css'  href="{% static 'css/responsive.css' %}" type='text/css' media='all' /> 
+                <link rel='stylesheet' id='bootstrap-css-css'  href="{% static 'login/css/bootstrap.css' %}" type='text/css' media='all' />
+                <link rel='stylesheet' id='responsive-css-css'  href="{% static 'login/css/responsive.css' %}" type='text/css' media='all' /> 
                 <!--<link rel='stylesheet' id='pretty-photo-css-css'  href='js/prettyphoto/prettyPhotoaeb9.css?ver=3.1.4' type='text/css' media='all' />-->
-                <link rel='stylesheet' id='main-css-css'  href="{% static 'css/login.css' %}" type='text/css' media='all' />
+                <link rel='stylesheet' id='main-css-css'  href="{% static 'login/css/login.css' %}" type='text/css' media='all' />
                 <!--<link rel='stylesheet' id='custom-css-css'  href='css/custom5152.html?ver=1.0' type='text/css' media='all' />-->
 
 
@@ -104,27 +104,34 @@
 
 
                                                 <form id="contact-form" class="row" action="#" method="post">
-
+														{% csrf_token %}
                                                         <div class="span2">
                                                                 <label for="name">用户名 <span>*</span> </label>
                                                         </div>
+                                                        
                                                         <div class="span6">
-                                                                <input type="text" name="name" id="id_name" class="required input-xlarge" value="{{form.name}}" title="* Please provide your name">
+
+                                                        {% if error %}
+                                                            <p>{{error}}</p>
+                                                        {% endif %}
+
+                                                                <input type="text" name="username" id="id_name" class="required input-xlarge"  title="* Please provide your name">
                                                         </div>
 
                                                         <div class="span2">
                                                                 <label for="password">密码<span>*</span></label>
                                                         </div>
                                                         <div class="span6">
-                                                                <input type="password" name="password" id="id_password" value="{{form.password}}">
+                                                                <input type="password" name="password" id="id_password" />
                                                         </div>
+                                                        
 														
 													
 
 
                                                         <div class="span6 offset2 bm30">
                                                                 <input type="submit" name="submit" value="Login" class="btn btn-inverse" style="width:150px;margin-top:50px;">
-                                                                <img src="{% 'static images/loading.gif' %}" id="contact-loader" alt="Loading...">
+                                                                <img src="{% static 'login/images/loading.gif' %}" id="contact-loader" alt="Loading...">
                                                         </div>
 
                                                         <div class="span6 offset2 error-container"></div>
