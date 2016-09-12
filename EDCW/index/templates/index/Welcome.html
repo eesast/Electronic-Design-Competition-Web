@@ -1,5 +1,5 @@
-﻿{% load static %}
-<!DOCTYPE html>
+{% load static %}
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8">
@@ -13,9 +13,9 @@
     <title>欢迎来到第十八届电子设计大赛</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{% static 'index/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'index/css/Welcome.css' %}" rel="stylesheet">
-    <script src="{% static 'index/js/Welcome.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'index/css/bootstrap.min.css' %}" type='text/css' media='all' />
+    <link rel="stylesheet" href="{% static 'index/css/Welcome.css' %}" type='text/css' media='all' />
+	<script src="{% static 'index/js/Welcome.js' %}"></script>
   </head>
   
 <!-- NAVBAR -->
@@ -37,15 +37,15 @@
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 <li><a href="{% url 'index:index' %}">主页</a></li>
-                <li><a href="{% url 'login:login' %}">登录</a><li>
-                <li><a href="{% url 'community_index'%}">论坛</a></li>
+				<li><a href="{% url 'login:login' %}">登录</a><li>
+                <li><a href="{% url 'community:community_index' %}">论坛</a></li>
                 <li><a href="team.html">组队</a></li>
                 <li><a href="{% url 'index:notice' %}">文件</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">更多<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="{% url 'contact:contact'%}">联系我们</a></li>
-                    <li><a href="#">有关我们</a></li>
+                    <li><a href="{% url 'contact:contact' %}">联系我们</a></li>
+                    <li><a href="http://www.eesast.com" target="_blank">有关我们</a></li>
                   </ul>
                 </li>
               </ul>
@@ -67,32 +67,32 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img class="first-slide" src="{% static 'index/image/电路6.jpg' %}" alt="First slide">
+          <img class="first-slide" src="{% static 'index/img/电路6.jpg' %}" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>第十八届电子设计大赛</h1>
               <p>Explore beyond limits</p>
-              <p><a class="btn btn-lg btn-primary" href="login.html" role="button">Sign up today</a></p>
+              <p><a class="btn btn-lg btn-primary" href="{% url 'login:login' %}" role="button">Sign up today</a></p>
             </div>
           </div>
         </div>
         <div class="item">
-          <img class="second-slide" src="{% static 'index/image/电路4.jpg' %}" alt="Second slide">
+          <img class="second-slide" src="{% static 'index/img/电路4.jpg' %}" alt="Second slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>第十八届电子设计大赛</h1>
               <p>这是一场灵感的盛宴，智慧的碰撞，团队的比拼</p>
-              <p><a class="btn btn-lg btn-primary" href="login.html" role="button">Sign up today</a></p>
+              <p><a class="btn btn-lg btn-primary" href="{% url 'login:login' %}" role="button">Sign up today</a></p>
             </div>
           </div>
         </div>
         <div class="item">
-            <img class="third-slide" src="{% static 'index/image/电路1.jpg' %}" alt="Third slide">
+          <img class="third-slide" src="{% static 'index/img/电路1.jpg' %}" alt="Third slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>第十八届电子设计大赛</h1>
               <p>Begin your design now</p>
-              <p><a class="btn btn-lg btn-primary" href="login.html" role="button">Sign up today</a></p>
+              <p><a class="btn btn-lg btn-primary" href="{% url 'login:login' %}" role="button">Sign up today</a></p>
             </div>
           </div>
         </div>
@@ -117,13 +117,19 @@
       <!-- Three columns of text below the carousel -->
       <div class="row">
         <div class="col-lg-4">
-          <a href="{% url 'index:index' %}"><img class="img-circle" src="{% static 'index/image/btn1.ico' %}" alt="Generic placeholder image" width="140" height="140"></a>
+		  <span class="button-wrap">
+          <a href="{% url 'index:index' %}"><button class="button button-circle button-giant button-primary" id="btn1">主页</button></a>
+		  </span>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-          <a href="community.html"><img class="img-circle" src="{% static 'index/image/btn2.ico' %}" alt="Generic placeholder image" width="140" height="140"></a>
+		<span class="button-wrap">
+          <a href="{% url 'community:community_index' %}"><button class="button button-circle button-giant button-primary" id="btn2">论坛</button></a>
+		  </span>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-          <a href="{% url 'login:login' %}"><img class="img-circle" src="{% static 'index/image/btn3.ico' %}" alt="Generic placeholder image" width="140" height="140"></a>
+		<span class="button-wrap">
+          <a href="{% url 'login:login' %}"><button class="button button-circle button-giant button-primary" id="btn3">登录</button></a>
+		  </span>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
 
@@ -145,7 +151,7 @@
 	
     <script src="{% static 'index/js/jquery.min.js' %}"></script>
     <script src="{% static 'index/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'index/Welcome.js' %}"></script>
+	<script src="{% static 'index/js/Welcome.js' %}"></script>
  
   
 

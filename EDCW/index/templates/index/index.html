@@ -10,12 +10,14 @@
 
 <title>第十八届电子设计大赛官网</title>
 
-
-
 <!-- Bootstrap core CSS -->
-<link href="{% static 'index/css/bootstrap.min.css' %}" rel="stylesheet">
-<link href="{% static 'index/css/docs.min.css' %}" rel="stylesheet">
-<link href="{% static 'index/css/index.css' %}" rel="stylesheet">
+<link rel='stylesheet' id='bootstrap-css-css'  href="{% static 'index/css/bootstrap.css' %}" type='text/css' media='all' />
+<link href="{% static 'index/css/docs.min.css' %}" rel="stylesheet" type='text/css' media='all'/>
+<link href="{% static 'index/css/index.css' %}" rel="stylesheet"/>
+<link rel='stylesheet' id='responsive-css-css'  href="{% static 'index/css/responsive.css' %}" type='text/css' media='all' />
+
+
+
 
 <style type="text/css">
 
@@ -35,75 +37,80 @@ a:active {
 </style> 
 
 
-  </head>
-  <body>
-    <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
-  <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a href="#" class="navbar-brand">EESAST</a>
-    </div>
-    <nav id="bs-navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li>
-          <a href="#" class="active">主页</a>
-        </li>
-        <!-- 我觉得弄一个论坛就可以了，文件在论坛里，通知也在论坛里-->
-        <li>
-          <a href="login.html" target="_blank">论坛</a>
-        </li>
-        <li>
-          <a href="{% url 'index:notice' %}" target="_blank">文件发布</a>
-        </li>
-        <li>
-          <a href="team.html"  target="_blank">组建队伍</a>
-        </li>
-        <li>
-          <a href="login.html">登录</a>
-        </li>
-        <li><a href="contacts.html" target="_blank">联系我们</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">电子系科协官网</a></li>
-		<li><a href="#">自动化系科协官网</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
 
 
-    <!-- Docs page layout -->
-    <div id="content">
-      <div class="container">
-        <h1 style="font-size:50px;">第十八届电子设计大赛</h1>
-        <h3>开始你的设计</h3>
-      </div>
-    </div>
+<!-- Start of Header -->
+                <div class="header-wrapper">
+                        <header>
+                                <div class="container">
+								
+                                        <div class="logo-container">
+                                                <!-- Website Logo -->
+                                                <a href="www.eesast.com"  id="eesast" >
+                                                      EESAST
+                                                </a>
+                                             
+                                        </div>
+
+
+                                        <!-- Start of Main Navigation -->
+                                        <nav class="main-nav">
+                                                <div class="menu-top-menu-container">
+                                                        <ul id="menu-top-menu" class="clearfix">
+                                                            <li  class="current-menu-item"><a href="{% url 'index:index' %}">主页</a></li>
+                                                                <li><a href="team.html">组建队伍</a></li>
+                                                                <li><a href="{% url 'login:login' %}">登录</a></li>
+                                                                <li><a href="{% url 'community:community_index' %}">论坛</a></li>
+                                                                <li><a href="{% url 'index:notice' %}">文件</a></li>
+                                                                <li><a href="#">更多</a>
+                                                                        <ul class="sub-menu">
+                                                                                <li><a href="http://www.eesast.com" target="_blank">关于我们</a></li>
+                                                                                <li><a href="{% url 'contact:contact' %}">联系我们</a></li>
+                                                                        </ul>
+                                                                </li>
+                                                        </ul>
+														<ul id="menu-top-right" class="clearfix">
+														        <li><a href="http://www.eesast.com" target="_blank">电子系科协</a></li>
+																<li><a href="#">自动化系科协</a></li>
+														</ul>
+                                                </div>
+                                        </nav>
+                                        <!-- End of Main Navigation -->
+
+                                </div>
+                        </header>
+                </div>
+                <!-- End of Header -->
+
+
+                 <!-- Start of Search Wrapper -->
+                <div class="search-area-wrapper">
+                        <div class="search-area container">
+                                <h2 class="search-header">第十八届电子设计大赛</h2>
+                                <p class="search-tag-line">开始你的设计</p>
+                        </div>
+                </div>
+                <!-- End of Search Wrapper -->
 
     <div class="container-fluid bs-docs-container">
 
       <div class="row">
-	    <div class="col-md-2" role="complementary" id="btn-block">
+	    <div class="span3" role="complementary" id="btn-block">
 		 
-		    <p><a href="login.html"><button type="button" class="btn btn-block btn-info btn-lg">登录</button></a></p>
-            <p><a href="{% url 'index:notice' %}" target="_blank"><button type="button" class="btn btn-block btn-warning btn-lg">文件发布</button></a></p>
-			<p><a href="community.html" target="_blank"><button type="button" class="btn btn-block btn-danger btn-lg">论坛</button></a></p>
-			<p><a href="contact.html" target="_blank"><button type="button" class="btn btn-block btn-default btn-lg">联系我们</button></a></p>
+		    <p><a href="{% url 'login:login' %}"><button type="button" class="button xl glass oval" id="a">登录注册</button></a></p>
+			<p><a href="{% url 'index:notice' %}"><button type="button" class="button xl glass oval" id="b">文件发布</button></a></p>
+            <p><a href="{% url 'community:community_index' %}"><button type="button" class="button xl glass oval" id="c">进入论坛</button></a></p>
+			<p><a href="{% url 'contact:contact' %}"><button type="button" class="button xl glass oval" id="d">联系我们</button></a></p>
 		
 		</div>
-        <div class="col-md-7" role="main">
+        <div class="span9" role="main">
          <div class="bs-docs-section">
-          <h1 id="intro-competition" class="page-header">赛事介绍</h1>
+          <h3 id="intro-competition" class="page-header">赛事介绍</h3>
 
-          <h2 id="intro-competition-theme">宗旨</h2>
+          <h3 id="intro-competition-theme">宗旨</h3>
           <p>&nbsp &nbsp &nbsp &nbsp提高理论联系实际能力，鼓励团结协作，培养创新精神和动手能力，强调“软硬结合”，通过解决实际问题来检验和提高同学们的综合素质。</p>
 
-          <h2 id="intro-competition-main">概况</h2>
+          <h3 id="intro-competition-main">概况</h3>
   
           <div class="bs-callout bs-callout-warning" id="intro-competition-maininfo">
             <p>&nbsp &nbsp &nbsp &nbsp以学科竞赛促进学科建设、以学科竞赛促进学生动手和创新能力的提高，这在清华大学已经蔚然成风。结构设计大赛、数学建模大赛、程序设计大赛、学生创业大赛……风起云涌的赛事引无数清华学子竞折腰，成为学生培养才能的乐土、展示才华的舞台。</p>
@@ -120,7 +127,7 @@ a:active {
 		  
 		  <div class="bs-callout bs-callout-info" id="intro-competition-maininfo">
   
-          <h2 id="intro-competition-review">历届赛题回顾（1999-2015）</h2>
+          <h3 id="intro-competition-review">历届赛题回顾（1999-2015）</h3>
           <ul class="review-list">
 		    <li>第一届——折返跑赛车</li>
 			<li>第二届<br>
@@ -149,10 +156,10 @@ a:active {
 		  <p>在历届大赛的组织和竞赛过程中，很多领导和老师亲临现场提出了许多关键性的指导和精辟的点评意见，使参赛选手受益匪浅。</p>
 		 </div>
          <div class="bs-docs-section">
-         <h1 id="intro-kexie" class="page-header">科协介绍</h1>
-         <h2 id="intro-kexie-ee"><a href="#">电子系科协</a></h2>
+         <h3 id="intro-kexie" class="page-header">科协介绍</h3>
+         <h3 id="intro-kexie-ee"><a href="#">电子系科协</a></h3>
 		 <a href="#">
-		 <img src="../img/科协图标.png" class="img-responsive" alt="Responsive image"></img>
+             <img src="{% static 'index/img/科协图标.png' %}" class="img-responsive" alt="Responsive image"></img>
 		 </a>
 		 <p>&nbsp &nbsp &nbsp &nbsp清华大学电子工程系科协，最初由一批热爱科创的同学创立，如今已成为电子系与学生会、团委并行的三大组织之一。</p>
 
@@ -164,7 +171,7 @@ a:active {
 
          <p>   &nbsp &nbsp &nbsp &nbsp电子工程系科协将依托学校的社会影响力和自身在同学中的感召力，紧跟时代步伐，锐意创新，发挥人才众多和组织宣传经验丰富的优势，在社会各界的大力支持下，与有识企业一起，更好的服务同学成长成才，让高等院校与现代企业相互交融、携手发展！
 		 </p>
-		 <h2 id="intro-kexie-au"><a href="#">自动化系科协</a></h2>
+		 <h3 id="intro-kexie-au"><a href="#">自动化系科协</a></h3>
 		 <p>&nbsp &nbsp &nbsp &nbsp
 		    清华大学自动化系学生科技协会成立于1984年，经过三十年的成长与发展，如今已成为自动化系与学生会、团委并行的三大组织之一，也是清华大学里颇具影响力的一个学生组织。每一年，科协都会通过组织各种科技讲座、培训、赛事等来丰富同学们的课余生活，培养同学们的动手能力和创新能力，使同学们对科技创新产生浓厚的兴趣。</p>
 
@@ -184,50 +191,50 @@ a:active {
 
 
          <div class="bs-docs-section">
-		 <h1 id="photo">精彩照片<h1>
-                 <img class="img-responsive" src="{% static "index/image/1.jpg" %}"></img>
-			<img class="img-responsive" src="{% static "index/image/2.jpg" %}"></img>
-			<img class="img-responsive" src="{% static "index/image/3.jpg" %}"></img>
-			<img class="img-responsive" src="{% static "index/image/4.jpg" %}"></img>
-			<img class="img-responsive" src="{% static "index/image/5.jpg" %}"></img>
-			<img class="img-responsive" src="{% static "index/image/7.jpg" %}"></img>
-			<img class="img-responsive" src="{% static "index/image/8.jpg" %}"></img>
-			<img class="img-responsive" src="{% static "index/image/9.jpg" %}"></img>
-            <img class="img-responsive" src="{% static "index/image/10.jpg" %}"></img>
-			<img class="img-responsive" src="{% static "index/image/11.jpg" %}"></img>
-			<img class="img-responsive" src="{% static "index/image/12.jpg" %}"></img>
+		 <h3 id="photo">精彩照片<h3>
+                 <img class="img-responsive" src="{% static 'index/img/电设/1.jpg' %}"></img>
+                 <img class="img-responsive" src="{% static 'index/img/电设/2.jpg' %}"></img>
+                 <img class="img-responsive" src="{% static 'index/img/电设/3.jpg' %}"></img>
+                 <img class="img-responsive" src="{% static 'index/img/电设/4.jpg' %}"></img>
+                 <img class="img-responsive" src="{% static 'index/img/电设/5.jpg' %}"></img>
+                 <img class="img-responsive" src="{% static 'index/img/电设/6.jpg' %}"></img>
+                 <img class="img-responsive" src="{% static 'index/img/电设/7.jpg' %}"></img>
+                 <img class="img-responsive" src="{% static 'index/img/电设/8.jpg' %}"></img>
+                 <img class="img-responsive" src="{% static 'index/img/电设/9.jpg' %}"></img>
+                 <img class="img-responsive" src="{% static 'index/img/电设/10.jpg' %}"></img>
+                 <img class="img-responsive" src="{% static 'index/img/电设/11.jpg' %}"></img>
 
 		</div>
 			
 		</div>
   
-        <div class="col-md-2" role="complementary">
+        <div class="span2" role="complementary">
           <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
             <ul class="nav bs-docs-sidenav">
               
                 <li>
-                   <a href="#intro-competition" style="font-size:25px; font-family:arial; color:#000000">赛事介绍</a>
+                   <a href="#intro-competition" style="font-size:25px; font-family: SimHei; color:#000000; line-height:1.50;">赛事介绍</a>
 				     <ul class="nav">
-					    <li><a href="#intro-compettion-theme" style="font-size:20px; font-family:arial; color:#000000">宗旨</a></li>
-						<li><a href="#intro-competiton-main" style="font-size:20px; font-family:arial; color:#000000">概况</a></li>
-						<li><a href="#intro-competition-review" style="font-size:20px; font-family:arial; color:#000000">历届赛题回顾（1999-2015）</a></li>
+					    <li><a href="#intro-compettion-theme" style="font-size:20px; font-family:SimHei;; color:#000000; line-height:1.50;">宗旨</a></li>
+						<li><a href="#intro-competiton-main" style="font-size:20px; font-family:SimHei;; color:#000000; line-height:1.50;">概况</a></li>
+						<li><a href="#intro-competition-review" style="font-size:20px; font-family:SimHei;; color:#000000; line-height:1.50;">历届赛题回顾（1999-2015）</a></li>
 					 </ul>
                 </li>
                 <li>
-                   <a href="#intro-kexie" style="font-size:25px; font-family:arial; color:#000000">科协介绍</a>
+                   <a href="#intro-kexie" style="font-size:25px; font-family:SimHei;color:#000000; line-height:1.50;">科协介绍</a>
                      <ul class="nav">
                        <li><a href="#intro-kexie-ee" style="font-size:20px; font-family:arial; color:#000000">电子系科协</a></li>
                        <li><a href="#intro-kexie-au" style="font-size:20px; font-family:arial; color:#000000">自动化系科协</a></li>
                      </ul>
                 </li>
                 <li>
-                   <a href="#photo" style="font-size:25px; font-family:arial; color:#000000">精彩照片</a>
+                   <a href="#photo" style="font-size:25px; font-family:SimHei;color:#000000; line-height:1.50;">精彩照片</a>
                 </li>
 
 
               
             </ul>
-            <a class="back-to-top" href="#top" style="font-size:25px; font-family:arial; color:#000000">
+            <a class="back-to-top" href="#top" style="font-size:25px; font-family:SimHei;; color:#000000">
               返回顶部
             </a>
             
@@ -236,6 +243,26 @@ a:active {
         
       </div>
     </div>
+	
+	<!-- Footer Bottom -->
+                        <div id="footer-bottom-wrapper">
+                                <div id="footer-bottom" class="container">
+                                        <div class="row">
+                                                <div class="span6">
+                                                        <p class="copyright" style="color:grey">
+                                                                Copyright © All Rights Reserved by EESAST from Tsinghua
+                                                        </p>
+                                                </div>
+                                                
+                                        </div>
+                                </div>
+                        </div>
+                        <!-- End of Footer Bottom -->
+
+                </footer>
+                <!-- End of Footer -->
+
+                <a href="#top" id="scroll-top"></a>
 
 
     
@@ -243,9 +270,8 @@ a:active {
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-  <script src="../js/jquery.min.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
-  <script src="../js/docs.min.js"></script>
+<script src="{% static 'index/js/jquery.min.js' %}"></script>
+<script type='text/javascript' src="{% static 'index/js/custom.js' %}"></script>
 
 
   </body>

@@ -13,14 +13,14 @@
 
                 <title>第十八届电子设计大赛</title>
 
-                <link rel="shortcut icon" href="{% static 'images/favicon.png' %}">
+                <link rel="shortcut icon" href="{% static 'community/images/favicon.png' %}">
 				
                 <!-- Style Sheet-->
                 
-                <link rel='stylesheet' id='bootstrap-css-css'  href="{% static 'css/bootstrap.css' %}" type='text/css' media='all' />
-                <link rel='stylesheet' id='responsive-css-css'  href="{% static 'css/responsive.css' %}" type='text/css' media='all' /> 
+                <link rel='stylesheet' id='bootstrap-css-css'  href="{% static 'community/css/bootstrap.css' %}" type='text/css' media='all' />
+                <link rel='stylesheet' id='responsive-css-css'  href="{% static 'community/css/responsive.css' %}" type='text/css' media='all' /> 
                 <!--<link rel='stylesheet' id='pretty-photo-css-css'  href='js/prettyphoto/prettyPhotoaeb9.css?ver=3.1.4' type='text/css' media='all' />-->
-                <link rel='stylesheet' id='main-css-css'  href="{% static 'css/main.css' %}" type='text/css' media='all' />
+                <link rel='stylesheet' id='main-css-css'  href="{% static 'community/css/main.css' %}" type='text/css' media='all' />
                 <!--<link rel='stylesheet' id='custom-css-css'  href='css/custom5152.html?ver=1.0' type='text/css' media='all' />-->
 
 
@@ -28,6 +28,19 @@
                 <!--[if lt IE 9]>
                 <script src="js/html5.js"></script></script>
                 <![endif]-->
+				<style>
+				#noreply {
+				display:none;
+				position:fixed;
+				bottom:50%;
+				left:50%;
+				border: 0.2px solid;
+				background-color:#fff;
+				width:20%;
+				z-index:1000;
+				padding:15px;
+				}
+                </style>
 
 
         </head>
@@ -52,20 +65,20 @@
                                         <nav class="main-nav">
                                                 <div class="menu-top-menu-container">
                                                         <ul id="menu-top-menu" class="clearfix">
-                                                                <li><a href="index.html">主页</a></li>
+                                                            <li  class="current-menu-item"><a href="{% url 'index:index' %}">主页</a></li>
                                                                 <li><a href="team.html">组建队伍</a></li>
-                                                                <li><a href="login.html">登录</a></li>
-                                                                <li  class="current-menu-item"><a href="community.html">论坛</a></li>
-                                                                <li><a href="file.html">文件</a></li>
+                                                                <li><a href="{% url 'login:login' %}">登录</a></li>
+                                                                <li><a href="{% url 'community:community_index' %}">论坛</a></li>
+                                                                <li><a href="{% url 'index:notice' %}">文件</a></li>
                                                                 <li><a href="#">更多</a>
                                                                         <ul class="sub-menu">
-                                                                                <li><a href="www.eesast.com">关于我们</a></li>
-                                                                                <li><a href="contact.html">联系我们</a></li>
+                                                                                <li><a href="http://www.eesast.com" target="_blank">关于我们</a></li>
+                                                                                <li><a href="{% url 'contact:contact' %}">联系我们</a></li>
                                                                         </ul>
                                                                 </li>
                                                         </ul>
 														<ul id="menu-top-right" class="clearfix">
-														        <li><a href="www.eesast.com">电子系科协</a></li>
+														        <li><a href="http://www.eesast.com" target="_blank">电子系科协</a></li>
 																<li><a href="#">自动化系科协</a></li>
 														</ul>
                                                 </div>
@@ -99,7 +112,7 @@
                                                         <header class="clearfix">
 
                                                                 <h3 class="post-title">
-                                                                        <a href="single.html?post.title={{post.title}}">{{post.title}}</a>
+                                                                        <a href="community_content.html?post.title={{post.title}}">{{post.title}}</a>
                                                                 </h3>
 
                                                                 <div class="post-meta clearfix">
@@ -120,7 +133,7 @@
                                                         <header class="clearfix">
 
                                                                 <h3 class="post-title">
-                                                                        <a href="single.html">Using Javascript</a>
+                                                                        <a href="community_content.html">Using Javascript</a>
                                                                 </h3>
 
                                                                 <div class="post-meta clearfix">
@@ -141,7 +154,7 @@
                                                         <header class="clearfix">
 
                                                                 <h3 class="post-title">
-                                                                        <a href="single.html">Using Images</a>
+                                                                        <a href="community_content.html">Using Images</a>
                                                                 </h3>
 
                                                                 <div class="post-meta clearfix">
@@ -152,7 +165,7 @@
 
                                                         </header>
 
-                                                        <a href="#" title="Using Images"><img width="770" height="501" src="images/temp/living-room-770x501.jpg" class="attachment-std-thumbnail wp-post-image" alt="Living room"></a>
+                                                        <a href="#" title="Using Images"><img width="770" height="501" src="{% static 'community/images/temp/living-room-770x501.jpg' %}" class="attachment-std-thumbnail wp-post-image" alt="Living room"></a>
 
                                                         <p>Many of us work in an endless stream of tasks, browser tasks, social media, emails, meetings, rushing from one thing to another, never pausing and never ending.&nbsp;Then the day is over, and we are exhausted, and we often have very little to show for it. And we start the next . . . </p>
 
@@ -165,7 +178,7 @@
                                                         <header class="clearfix">
 
                                                                 <h3 class="post-title">
-                                                                        <a href="single.html">WordPress Site Maintenance</a>
+                                                                        <a href="community_content.html">WordPress Site Maintenance</a>
                                                                 </h3>
 
                                                                 <div class="post-meta clearfix">
@@ -200,29 +213,39 @@
 
                                                 <section class="widget">
                                                         <div class="support-widget">
-                                                                <a href="community_create.html"><button class="clean-gray">创建新的帖子</button></a>
+                                                                <a href="javascript:void(0)" onclick = "document.getElementById('noreply').style.display='block'" class="comment-reply-link""><button class="clean-gray">创建新的帖子</button></a>
                                                         </div>
                                                 </section>
 
-{% if lecturelist %}
-         
-              <li>{{lecture.title}}</a></li>
-            {% endfor %}
-          <ul>
-        {% else %}
-        {% endif %}
-                                                
-												<section class="widget">
+                                                                                                <div id='noreply'>
+																								
+																								<div class="container">
+																								<p style="font-size:20px;">您还没有登录，不能发帖和回复</p>
+																								<p style="font-size:20px;"><a href="login.html">点此登录</a></p>
+																								<p style="font-size:20px;"><a href="community_index.html">退出</a></p>
+																								</div>
+													
+																								
+																								</div>
+                                                <section class="widget">
                                                         <h3 class="title">Featured Articles</h3>
                                                         <ul class="articles">
-																
-																	{% for post in posts %}
-																	<li class="article-entry standard"><a href = "/post/lecture/{{post.id}}/">
-																		<h4>{{post.title}}</a></h4>
+                                                                <li class="article-entry standard">
+                                                                        <h4><a href="community_content.html?post.tilte={{post.title}}">Integrating WordPress with Your Website</a></h4>
                                                                         <span class="article-meta">{{post.timestamp}} by {{post.sender}}</span>
-																	{% endfor %}
-																
-																
+                                                                </li>
+                                                                <li class="article-entry standard">
+                                                                        <h4><a href="community_content.html?post.tilte={{post.title}}">Integrating WordPress with Your Website</a></h4>
+                                                                        <span class="article-meta">{{post.timestamp}} by {{post.sender}}</span>
+                                                                </li>
+                                                                <li class="article-entry standard">
+                                                                        <h4><a href="community_content.html?post.tilte={{post.title}}">Integrating WordPress with Your Website</a></h4>
+                                                                        <span class="article-meta">{{post.timestamp}} by {{post.sender}}</span>
+                                                                </li>
+                                                                <li class="article-entry standard">
+                                                                        <h4><a href="community_content.html?post.tilte={{post.title}}">Integrating WordPress with Your Website</a></h4>
+                                                                        <span class="article-meta">{{post.timestamp}} by {{post.sender}}</span>
+                                                                </li>
                                                         </ul>
                                                 </section>
 
@@ -239,27 +262,7 @@
                         </div>
                 </div>
                 <!-- End of Page Container -->
-		{% if contacts.has_previous %}
-             <a href="?page={{ page_objects.previous_page_number }}" title="Pre">previous</a>
-         {% endif %}
-         {% for p in page_range %}
 
-		{% ifequal p page_objects.number %}
-
-		<span style="font-size:16px;" title="当前页"><b>{{p}}</b></span>        
-
-		{% else %}<a href="?page={{p}}" title="第{{p}}页">{{p}}</a>{% endifequal %}
-
-		{% endfor %}     
-
-		{% if page_objects.has_next %}
-
-		<a href="?page={{ page_objects.next_page_number }}" title="Next">下一页</a>
-
-		{% endif %}  
-          Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
-         
-        {% endif %}
 
 
                         <!-- Footer Bottom -->
@@ -284,8 +287,8 @@
 				
 
                 <!-- script -->
-                <script type='text/javascript' src="{% static 'js/jquery.min.js' %}"></script>
-				<script type='text/javascript' src="{% static 'js/custom.js' %}"></script>
+                <script type='text/javascript' src="{% static 'community/js/jquery.min.js' %}"></script>
+                <script type='text/javascript' src="{% static 'community/js/custom.js' %}"></script>
 
         </body>
 </html>
