@@ -1,9 +1,11 @@
-from django.shortcuts import render, HttpResponseRedirect,render_to_response
+from django.shortcuts import render, HttpResponseRedirect,render_to_response,HttpResponse
 from django.contrib.auth.models import User
 from django.conf import settings
 from login.models import Member
 from .forms import LoginForm
 import urllib
+import json
+from django.contrib.auth import authenticate, login
 
 
 EESAST_CLIENTID = settings.EESAST_CLIENTID
@@ -13,16 +15,16 @@ EESAST_AUTHORIZE_URL = settings.EESAST_AUTHORIZE_URL
 
 
 def	get_access_token(username,password):
-    auth_url = 'http://www.eesast.com/o/token'
+    auth_url = 'http://www.eesast.com/o/token/'
     body = urllib.parse.urlencode({
-    'client_id':EESAST_CLIENTID,
+    'client_id':'HJjxmkjuD7yUyaYwqWYNRqxhsBDowOtmYfrVpMEi',
     'grant_type':'password',
     'username':username,
     'password':password,
     })
     body = body.encode('utf-8')
     headers = {'Content-Type':'application/x-www-form-urlencoded'}
-    req = urllib.request.Request(auth_url, body, headers)
+    req = urllib.request.Request(auth_url, body, headers=headers)
     resp = urllib.request.urlopen(req)
     resp = resp.read()
     resp = resp.decode('utf-8')
@@ -31,7 +33,7 @@ def	get_access_token(username,password):
 
 def get_user_info(access_token):
 	if access_token:
-		headers = {'Authorization': Access_Token}
+		headers = {'Authorization': "Bearer %s" %access_token}
 		userinfo_url = 'http://www.eesast.com/account/userinfo/'
 		req = urllib.request.Request(userinfo_url,headers = headers)
 		resp = urllib.request.urlopen(req)
@@ -44,31 +46,29 @@ def get_user_info(access_token):
 
 def check_user(data):
 	try:
-		user1 = User.objects.get(username=data[username])
+		user1 = User.objects.get(username=data['name'])
 		return user1
 	except:
-		user2 = User.objects.get.create_user(username=data[username],
-		password=data[password])
+		user2 = User(username=data['name'])
 		user2.save()
-		member = Member(user=user2,group="管理员")
+		member = Member(user=user2)
 		member.save()
 		return user2
 
-def login(request):
+def Login(request):
     error = ''
+    access_token=''
     if request.method =='POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            print(3)
             cd = form.cleaned_data
-            access_token = get_access_token(cd['username'],cd['password'])
-            data = get_user_info(access_token)
-            user = check_user(data)
-            login(request, user)
-            print(access_token)
-            if access_token:
+            try:
+                access_token = get_access_token(cd['username'],cd['password'])
+                data = get_user_info(access_token)
+                user = check_user(data)
+                login(request,user)
                 return render_to_response('logindone.html',{'mes':"您已成功登陆！"})
-            else:
+            except Exception:
                 error = '登录申请失败！请先注册！'
                 print(error)
     else:

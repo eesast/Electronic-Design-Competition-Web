@@ -2,7 +2,7 @@ from django.shortcuts import render, render_to_response
 from community import forms
 from community import models
 from django.core.paginator import Paginator, InvalidPage, EmptyPage, PageNotAnInteger
-
+from django.contrib.auth import authenticate, login
 
 
 def community_content(request):

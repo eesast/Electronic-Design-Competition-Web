@@ -8,7 +8,7 @@ class Post(models.Model):
     title = models.CharField(u'评论标题',max_length=100)
     timestamp = models.DateTimeField(auto_now=True)
     content = models.TextField(u'内容',blank=True, null=True)
-    sender = models.CharField(max_length=30)
+    sender = models.ForeignKey(User,on_delete=models.CASCADE)
     replycount = models.IntegerField(default=0)
     summary = models.CharField(u'摘要',blank=True, null=True,max_length=100)
     head_img = models.ImageField(upload_to="uploads",null=True)

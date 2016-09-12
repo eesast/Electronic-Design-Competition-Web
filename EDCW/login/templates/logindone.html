@@ -1,4 +1,4 @@
-﻿{% load staitic %}
+﻿{% load static %}
 <!doctype html>
         <!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en-US"> <![endif]-->
         <!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en-US"> <![endif]-->
@@ -17,10 +17,10 @@
 				
                 <!-- Style Sheet-->
                 
-                <link rel='stylesheet' id='bootstrap-css-css'  href="{% static 'css/bootstrap.css' %}" type='text/css' media='all' />
-                <link rel='stylesheet' id='responsive-css-css'  href="{% static 'css/responsive.css' %}" type='text/css' media='all' /> 
+                <link rel='stylesheet' id='bootstrap-css-css'  href="{% static 'login/css/bootstrap.css' %}" type='text/css' media='all' />
+                <link rel='stylesheet' id='responsive-css-css'  href="{% static 'login/css/responsive.css' %}" type='text/css' media='all' /> 
                 <!--<link rel='stylesheet' id='pretty-photo-css-css'  href='js/prettyphoto/prettyPhotoaeb9.css?ver=3.1.4' type='text/css' media='all' />-->
-                <link rel='stylesheet' id='main-css-css'  href="{% static 'css/login.css' %}" type='text/css' media='all' />
+                <link rel='stylesheet' id='main-css-css'  href="{% static 'login/css/login.css' %}" type='text/css' media='all' />
                 <!--<link rel='stylesheet' id='custom-css-css'  href='css/custom5152.html?ver=1.0' type='text/css' media='all' />-->
 
 
@@ -99,13 +99,10 @@
                                                                 <a href="#">登录</a>
                                                         </h1>
                                                         <hr>
-                                                        <p>请用科协用户名登录&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="#">还没有注册？点击前往注册</a></p>
+                                                        <p>登录成功！</a></p>
                                                 </article>
 
 
-                                                <p>登陆成功！
-
-                                                </p>
                                         </div>
                                         <!-- end of page content -->
 
@@ -176,8 +173,8 @@
 				
 
                 <!-- script -->
-                <script type='text/javascript' src="{% static 'js/jquery.min.js' %}"></script>
-				<script type='text/javascript' src="{% static 'js/custom.js' %}"></script>
+                <script type='text/javascript' src="{% static 'static/js/jquery.min.js' %}"></script>
+				<script type='text/javascript' src="{% static 'static/js/custom.js' %}"></script>
 
         </body>
 </html>
