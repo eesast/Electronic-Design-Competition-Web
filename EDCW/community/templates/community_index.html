@@ -204,26 +204,25 @@
                                                         </div>
                                                 </section>
 
-
-                                                <section class="widget">
+{% if lecturelist %}
+         
+              <li>{{lecture.title}}</a></li>
+            {% endfor %}
+          <ul>
+        {% else %}
+        {% endif %}
+                                                
+												<section class="widget">
                                                         <h3 class="title">Featured Articles</h3>
                                                         <ul class="articles">
-                                                                <li class="article-entry standard">
-                                                                        <h4><a href="single.html?post.tilte={{post.title}}">Integrating WordPress with Your Website</a></h4>
+																
+																	{% for post in posts %}
+																	<li class="article-entry standard"><a href = "/post/lecture/{{post.id}}/">
+																		<h4>{{post.title}}</a></h4>
                                                                         <span class="article-meta">{{post.timestamp}} by {{post.sender}}</span>
-                                                                </li>
-                                                                <li class="article-entry standard">
-                                                                        <h4><a href="single.html?post.tilte={{post.title}}">Integrating WordPress with Your Website</a></h4>
-                                                                        <span class="article-meta">{{post.timestamp}} by {{post.sender}}</span>
-                                                                </li>
-                                                                <li class="article-entry standard">
-                                                                        <h4><a href="single.html?post.tilte={{post.title}}">Integrating WordPress with Your Website</a></h4>
-                                                                        <span class="article-meta">{{post.timestamp}} by {{post.sender}}</span>
-                                                                </li>
-                                                                <li class="article-entry standard">
-                                                                        <h4><a href="single.html?post.tilte={{post.title}}">Integrating WordPress with Your Website</a></h4>
-                                                                        <span class="article-meta">{{post.timestamp}} by {{post.sender}}</span>
-                                                                </li>
+																	{% endfor %}
+																
+																
                                                         </ul>
                                                 </section>
 
@@ -240,7 +239,27 @@
                         </div>
                 </div>
                 <!-- End of Page Container -->
+		{% if contacts.has_previous %}
+             <a href="?page={{ page_objects.previous_page_number }}" title="Pre">previous</a>
+         {% endif %}
+         {% for p in page_range %}
 
+		{% ifequal p page_objects.number %}
+
+		<span style="font-size:16px;" title="当前页"><b>{{p}}</b></span>        
+
+		{% else %}<a href="?page={{p}}" title="第{{p}}页">{{p}}</a>{% endifequal %}
+
+		{% endfor %}     
+
+		{% if page_objects.has_next %}
+
+		<a href="?page={{ page_objects.next_page_number }}" title="Next">下一页</a>
+
+		{% endif %}  
+          Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
+         
+        {% endif %}
 
 
                         <!-- Footer Bottom -->

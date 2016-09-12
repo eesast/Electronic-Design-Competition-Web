@@ -40,12 +40,10 @@ INSTALLED_APPS = [
     'login',
     'contact',
     'community',
-    'usera',
-    'rest_framework',
 ]
 
 EESAST_AUTHORIZE_URL = 'www.eesast.com/'
-EESAST_CLIENTID = 'client_id'
+EESAST_CLIENTID = 'HJjxmkjuD7yUyaYwqWYNRqxhsBDowOtmYfrVpMEi'
 EESAST_CLIENTSECRET = 'client_secret'
 EESAST_CALLBACK = 'http://localhost:8000/'
 
@@ -144,7 +142,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = '/var/www/thedc/EDCW/static'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

@@ -1,4 +1,5 @@
-﻿<!doctype html>
+﻿{% load static %}
+<!doctype html>
         <!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en-US"> <![endif]-->
         <!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en-US"> <![endif]-->
         <!--[if IE 8]>    <html class="lt-ie9" lang="en-US"> <![endif]-->
@@ -97,20 +98,33 @@
 		
 		</div>
 		<div role="file" id="file-block" class="span6">
+<<<<<<< HEAD
 		  
 		  {% csrf_token %}
+=======
+		{% if notice_list %}	
+	  	{% csrf_token %}
+>>>>>>> origin/master
 		    {% for notice in notice_list %}
 			  <div id="notice">
               <li id="lititle">{{notice.title}}</li>
               <p id="licontent">{{notice.content}}</p>
 			  <form action="#" method="post" id="choice">
 			  {% if notice.file_attached %}
+<<<<<<< HEAD
                 <p id="file">文件：<input type="hidden" name="hiddenchoice" value="{{notice.id}}"><a href="#" onclick="document.getElementById('choice').submit();">{{notice.title}}</a></p>
 				{% endif %} 
 			  </div>
 			  </form> 
             {% endfor %} 
           
+=======
+
+                <p id="file">文件：<input type="hidden" name="hiddenchoice" value="{{notice.id}}"><a href="#" onclick="document.getElementById('choice').submit();">{{notice.title}}</a></p>
+				{% endif %} 
+          </form> 
+          </div>
+>>>>>>> origin/master
               {% else %} 
                 <p> No Notices </p> 
               {% endif %} 
