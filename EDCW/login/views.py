@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import render, HttpResponseRedirect,render_to_response
 from django.contrib.auth.models import User
 from django.conf import settings
@@ -13,6 +15,8 @@ EESAST_AUTHORIZE_URL = settings.EESAST_AUTHORIZE_URL
 
 
 def	get_access_token(username,password):
+
+    print(EESAST_CLIENTID)
     auth_url = 'http://www.eesast.com/o/token'
     body = urllib.parse.urlencode({
     'client_id':EESAST_CLIENTID,
@@ -21,7 +25,9 @@ def	get_access_token(username,password):
     'password':password,
     })
     body = body.encode('utf-8')
-    headers = {'Content-Type':'application/x-www-form-urlencoded'}
+    headers = {
+        'Content-Type':'application/x-www-form-urlencoded'
+        }
     req = urllib.request.Request(auth_url, body, headers)
     resp = urllib.request.urlopen(req)
     resp = resp.read()
