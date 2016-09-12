@@ -1,0 +1,127 @@
+﻿<!doctype html>
+        <!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en-US"> <![endif]-->
+        <!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en-US"> <![endif]-->
+        <!--[if IE 8]>    <html class="lt-ie9" lang="en-US"> <![endif]-->
+        <!--[if gt IE 8]><!--> <html lang="zh-CN"> <!--<![endif]-->
+        <head>
+                <!-- META TAGS -->
+                <meta charset="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<meta name="description" content="community">
+	            <meta name="author" content="zw">
+
+                <title>第十八届电子设计大赛</title>
+
+                <link rel="shortcut icon" href="images/favicon.png">
+				
+                <!-- Style Sheet-->
+                
+                <link rel='stylesheet' id='bootstrap-css-css'  href='../css/bootstrap.css' type='text/css' media='all' />
+                <link rel='stylesheet' id='responsive-css-css'  href='../css/responsive.css' type='text/css' media='all' /> 
+                <!--<link rel='stylesheet' id='pretty-photo-css-css'  href='js/prettyphoto/prettyPhotoaeb9.css?ver=3.1.4' type='text/css' media='all' />-->
+                <link rel='stylesheet' id='main-css-css'  href='../css/file.css' type='text/css' media='all' />
+                <!--<link rel='stylesheet' id='custom-css-css'  href='css/custom5152.html?ver=1.0' type='text/css' media='all' />-->
+
+
+                <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+                <!--[if lt IE 9]>
+                <script src="js/html5.js"></script></script>
+                <![endif]-->
+
+
+        </head>
+
+        <body>
+
+                <!-- Start of Header -->
+                <div class="header-wrapper">
+                        <header>
+                                <div class="container">
+								
+                                        <div class="logo-container">
+                                                <!-- Website Logo -->
+                                                <a href="www.eesast.com"  id="eesast" >
+                                                      EESAST
+                                                </a>
+                                             
+                                        </div>
+
+
+                                        <!-- Start of Main Navigation -->
+                                        <nav class="main-nav">
+                                                <div class="menu-top-menu-container">
+                                                        <ul id="menu-top-menu" class="clearfix">
+                                                                <li><a href="index_after_login.html?username={{username}}">主页</a></li>
+                                                                <li><a href="team_after_logon.html?username={{username}}">组建队伍</a></li>
+                                                                <li><a href="community_index_after_login.html?username={{username}}">论坛</a></li>
+                                                                <li  class="current-menu-item"><a href="file_after_login.html">文件</a></li>
+                                                                <li><a href="#">更多</a>
+                                                                        <ul class="sub-menu">
+                                                                                <li><a href="www.eesast.com">关于我们</a></li>
+                                                                                <li><a href="contact_after_login.html">联系我们</a></li>
+                                                                        </ul>
+                                                                </li>
+                                                        </ul>
+														<ul id="menu-top-right" class="clearfix">
+														        <li><a href="www.eesast.com">电子系科协</a></li>
+																<li><a href="#">自动化系科协</a></li>
+														</ul>
+                                                </div>
+                                        </nav>
+                                        <!-- End of Main Navigation -->
+
+                                </div>
+                        </header>
+                </div>
+                <!-- End of Header -->
+
+                <!-- Start of Search Wrapper -->
+                <div class="search-area-wrapper">
+                        <div class="search-area container">
+                                <h2 class="search-header">第十八届电子设计大赛</h2>
+                                <p class="search-tag-line">开始你的设计</p>
+                        </div>
+                </div>
+                <!-- End of Search Wrapper -->
+
+ <div class="container-fluid bs-docs-container">
+
+      <div class="row">
+	    <div class="span4" role="complementary" id="btn-block">
+		 
+			<p><a href="file_after_login.html?username={{username}}" target="_blank"><button type="button" class="button xl glass oval" id="b">文件发布</button></a></p>
+			<p><a href="community_index_after_login.html?username={{username}}" target="_blank"><button type="button" class="button xl glass oval" id="c">进入论坛</button></a></p>
+			<p><a href="contact_after_login.html?username={{username}}" target="_blank"><button type="button" class="button xl glass oval" id="d">联系我们</button></a></p>
+		
+		</div>
+		<div role="file" id="file-block" class="span6">
+		  <form action="#" method="post">
+		  {% csrf_token %}
+		    {% for notice in notice_list %}
+			  <div id="notice">
+              <li id="lititle">{{notice.title}}</li>
+              <p id="licontent">{{notice.content}}</p>
+			  {% if notice.file_attached %}
+                <p id="file">文件：<input type="hidden" name="choice" value="{{notice.id}}"><a href="javascript:choice.submit();">{{notice.title}}</a></p>
+				{% endif %} 
+			  </div>
+            {% endfor %} 
+          </form> 
+              {% else %} 
+                <p> No Notices </p> 
+              {% endif %} 
+
+		 
+          			
+		</div>
+	  </div>
+		
+		
+		
+		
+    </div>
+	<!-- script -->
+                <script type='text/javascript' src='../js/jquery.min.js'></script>
+				<script type='text/javascript' src='../js/custom.js'></script>
+  </body>
+  </html>

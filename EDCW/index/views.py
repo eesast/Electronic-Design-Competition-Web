@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, StreamingHttpResponse
 from django.urls import reverse
@@ -21,7 +22,7 @@ def noticeIndex(request):
 def download(request):
 
     def file_iterator(file_name, chunk_size=512):
-        with open(file_name) as f:
+        with open(file_name, 'rb') as f:
             while True:
                 c = f.read(chunk_size)
                 if c:

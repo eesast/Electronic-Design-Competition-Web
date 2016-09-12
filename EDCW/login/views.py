@@ -1,4 +1,5 @@
-from django.shortcuts import render, HttpResponseRedirect,render_to_response,HttpResponse
+# -*- coding: utf-8 -*-
+from django.shortcuts import render, HttpResponseRedirect,render_to_response
 from django.contrib.auth.models import User
 from django.conf import settings
 from login.models import Member
@@ -7,11 +8,6 @@ import urllib
 import json
 from django.contrib.auth import authenticate, login
 
-
-EESAST_CLIENTID = settings.EESAST_CLIENTID
-EESAST_CLIENSECRET = settings.EESAST_CLIENTSECRET
-EESAST_CALLBACK = settings.EESAST_CALLBACK
-EESAST_AUTHORIZE_URL = settings.EESAST_AUTHORIZE_URL
 
 
 def	get_access_token(username,password):

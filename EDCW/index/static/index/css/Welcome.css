@@ -113,3 +113,345 @@ h1 {
     margin-top: 120px;
   }
 }
+
+
+
+#btn1,#btn2,#btn3 { 
+   display: inline-block; 
+   vertical-align: middle; 
+   -webkit-transform: translateZ(0); 
+   transform: translateZ(0); 
+   box-shadow: 0 0 1px rgba(0, 0, 0, 0); 
+   -webkit-backface-visibility: hidden; 
+   backface-visibility: hidden; 
+   -moz-osx-font-smoothing: grayscale; 
+   -webkit-transition-duration: 0.3s; 
+   transition-duration: 0.3s; 
+   -webkit-transition-property: transform; 
+   transition-property: transform; 
+ } 
+ #btn1:hover, #btn1:focus, #btn1:active { 
+   -webkit-transform: scale(1.1); 
+   transform: scale(1.1); 
+ } 
+
+ #btn2:hover, #btn2:focus, #btn2:active { 
+   -webkit-transform: scale(1.1); 
+   transform: scale(1.1); 
+ } 
+ #btn3:hover, #btn3:focus, #btn3:active { 
+   -webkit-transform: scale(1.1); 
+   transform: scale(1.1); 
+ } 
+ 
+
+.button {
+  color: #666;
+  background-color: #EEE;
+  border-color: #EEE;
+  font-weight: 300;
+  font-size: 50px;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  text-decoration: none;
+  text-align: center;
+  line-height: 40px;
+  height: 40px;
+  padding: 0 40px;
+  margin: 0;
+  display: inline-block;
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transition-property: all;
+          transition-property: all;
+  -webkit-transition-duration: .3s;
+          transition-duration: .3s;
+  /*
+  * Disabled State
+  *
+  * The disabled state uses the class .disabled, is-disabled,
+  * and the form attribute disabled="disabled".
+  * The use of !important is only added because this is a state
+  * that must be applied to all buttons when in a disabled state.
+  */ }
+  .button:visited {
+    color: #666; }
+  .button:hover, .button:focus {
+    background-color: #f6f6f6;
+    text-decoration: none;
+    outline: none; }
+  .button:active, .button.active, .button.is-active {
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+    text-decoration: none;
+    background-color: #eeeeee;
+    border-color: #cfcfcf;
+    color: #d4d4d4;
+    -webkit-transition-duration: 0s;
+            transition-duration: 0s;
+    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2); }
+  .button.disabled, .button.is-disabled, .button:disabled {
+    top: 0 !important;
+    background: #EEE !important;
+    border: 1px solid #DDD !important;
+    text-shadow: 0 1px 1px white !important;
+    color: #CCC !important;
+    cursor: default !important;
+    appearance: none !important;
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+    opacity: .8 !important; }
+
+/*
+* Base Button Tyography
+*
+*/
+.button-uppercase {
+  text-transform: uppercase; }
+
+.button-lowercase {
+  text-transform: lowercase; }
+
+.button-capitalize {
+  text-transform: capitalize; }
+
+.button-small-caps {
+  font-variant: small-caps; }
+
+.button-icon-txt-large {
+  font-size: 36px !important; }
+
+/*
+* Base padding
+*
+*/
+.button-width-small {
+  padding: 0 10px !important; }
+
+/*
+* Base Colors
+*
+* Create colors for buttons
+* (.button-primary, .button-secondary, etc.)
+*/
+.button-primary,
+.button-primary-flat {
+  background-color: #1B9AF7;
+  border-color: #1B9AF7;
+  color: #FFF; }
+  .button-primary:visited,
+  .button-primary-flat:visited {
+    color: #FFF; }
+  .button-primary:hover, .button-primary:focus,
+  .button-primary-flat:hover,
+  .button-primary-flat:focus {
+    background-color: #4cb0f9;
+    border-color: #4cb0f9;
+    color: #FFF; }
+  .button-primary:active, .button-primary.active, .button-primary.is-active,
+  .button-primary-flat:active,
+  .button-primary-flat.active,
+  .button-primary-flat.is-active {
+    background-color: #2798eb;
+    border-color: #2798eb;
+    color: #0880d7; }
+
+.button-plain,
+.button-plain-flat {
+  background-color: #FFF;
+  border-color: #FFF;
+  color: #1B9AF7; }
+  .button-plain:visited,
+  .button-plain-flat:visited {
+    color: #1B9AF7; }
+  .button-plain:hover, .button-plain:focus,
+  .button-plain-flat:hover,
+  .button-plain-flat:focus {
+    background-color: white;
+    border-color: white;
+    color: #1B9AF7; }
+  .button-plain:active, .button-plain.active, .button-plain.is-active,
+  .button-plain-flat:active,
+  .button-plain-flat.active,
+  .button-plain-flat.is-active {
+    background-color: white;
+    border-color: white;
+    color: #e6e6e6; }
+
+.button-inverse,
+.button-inverse-flat {
+  background-color: #222;
+  border-color: #222;
+  color: #EEE; }
+  .button-inverse:visited,
+  .button-inverse-flat:visited {
+    color: #EEE; }
+  .button-inverse:hover, .button-inverse:focus,
+  .button-inverse-flat:hover,
+  .button-inverse-flat:focus {
+    background-color: #3c3c3c;
+    border-color: #3c3c3c;
+    color: #EEE; }
+  .button-inverse:active, .button-inverse.active, .button-inverse.is-active,
+  .button-inverse-flat:active,
+  .button-inverse-flat.active,
+  .button-inverse-flat.is-active {
+    background-color: #222222;
+    border-color: #222222;
+    color: #090909; }
+
+.button-action,
+.button-action-flat {
+  background-color: #A5DE37;
+  border-color: #A5DE37;
+  color: #FFF; }
+  .button-action:visited,
+  .button-action-flat:visited {
+    color: #FFF; }
+  .button-action:hover, .button-action:focus,
+  .button-action-flat:hover,
+  .button-action-flat:focus {
+    background-color: #b9e563;
+    border-color: #b9e563;
+    color: #FFF; }
+  .button-action:active, .button-action.active, .button-action.is-active,
+  .button-action-flat:active,
+  .button-action-flat.active,
+  .button-action-flat.is-active {
+    background-color: #a1d243;
+    border-color: #a1d243;
+    color: #8bc220; }
+
+.button-highlight,
+.button-highlight-flat {
+  background-color: #FEAE1B;
+  border-color: #FEAE1B;
+  color: #FFF; }
+  .button-highlight:visited,
+  .button-highlight-flat:visited {
+    color: #FFF; }
+  .button-highlight:hover, .button-highlight:focus,
+  .button-highlight-flat:hover,
+  .button-highlight-flat:focus {
+    background-color: #fec04e;
+    border-color: #fec04e;
+    color: #FFF; }
+  .button-highlight:active, .button-highlight.active, .button-highlight.is-active,
+  .button-highlight-flat:active,
+  .button-highlight-flat.active,
+  .button-highlight-flat.is-active {
+    background-color: #f3ab26;
+    border-color: #f3ab26;
+    color: #e59501; }
+
+.button-caution,
+.button-caution-flat {
+  background-color: #FF4351;
+  border-color: #FF4351;
+  color: #FFF; }
+  .button-caution:visited,
+  .button-caution-flat:visited {
+    color: #FFF; }
+  .button-caution:hover, .button-caution:focus,
+  .button-caution-flat:hover,
+  .button-caution-flat:focus {
+    background-color: #ff7680;
+    border-color: #ff7680;
+    color: #FFF; }
+  .button-caution:active, .button-caution.active, .button-caution.is-active,
+  .button-caution-flat:active,
+  .button-caution-flat.active,
+  .button-caution-flat.is-active {
+    background-color: #f64c59;
+    border-color: #f64c59;
+    color: #ff1022; }
+
+.button-royal,
+.button-royal-flat {
+  background-color: #7B72E9;
+  border-color: #7B72E9;
+  color: #FFF; }
+  .button-royal:visited,
+  .button-royal-flat:visited {
+    color: #FFF; }
+  .button-royal:hover, .button-royal:focus,
+  .button-royal-flat:hover,
+  .button-royal-flat:focus {
+    background-color: #a49ef0;
+    border-color: #a49ef0;
+    color: #FFF; }
+  .button-royal:active, .button-royal.active, .button-royal.is-active,
+  .button-royal-flat:active,
+  .button-royal-flat.active,
+  .button-royal-flat.is-active {
+    background-color: #827ae1;
+    border-color: #827ae1;
+    color: #5246e2; }
+
+
+
+/*
+* Button Types (optional)
+*
+* All of the files below represent the various button
+* types (including shapes & sizes). None of these files
+* are required. Simple remove the uneeded type below and
+* the button type will be excluded from the final build
+*/
+/*
+* Button Shapes
+*
+* This file creates the various button shapes
+* (ex. Circle, Rounded, Pill)
+*/
+
+
+.button-circle {
+  border-radius: 100%; }
+
+/*
+* Size Adjustment for equal height & widht buttons
+*
+* Remove padding and set a fixed width.
+*/
+.button-circle,
+.button-box,
+.button-square {
+  padding: 0 !important;
+  width: 40px; }
+  .button-circle.button-giant,
+  .button-box.button-giant,
+  .button-square.button-giant {
+    width: 150px; }
+
+
+/*
+* Button Sizes
+*
+* This file creates the various button sizes
+* (ex. .button-large, .button-small, etc.)
+*/
+.button-giant {
+  font-size: 40px;
+  height: 150px;
+  line-height: 70px;
+  padding: 0 70px; }
+  
+  .button-wrap {
+  border: 1px solid #e3e3e3;
+  display: inline-block;
+  padding: 20px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#dfdfdf), to(#FFF));
+  background: linear-gradient(#f2f2f2, #FFF);
+  border-radius: 200px;
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
+          box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04); }
+
+
+
+
+ 
+ 
