@@ -97,18 +97,20 @@
 		
 		</div>
 		<div role="file" id="file-block" class="span6">
-		  <form action="#" method="post">
+		  
 		  {% csrf_token %}
 		    {% for notice in notice_list %}
 			  <div id="notice">
               <li id="lititle">{{notice.title}}</li>
               <p id="licontent">{{notice.content}}</p>
+			  <form action="#" method="post" id="choice">
 			  {% if notice.file_attached %}
-                <p id="file">文件：<input type="hidden" name="choice" value="{{notice.id}}"><a href="javascript:choice.submit();">{{notice.title}}</a></p>
+                <p id="file">文件：<input type="hidden" name="hiddenchoice" value="{{notice.id}}"><a href="#" onclick="document.getElementById('choice').submit();">{{notice.title}}</a></p>
 				{% endif %} 
 			  </div>
+			  </form> 
             {% endfor %} 
-          </form> 
+          
               {% else %} 
                 <p> No Notices </p> 
               {% endif %} 
