@@ -151,6 +151,7 @@ MEDIA_URL = '/media/'
 
 ADMINS = (
     ('Yufeng Huang', 'mildwindyu@hotmail.com'),
+	('Zhao Wang', 'thuzhaowang@163.com'),
 )
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

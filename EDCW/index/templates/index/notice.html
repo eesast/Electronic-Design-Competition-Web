@@ -8,7 +8,7 @@
                 <!-- META TAGS -->
                 <meta charset="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-				<meta name="description" content="community">
+				<meta name="description" content="notice">
 	            <meta name="author" content="zw">
 
                 <title>第十八届电子设计大赛</title>
@@ -52,11 +52,11 @@
                                         <nav class="main-nav">
                                                 <div class="menu-top-menu-container">
                                                         <ul id="menu-top-menu" class="clearfix">
-                                                            <li  class="current-menu-item"><a href="{% url 'index:index' %}">主页</a></li>
+                                                            <li><a href="{% url 'index:index' %}">主页</a></li>
                                                                 <li><a href="team.html">组建队伍</a></li>
                                                                 <li><a href="{% url 'login:login' %}">登录</a></li>
                                                                 <li><a href="{% url 'community:community_index' %}">论坛</a></li>
-                                                                <li><a href="{% url 'index:notice' %}">文件</a></li>
+                                                                <li  class="current-menu-item"><a href="{% url 'index:notice' %}">文件</a></li>
                                                                 <li><a href="#">更多</a>
                                                                         <ul class="sub-menu">
                                                                                 <li><a href="http://www.eesast.com" target="_blank">关于我们</a></li>
@@ -91,10 +91,10 @@
       <div class="row">
 	    <div class="span4" role="complementary" id="btn-block">
 		 
-		    <p><a href="login.html"><button type="button" class="button xl glass oval" id="a">登录注册</button></a></p>
-			<p><a href="file.html" target="_blank"><button type="button" class="button xl glass oval" id="b">文件发布</button></a></p>
-			<p><a href="community_index.html" target="_blank"><button type="button" class="button xl glass oval" id="c">进入论坛</button></a></p>
-			<p><a href="contact.html" target="_blank"><button type="button" class="button xl glass oval" id="d">联系我们</button></a></p>
+		    <p><a href="{% url 'login:login' %}"><button type="button" class="button xl glass oval" id="a">登录注册</button></a></p>
+			<p><a href="{% url 'index:notice' %}" target="_blank"><button type="button" class="button xl glass oval" id="b">文件发布</button></a></p>
+			<p><a href="{% url 'community:community_index' %}" target="_blank"><button type="button" class="button xl glass oval" id="c">进入论坛</button></a></p>
+			<p><a href="{% url 'contact:contact' %}" target="_blank"><button type="button" class="button xl glass oval" id="d">联系我们</button></a></p>
 		
 		</div>
 		<div role="file" id="file-block" class="span6">

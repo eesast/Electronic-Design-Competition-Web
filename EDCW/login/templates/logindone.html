@@ -41,7 +41,7 @@
 								
                                         <div class="logo-container">
                                                 <!-- Website Logo -->
-                                                <a href="www.eesast.com"  id="eesast" >
+                                                <a href="http://www.eesast.com"  id="eesast" >
                                                       EESAST
                                                 </a>
                                              
@@ -52,11 +52,11 @@
                                         <nav class="main-nav">
                                                 <div class="menu-top-menu-container">
                                                         <ul id="menu-top-menu" class="clearfix">
-                                                            <li  class="current-menu-item"><a href="{% url 'index:index' %}">主页</a></li>
+                                                            <li><a href="{% url 'index:index_after_login' %}">主页</a></li>
                                                                 <li><a href="team.html">组建队伍</a></li>
-                                                                <li><a href="{% url 'login:login' %}">登录</a></li>
-                                                                <li><a href="{% url 'community:community_index' %}">论坛</a></li>
-                                                                <li><a href="{% url 'index:notice' %}">文件</a></li>
+                                                                <li  class="current-menu-item"><a href="{% url 'login:login' %}">登录</a></li>
+                                                                <li><a href="{% url 'community:community_index_after_login' %}">论坛</a></li>
+                                                                <li><a href="{% url 'index:notice_after_login' %}">文件</a></li>
                                                                 <li><a href="#">更多</a>
                                                                         <ul class="sub-menu">
                                                                                 <li><a href="http://www.eesast.com" target="_blank">关于我们</a></li>
@@ -113,7 +113,7 @@
                                                 <section class="widget">
                                                         <div class="support-widget">
                                                                 <h3 class="title">Welcome</h3>
-                                                                <p class="intro">WHAT HURTS MORE? THE PAIN OF HARD WORK? OR THE PAIN OF REGRET?</p><a href="contact.html">更多鸡汤请————联系我们</a>
+                                                                <p class="intro">WHAT HURTS MORE? THE PAIN OF HARD WORK? OR THE PAIN OF REGRET?</p><a href="{% url 'contact:contact' %}">更多鸡汤请————联系我们</a>
                                                         </div>
                                                 </section>
 
@@ -121,22 +121,22 @@
                                                         <h3 class="title">Latest Articles</h3>
                                                         <ul class="articles">
                                                                 <li class="article-entry standard">
-                                                                        <h4><a href="single.html?post.tilte={{post.title}}">{{post.title}}</a></h4>
+                                                                        <h4><a href="% url 'community:community_content post.id %">{{post.title}}</a></h4>
                                                                         <span class="article-meta">{{post.timestamp}} by {{post.sender}}</span>
 
                                                                 </li>
                                                                 <li class="article-entry standard">
-                                                                        <h4><a href="single.html?post.tilte={{post.title}}">{{post.title}}</a></h4>
+                                                                        <h4><a href="% url 'community:community_content post.id %">{{post.title}}</a></h4>
                                                                         <span class="article-meta">{{post.timestamp}} by {{post.sender}}</span>
 
                                                                 </li>
                                                                 <<li class="article-entry standard">
-                                                                        <h4><a href="single.html?post.tilte={{post.title}}">{{post.title}}</a></h4>
+                                                                        <h4><a href="% url 'community:community_content post.id %">{{post.title}}</a></h4>
                                                                         <span class="article-meta">{{post.timestamp}} by {{post.sender}}</span>
 
                                                                 </li>
                                                                 <li class="article-entry standard">
-                                                                        <h4><a href="single.html?post.tilte={{post.title}}">{{post.title}}</a></h4>
+                                                                        <h4><a href="% url 'community:community_content post.id %">{{post.title}}</a></h4>
                                                                         <span class="article-meta">{{post.timestamp}} by {{post.sender}}</span>
 
                                                                 </li>

@@ -43,7 +43,7 @@ a:active {
 								
                                         <div class="logo-container">
                                                 <!-- Website Logo -->
-                                                <a href="www.eesast.com"  id="eesast" >
+                                                <a href="http://www.eesast.com"  id="eesast" >
                                                       EESAST
                                                 </a>
                                              
@@ -54,7 +54,7 @@ a:active {
                                         <nav class="main-nav">
                                                 <div class="menu-top-menu-container">
                                                         <ul id="menu-top-menu" class="clearfix">
-                                                            <li  class="current-menu-item"><a href="{% url 'index:index' %}">主页</a></li>
+                                                            <li><a href="{% url 'index:index' %}">主页</a></li>
                                                                 <li><a href="team.html">组建队伍</a></li>
                                                                 <li><a href="{% url 'login:login' %}">登录</a></li>
                                                                 <li><a href="{% url 'community:community_index' %}">论坛</a></li>
@@ -62,7 +62,7 @@ a:active {
                                                                 <li><a href="#">更多</a>
                                                                         <ul class="sub-menu">
                                                                                 <li><a href="http://www.eesast.com" target="_blank">关于我们</a></li>
-                                                                                <li><a href="{% url 'contact:contact' %}">联系我们</a></li>
+                                                                                <li  class="current-menu-item"><a href="{% url 'contact:contact' %}">联系我们</a></li>
                                                                         </ul>
                                                                 </li>
                                                         </ul>
@@ -152,7 +152,7 @@ a:active {
                                                 <section class="widget">
                                                         <div class="support-widget">
                                                                 <h3 class="title">有关我们</h3>
-                                                                <p class="intro"><a href="www.eesast.com">想要了解更多电子系科协吗？想要加入科协收获知识收获经验吗？点击前往电子系科协主页</a></p>
+                                                                <p class="intro"><a href="http://www.eesast.com">想要了解更多电子系科协吗？想要加入科协收获知识收获经验吗？点击前往电子系科协主页</a></p>
                                                         </div>
                                                 </section>
 
@@ -160,22 +160,22 @@ a:active {
                                                         <h3 class="title">Latest Articles</h3>
                                                         <ul class="articles">
                                                                 <li class="article-entry standard">
-                                                                        <h4><a href="community_content.html?post.tilte={{post.title}}">Integrating WordPress with Your Website</a></h4>
+                                                                        <h4><a href="% url 'community:community_content post.id %">Integrating WordPress with Your Website</a></h4>
                                                                         <span class="article-meta">25 Feb, 2013 in <a href="#" title="View all posts in Server &amp; Database">Server &amp; Database</a></span>
    
                                                                 </li>
                                                                 <li class="article-entry standard">
-                                                                        <h4><a href="community_content.html?post.tilte={{post.title}}.html">WordPress Site Maintenance</a></h4>
+                                                                        <h4><a href="% url 'community:community_content post.id %">WordPress Site Maintenance</a></h4>
                                                                         <span class="article-meta">24 Feb, 2013 in <a href="#" title="View all posts in Website Dev">Website Dev</a></span>
  
                                                                 </li>
                                                                 <li class="article-entry video">
-                                                                        <h4><a href="community_content.html?post.tilte={{post.title}}.html">Meta Tags in WordPress</a></h4>
+                                                                        <h4><a href="% url 'community:community_content post.id %">Meta Tags in WordPress</a></h4>
                                                                         <span class="article-meta">23 Feb, 2013 in <a href="#" title="View all posts in Website Dev">Website Dev</a></span>
  
                                                                 </li>
                                                                 <li class="article-entry image">
-                                                                        <h4><a href="community_content.html?post.tilte={{post.title}}.html">WordPress in Your Language</a></h4>
+                                                                        <h4><a href="% url 'community:community_content post.id %">WordPress in Your Language</a></h4>
                                                                         <span class="article-meta">22 Feb, 2013 in <a href="#" title="View all posts in Advanced Techniques">Advanced Techniques</a></span>
 
                                                                 </li>
