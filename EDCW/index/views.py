@@ -19,7 +19,7 @@ def noticeIndex(request):
     notice_list = Notification.objects.all()
     return render(request, 'index/notice.html', {'notice_list' : notice_list})
 
-def download(request):
+def download(request, notice_id):
 
     def file_iterator(file_name, chunk_size=512):
         with open(file_name, 'rb') as f:
@@ -30,7 +30,7 @@ def download(request):
                 else:
                     break
 
-    the_partial_file_name = Notification.objects.get(pk=request.POST['choice']).file_attached.name
+    the_partial_file_name = Notification.objects.get(pk=notice_id).file_attached.name
     the_file_name = os.path.join(settings.MEDIA_ROOT, the_partial_file_name)
 
     response = StreamingHttpResponse(file_iterator(the_file_name))
