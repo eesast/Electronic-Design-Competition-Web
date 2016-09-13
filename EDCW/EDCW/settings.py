@@ -148,3 +148,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
+
+ADMINS = (
+    ('Yufeng Huang', 'mildwindyu@hotmail.com'),
+)
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'hellonowhereah@gmail.com'
+EMAIL_HOST_PASSWORD = 'hellothere'
+
+SERVER_EMAIL = 'django@eesast.com'

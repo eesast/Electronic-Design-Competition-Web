@@ -105,10 +105,13 @@ a:active {
                                                         <hr>
                                                         <p>请把您对我们的意见和建议写在下面，我们将会认真研究，并给予您答复，谢谢您的支持！&nbsp&nbsp&nbsp&nbsp&nbsp————电设开发组</p>
                                                 </article>
-
+                                                
+                                                {% if success_submit %}
+                                                <p>感谢您的反馈，我们将迅速进行处理</p>
+                                                {% endif %}
 
                                                 <form id="contact-form" class="row" action="#" method="post">
-
+                                                       {% csrf_token %}
                                                         <div class="span2">
                                                                 <label for="email">Your Email <span>*</span></label>
                                                         </div>
