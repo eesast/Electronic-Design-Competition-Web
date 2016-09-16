@@ -13,14 +13,14 @@
 
                 <title>第十八届电子设计大赛</title>
 
-                <link rel="shortcut icon" href="{% static 'community/images/favicon.png' %}">
+                <link rel="shortcut icon" href="{ static 'images/favicon.png'}">
 				
                 <!-- Style Sheet-->
                 
-                <link rel='stylesheet' id='bootstrap-css-css'  href="{% static 'community/css/bootstrap.css' %}" type='text/css' media='all' />
-                <link rel='stylesheet' id='responsive-css-css'  href="{% static 'community/css/responsive.css' %}" type='text/css' media='all' /> 
+                <link rel='stylesheet' id='bootstrap-css-css'  href="{% static 'css/bootstrap.css' %}"type='text/css' media='all' />
+                <link rel='stylesheet' id='responsive-css-css'  href="{% static 'css/responsive.css' %}"type='text/css' media='all' /> 
                 <!--<link rel='stylesheet' id='pretty-photo-css-css'  href='js/prettyphoto/prettyPhotoaeb9.css?ver=3.1.4' type='text/css' media='all' />-->
-                <link rel='stylesheet' id='main-css-css'  href="{% static 'community/css/main.css' %}" type='text/css' media='all' />
+                <link rel='stylesheet' id='main-css-css'  href="{% static 'css/main.css' %}"type='text/css' media='all' />
                 <!--<link rel='stylesheet' id='custom-css-css'  href='css/custom5152.html?ver=1.0' type='text/css' media='all' />-->
 
 
@@ -65,20 +65,20 @@
                                         <nav class="main-nav">
                                                 <div class="menu-top-menu-container">
                                                         <ul id="menu-top-menu" class="clearfix">
-                                                            <li><a href="{% url 'index:index' %}">主页</a></li>
+                                                                <li><a href="index.html">主页</a></li>
                                                                 <li><a href="team.html">组建队伍</a></li>
-                                                                <li><a href="{% url 'login:login' %}">登录</a></li>
-                                                                <li  class="current-menu-item"><a href="{% url 'community:community_index' %}">论坛</a></li>
-                                                                <li><a href="{% url 'index:notice' %}">文件</a></li>
+                                                                <li><a href="login.html">登录</a></li>
+                                                                <li  class="current-menu-item"><a href="community——index.html">论坛</a></li>
+                                                                <li><a href="file.html">文件</a></li>
                                                                 <li><a href="#">更多</a>
                                                                         <ul class="sub-menu">
-                                                                                <li><a href="http://www.eesast.com" target="_blank">关于我们</a></li>
-                                                                                <li><a href="{% url 'contact:contact' %}">联系我们</a></li>
+                                                                                <li><a href="www.eesast.com">关于我们</a></li>
+                                                                                <li><a href="contact.html">联系我们</a></li>
                                                                         </ul>
                                                                 </li>
                                                         </ul>
 														<ul id="menu-top-right" class="clearfix">
-														        <li><a href="http://www.eesast.com" target="_blank">电子系科协</a></li>
+														        <li><a href="www.eesast.com">电子系科协</a></li>
 																<li><a href="#">自动化系科协</a></li>
 														</ul>
                                                 </div>
@@ -107,12 +107,14 @@
                                         <!-- start of page content -->
                                         <div class="span8 main-listing">
 
-                                                <article class="format-standard type-post hentry clearfix">
+                                                {% if posts %}
+												{% for post in posts.object_list %}
+												<article class="format-standard type-post hentry clearfix">
 
                                                         <header class="clearfix">
 
                                                                 <h3 class="post-title">
-                                                                        <a href="community_content.html?post.title={{post.title}}">{{post.title}}</a>
+                                                                        <a href="community_content?{{post.id}}">{{post.title}}</a>
                                                                 </h3>
 
                                                                 <div class="post-meta clearfix">
@@ -127,81 +129,21 @@
                                                         <p>{{post.content}}</p>
 
                                                 </article>
-
-                                                <article class="format-standard type-post hentry clearfix">
-
-                                                        <header class="clearfix">
-
-                                                                <h3 class="post-title">
-                                                                        <a href="community_content.html">Using Javascript</a>
-                                                                </h3>
-
-                                                                <div class="post-meta clearfix">
-                                                                        <span class="date">25 Feb, 2013</span>
-                                                                        <span class="category"><a href="#" title="View all posts in Advanced Techniques">Advanced Techniques</a></span>
-                                                                        <span class="comments"><a href="#" title="Comment on Using Javascript">0 Comments</a></span>
-                                                                        
-                                                                </div><!-- end of post meta -->
-
-                                                        </header>
-
-                                                        <p>Many of us work in an endless stream of tasks, browser tasks, social media, emails, meetings, rushing from one thing to another, never pausing and never ending.&nbsp;Then the day is over, and we are exhausted, and we often have very little to show for it. And we start the next . . . <a class="readmore-link" href="http://knowledgebase.inspirythemes.com/using-javascript/">Read more</a></p>
-
-                                                </article>
-
-                                                <article class=" type-post format-image hentry clearfix">
-
-                                                        <header class="clearfix">
-
-                                                                <h3 class="post-title">
-                                                                        <a href="community_content.html">Using Images</a>
-                                                                </h3>
-
-                                                                <div class="post-meta clearfix">
-                                                                        <span class="date">25 Feb, 2013</span>
-                                                                        <span class="category"><a href="#" title="View all posts in Designing in WordPress">Designing in WordPress</a></span>
-                                                                        <span class="comments"><a href="#" title="Comment on Using Images">0 Comments</a></span>
-                                                                </div><!-- end of post meta -->
-
-                                                        </header>
-
-                                                        <a href="#" title="Using Images"><img width="770" height="501" src="{% static 'community/images/temp/living-room-770x501.jpg' %}" class="attachment-std-thumbnail wp-post-image" alt="Living room"></a>
-
-                                                        <p>Many of us work in an endless stream of tasks, browser tasks, social media, emails, meetings, rushing from one thing to another, never pausing and never ending.&nbsp;Then the day is over, and we are exhausted, and we often have very little to show for it. And we start the next . . . </p>
-
-                                                </article>
-
-                                              
-
-                                                <article class=" type-post  format-standard hentry clearfix">
-
-                                                        <header class="clearfix">
-
-                                                                <h3 class="post-title">
-                                                                        <a href="community_content.html">WordPress Site Maintenance</a>
-                                                                </h3>
-
-                                                                <div class="post-meta clearfix">
-                                                                        <span class="date">24 Feb, 2013</span>
-                                                                        <span class="category"><a href="#" title="View all posts in Website Dev">Website Dev</a></span>
-
-                                                                        <span class="comments"><a href="#" title="Comment on WordPress Site Maintenance">0 Comments</a></span>
-
-                                                                      
-                                                                </div><!-- end of post meta -->
-
-                                                        </header>
-
-                                                        <p>Many of us work in an endless stream of tasks, browser tasks, social media, emails, meetings, rushing from one thing to another, never pausing and never ending.&nbsp;Then the day is over, and we are exhausted, and we often have very little to show for it. And we start the next . . . </p>
-
-                                                </article>
+												{% endfor %}
+												{% else %}<p>现在没有帖子！</p>
+												{% endif %}
 
                                                 <div id="pagination">
-                                                        <a href="#" class="btn active">1</a>
-                                                        <a href="#" class="btn">2</a>
-                                                        <a href="#" class="btn">3</a>
-                                                        <a href="#" class="btn">Next »</a>
-                                                        <a href="#" class="btn">Last »</a>
+													{%if posts.has_previous %}
+														<a href="community_index?page={{posts.previous_page_number}}" class="btn">上一页</a>
+													{% endif %}
+														{% for i in pagerange %}
+                                                        <a href="community_index?page=i" class="btn active">i</a>
+                                                        {% endfor %}
+                                                    {%if posts.has_next %}
+														<a href="community_index?page={{posts.next_page_number}}" class="btn">下一页</a>
+													{% endif %}
+                                                        <a href="community_index?page={{posts.paginator.num_pages}}" class="btn">最后页</a>
                                                 </div>
 
                                         </div>
@@ -287,8 +229,8 @@
 				
 
                 <!-- script -->
-                <script type='text/javascript' src="{% static 'community/js/jquery.min.js' %}"></script>
-                <script type='text/javascript' src="{% static 'community/js/custom.js' %}"></script>
+                <script type='text/javascript' src="{% static 'js/jquery.min.js' %}"></script>
+				<script type='text/javascript' src="{% static 'js/custom.js' %}"></script>
 
         </body>
 </html>

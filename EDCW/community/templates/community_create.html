@@ -1,4 +1,5 @@
-﻿<!doctype html>
+﻿{% load static %}
+<!doctype html>
         <!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en-US"> <![endif]-->
         <!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en-US"> <![endif]-->
         <!--[if IE 8]>    <html class="lt-ie9" lang="en-US"> <![endif]-->
@@ -12,14 +13,14 @@
 
                 <title>第十八届电子设计大赛</title>
 
-                <link rel="shortcut icon" href="images/favicon.png">
+                <link rel="shortcut icon" href="{% static 'images/favicon.png' %}">
 				
                 <!-- Style Sheet-->
                 
-                <link rel='stylesheet' id='bootstrap-css-css'  href='../css/bootstrap.css' type='text/css' media='all' />
-                <link rel='stylesheet' id='responsive-css-css'  href='../css/responsive.css' type='text/css' media='all' /> 
+                <link rel='stylesheet' id='bootstrap-css-css'  href="{% static 'css/bootstrap.css' %}" type='text/css' media='all' />
+                <link rel='stylesheet' id='responsive-css-css'  href="{% static 'css/responsive.css' %}" type='text/css' media='all' /> 
                 <!--<link rel='stylesheet' id='pretty-photo-css-css'  href='js/prettyphoto/prettyPhotoaeb9.css?ver=3.1.4' type='text/css' media='all' />-->
-                <link rel='stylesheet' id='main-css-css'  href='../css/main.css' type='text/css' media='all' />
+                <link rel='stylesheet' id='main-css-css'  href="{% static 'css/main.css' %}" type='text/css' media='all' />
                 <!--<link rel='stylesheet' id='custom-css-css'  href='css/custom5152.html?ver=1.0' type='text/css' media='all' />-->
 
 
@@ -51,20 +52,20 @@
                                         <nav class="main-nav">
                                                 <div class="menu-top-menu-container">
                                                         <ul id="menu-top-menu" class="clearfix">
-                                                            <li><a href="{% url 'index:index' %}">主页</a></li>
-                                                                <li><a href="team.html">组建队伍</a></li>
-                                                                <li><a href="{% url 'login:login' %}">登录</a></li>
-                                                                <li  class="current-menu-item"><a href="{% url 'community:community_index' %}">论坛</a></li>
-                                                                <li><a href="{% url 'index:notice' %}">文件</a></li>
+                                                                <li><a href="index_after_login.html">主页</a></li>
+                                                                <li><a href="team_after_login.html">组建队伍</a></li>
+                                                                <li  class="current-menu-item"><a href="community_index_after_login.html?username={{username}}">论坛</a></li>
+                                                                <li><a href="file_after_login.html">文件</a></li>
                                                                 <li><a href="#">更多</a>
                                                                         <ul class="sub-menu">
-                                                                                <li><a href="http://www.eesast.com" target="_blank">关于我们</a></li>
-                                                                                <li><a href="{% url 'contact:contact' %}">联系我们</a></li>
+                                                                                <li><a href="www.eesast.com">关于我们</a></li>
+                                                                                <li><a href="contact_after_login.html">联系我们</a></li>
                                                                         </ul>
                                                                 </li>
                                                         </ul>
 														<ul id="menu-top-right" class="clearfix">
-														        <li><a href="http://www.eesast.com" target="_blank">电子系科协</a></li>
+														        <li style="font-size:18px;bold">Welcome! {{request.user.username}}</li>
+														        <li><a href="www.eesast.com">电子系科协</a></li>
 																<li><a href="#">自动化系科协</a></li>
 														</ul>
                                                 </div>
@@ -102,13 +103,14 @@
                                                 </article>
 
 
-                                                <form id="contact-form" class="row" action="http://inspirythemes.com/templates/knowledgebase-html/contact_form_handler.php" method="post">
+                                                <form id="contact-form" class="row"  method="post">
+														{% csrf_token %}
 
                                                         <div class="span2">
                                                                 <label for="name">标题 <span>*</span> </label>
                                                         </div>
                                                         <div class="span6">
-                                                                <input type="text" name="name" id="name" class="required input-xlarge" value="" title="* Please provide your name">
+                                                                <input type="text" name="title" id="name" class="required input-xlarge" value="" title="* Please provide your name">{{form.title.errors}}
                                                         </div>
 
                                                         <div class="span2">
@@ -122,12 +124,23 @@
                                                                 <label for="message">内容 <span>*</span> </label>
                                                         </div>
                                                         <div class="span6">
-                                                                <textarea name="body" id="body" class="required span6" rows="12" title="* Please enter your message"></textarea>
+                                                                <textarea name="body" id="body" class="required span6" rows="12" title="* Please enter your message"></textarea>{{form.body.errors}}
+                                                        </div>
+														
+														<div class="span2">
+                                                                <label for="message">类型 <span>*</span> </label>
+                                                        </div>
+                                                        <div class="span6">
+                                                                <select name="category" id="category" class="required span6" rows="12" title="* Please enter your message"></select>{{form.category.errors}}
+																<option value="赛事公告">赛事公告</option>
+																<option value="技术讨论">技术讨论</option>
+																<option value="各路水贴">各路水贴</option>
+																
                                                         </div>
 
                                                         <div class="span6 offset2 bm30">
-                                                                <input type="submit" name="submit" value="Send Message" class="btn btn-inverse" onclick="javascript:location.href='community_index.html'">
-                                                                <img src="../images/loading.gif" id="contact-loader" alt="Loading...">
+                                                                <input type="submit" name="submit" value="Put the Post" class="btn btn-inverse" >
+                                                                <img src="{% static 'images/loading.gif'}" id="contact-loader" alt="Loading...">
                                                         </div>
 
                                                         <div class="span6 offset2 error-container"></div>
@@ -199,13 +212,14 @@
 
                 </footer>
                 <!-- End of Footer -->
+                <!-- End of Footer -->
 
                 <a href="#top" id="scroll-top"></a>
 				
 
                 <!-- script -->
-                <script type='text/javascript' src='../js/jquery.min.js'></script>
-				<script type='text/javascript' src='../js/custom.js'></script>
+                <script type='text/javascript' src="{% static 'js/jquery.min.js' %}"></script>
+				<script type='text/javascript' src="{% static 'js/custom.js' %}"></script>
 
         </body>
 </html>
