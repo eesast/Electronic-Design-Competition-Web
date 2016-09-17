@@ -934,7 +934,7 @@ a#scroll-top:hover {
 }
 
 
-ul {
+#rule ul {
 	font-size:18px;
 	font-family:SimSun;
 	padding-left:1.5em;
@@ -942,7 +942,7 @@ ul {
 	
 }
 
-ul > li {
+#rule ul > li {
 	
 	padding-bottom:2.5px;
 	padding-top:2.5px;
