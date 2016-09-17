@@ -114,7 +114,7 @@
                                                         <header class="clearfix">
 
                                                                 <h3 class="post-title">
-                                                                        <a href="community_content?{{post.id}}">{{post.title}}</a>
+                                                                        <a href="community_content/{{post.id}}">{{post.title}}</a>
                                                                 </h3>
 
                                                                 <div class="post-meta clearfix">
@@ -155,7 +155,7 @@
 
                                                 <section class="widget">
                                                         <div class="support-widget">
-                                                                <a href="javascript:void(0)" onclick = "document.getElementById('noreply').style.display='block'" class="comment-reply-link""><button class="clean-gray">创建新的帖子</button></a>
+                                                                <a href="{% url 'community:community_create' %}"><button class="clean-gray">创建新的帖子</button></a>
                                                         </div>
                                                 </section>
 
@@ -163,31 +163,28 @@
 																								
 																								<div class="container">
 																								<p style="font-size:20px;">您还没有登录，不能发帖和回复</p>
-																								<p style="font-size:20px;"><a href="login.html">点此登录</a></p>
+																								<p style="font-size:20px;"><a href="login">点此登录</a></p>
 																								<p style="font-size:20px;"><a href="community_index.html">退出</a></p>
 																								</div>
 													
 																								
 																								</div>
                                                 <section class="widget">
-                                                        <h3 class="title">Featured Articles</h3>
+                                                        <h3 class="title">文章分类</h3>
                                                         <ul class="articles">
                                                                 <li class="article-entry standard">
-                                                                        <h4><a href="community_content.html?post.tilte={{post.title}}">Integrating WordPress with Your Website</a></h4>
-                                                                        <span class="article-meta">{{post.timestamp}} by {{post.sender}}</span>
+                                                                        <h4><a href="{% url 'community:community_index_tongzhi' %}">赛事公告</a></h4>
+                                                                        <span class="article-meta">这里有重要的信息不能错过</span>
                                                                 </li>
                                                                 <li class="article-entry standard">
-                                                                        <h4><a href="community_content.html?post.tilte={{post.title}}">Integrating WordPress with Your Website</a></h4>
-                                                                        <span class="article-meta">{{post.timestamp}} by {{post.sender}}</span>
+                                                                        <h4><a href="{% url 'community:community_index_jishu' %}">技术讨论</a></h4>
+                                                                        <span class="article-meta">一起探讨技术是一件美妙的事情</span>
                                                                 </li>
                                                                 <li class="article-entry standard">
-                                                                        <h4><a href="community_content.html?post.tilte={{post.title}}">Integrating WordPress with Your Website</a></h4>
-                                                                        <span class="article-meta">{{post.timestamp}} by {{post.sender}}</span>
+                                                                        <h4><a href="{% url 'community:community_index_shuitie' %}" >各路水贴</a></h4>
+                                                                        <span class="article-meta">我们来随便聊一聊</span>
                                                                 </li>
-                                                                <li class="article-entry standard">
-                                                                        <h4><a href="community_content.html?post.tilte={{post.title}}">Integrating WordPress with Your Website</a></h4>
-                                                                        <span class="article-meta">{{post.timestamp}} by {{post.sender}}</span>
-                                                                </li>
+													
                                                         </ul>
                                                 </section>
 

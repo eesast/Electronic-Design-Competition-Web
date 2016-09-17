@@ -52,9 +52,9 @@
                                         <nav class="main-nav">
                                                 <div class="menu-top-menu-container">
                                                         <ul id="menu-top-menu" class="clearfix">
-                                                                <li><a href="index_after_login.html">主页</a></li>
+                                                                <li><a href="index">主页</a></li>
                                                                 <li><a href="team_after_login.html">组建队伍</a></li>
-                                                                <li  class="current-menu-item"><a href="community_index_after_login.html?username={{username}}">论坛</a></li>
+                                                                <li  class="current-menu-item"><a href="community_index?username={{username}}">论坛</a></li>
                                                                 <li><a href="file_after_login.html">文件</a></li>
                                                                 <li><a href="#">更多</a>
                                                                         <ul class="sub-menu">
@@ -96,7 +96,7 @@
 
                                                 <article class="type-page hentry clearfix">
                                                         <h1 class="post-title">
-                                                                <a href="#">新的帖子</a>
+                                                                新的帖子
                                                         </h1>
                                                         <hr>
                                                         <p>请在下面完成您的帖子，其中标题和内容是必填项</p>
@@ -131,11 +131,11 @@
                                                                 <label for="message">类型 <span>*</span> </label>
                                                         </div>
                                                         <div class="span6">
-                                                                <select name="category" id="category" class="required span6" rows="12" title="* Please enter your message"></select>{{form.category.errors}}
-																<option value="赛事公告">赛事公告</option>
-																<option value="技术讨论">技术讨论</option>
-																<option value="各路水贴">各路水贴</option>
-																
+                                                                <select name="category" id="category" class="required span6" rows="12" title="* Please enter your message">{{form.category.errors}}
+																<option value="1">赛事公告</option>
+																<option value="2">技术讨论</option>
+																<option value="3">各路水贴</option>
+																</select>
                                                         </div>
 
                                                         <div class="span6 offset2 bm30">
@@ -162,27 +162,23 @@
                                                 </section>
 
                                                 <section class="widget">
-                                                        <h3 class="title">Latest Articles</h3>
+                                                        <h3 class="title">文章分类</h3>
                                                         <ul class="articles">
                                                                 <li class="article-entry standard">
-                                                                        <h4><a href="community_content_after_login.html?post.tilte={{post.title}}">{{post.title}}</a></h4>
-                                                                        <span class="article-meta">{{post.timestamp}} by {{post.sender}}</span>
-
+                                                                        <h4><a href="{% url 'community:community_index_tongzhi' %}">赛事公告</a></h4>
+                                                                        <span class="article-meta">这里有重要的信息不能错过</span>
                                                                 </li>
                                                                 <li class="article-entry standard">
-                                                                        <h4><a href="community_content_after_login.html?post.tilte={{post.title}}">{{post.title}}</a></h4>
-                                                                        <span class="article-meta">{{post.timestamp}} by {{post.sender}}</span>
-
-                                                                </li>
-                                                                <<li class="article-entry standard">
-                                                                        <h4><a href="community_content_after_login.html?post.tilte={{post.title}}">{{post.title}}</a></h4>
-                                                                        <span class="article-meta">{{post.timestamp}} by {{post.sender}}</span>
-
+                                                                        <h4><a href="{% url 'community:community_index_jishu' %}">技术讨论</a></h4>
+                                                                        <span class="article-meta">一起探讨技术是一件美妙的事情</span>
                                                                 </li>
                                                                 <li class="article-entry standard">
-                                                                        <h4><a href="community_content_after_login.html?post.tilte={{post.title}}">{{post.title}}</a></h4>
-                                                                        <span class="article-meta">{{post.timestamp}} by {{post.sender}}</span>
-
+                                                                        <h4><a href="{% url 'community:community_index_shuitie' %}" >各路水贴</a></h4>
+                                                                        <span class="article-meta">我们来随便聊一聊</span>
+                                                                </li>
+																<li class="article-entry standard">
+                                                                        <h4><a href="{% url 'community:community_index_mypost' %}">我的帖子</a></h4>
+                                                                        <span class="article-meta">找到自己发布的帖子</span>
                                                                 </li>
                                                         </ul>
                                                 </section>
