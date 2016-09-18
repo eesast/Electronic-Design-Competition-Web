@@ -47,7 +47,7 @@ def check_user(data):
 	except:
 		user2 = User(username=data['name'])
 		user2.save()
-		member = Member(user=user2)
+		member = Member(user=user2, name=data['name'], student_id=data['student_ID'])
 		member.save()
 		return user2
 

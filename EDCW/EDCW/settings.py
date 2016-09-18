@@ -163,3 +163,6 @@ EMAIL_HOST_USER = 'eesaster'
 EMAIL_HOST_PASSWORD = 'eesast2016'
 
 SERVER_EMAIL = 'alxl@eesast.com'
+
+
+

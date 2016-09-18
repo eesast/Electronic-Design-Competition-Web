@@ -4,14 +4,8 @@
 from __future__ import unicode_literals
 from django.apps import AppConfig
 from django.db import models
+from ..login.models import Member
 
-class Member(models.Model):
-    name = models.CharField(max_length=10)
-    student_id = models.CharField(max_length=20)
-    is_leader = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.name
 
 class Team(models.Model):
     name = models.CharField(max_length=20)
