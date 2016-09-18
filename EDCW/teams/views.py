@@ -60,7 +60,7 @@ def acceptOrReject(request):
         app = Application.objects.get(pk=app_id)
         team = app.team
 
-        if answer and not team.is_full:
+        if answer == 'agree' and not team.is_full:
             team.members.add(request.user)
 
             if team.members.count() >= 3:
