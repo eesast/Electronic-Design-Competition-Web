@@ -10,7 +10,7 @@
 <title>第十八届电子设计大赛官网</title>
 
 <!-- Bootstrap core CSS -->
-<link rel='stylesheet' id='bootstrap-css-css'  href="{% static 'teams/css/bootstrap.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-css-css'  href="{% static 'teams/css/bootstap.css' %}" type='text/css' media='all' />
 <link href="{% static 'teams/css/team_index.css' %}"  rel="stylesheet">
 <link rel='stylesheet' id='responsive-css-css'  href="{% static 'teams/css/responsive.css' %}" type='text/css' media='all' />
 
@@ -161,7 +161,7 @@ a:active {
 				
 
                 <!-- script -->
-                <script type='text/javascript' src="{% static 'teams/js/jquery.min.js' %}"></script>
+                <script type='text/javascript' src="{% static 'teams/js/jquery.min.js' %}></script>
 				<script type='text/javascript' src="{% static 'teams/js/custom.js' %}"></script>
 
         </body>

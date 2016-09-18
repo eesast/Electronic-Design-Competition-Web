@@ -1,3 +1,4 @@
+{% load static %}
 ﻿<!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -10,9 +11,9 @@
 <title>第十八届电子设计大赛官网</title>
 
 <!-- Bootstrap core CSS -->
-<link rel='stylesheet' id='bootstrap-css-css'  href='../css/bootstrap.css' type='text/css' media='all' />
-<link href="../css/team_index.css" rel="stylesheet">
-<link rel='stylesheet' id='responsive-css-css'  href='../css/responsive.css' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-css-css'  href="{% static 'teams/css/bootstrap.css' %}" type='text/css' media='all' />
+<link href="{% static 'teams/css/team_index.css' %}"  rel="stylesheet">
+<link rel='stylesheet' id='responsive-css-css'  href="{% static 'teams/css/responsive.css' %}" type='text/css' media='all' />
 
 
 
@@ -59,14 +60,14 @@ a:active {
                                         <nav class="main-nav">
                                                 <div class="menu-top-menu-container">
                                                         <ul id="menu-top-menu" class="clearfix">
-                                                                <li><a href="index_after_login.html">主页</a></li>
-                                                                <li  class="current-menu-item"><a href="team_index.html">组建队伍</a></li>
-                                                                <li><a href="community_index_after_login.html">论坛</a></li>
-                                                                <li><a href="file_after_login.html">文件</a></li>
+                                                                <li><a href="{% url 'index:index' %}">主页</a></li>
+                                                                <li  class="current-menu-item"><a href="{% url 'teams:index' %}">组建队伍</a></li>
+                                                                <li><a href="{% url 'community:community_index' %}">论坛</a></li>
+                                                                <li><a href="{% url 'index:notice' %}">文件</a></li>
                                                                 <li><a href="#">更多</a>
                                                                         <ul class="sub-menu">
                                                                                 <li><a href="http://www.eesast.com">关于我们</a></li>
-                                                                                <li><a href="contact_after_login.html">联系我们</a></li>
+                                                                                <li><a href="{% url 'contact:contact' %}">联系我们</a></li>
                                                                         </ul>
                                                                 </li>
                                                         </ul>
@@ -157,8 +158,8 @@ a:active {
 				
 
                 <!-- script -->
-                <script type='text/javascript' src='../js/jquery.min.js'></script>
-				<script type='text/javascript' src='../js/custom.js'></script>
+                <script type='text/javascript' src="{% static 'teams/js/jquery.min.js' %}"></script>
+				<script type='text/javascript' src="{% static 'teams/js/custom.js' %}"></script>
 
         </body>
 </html>
