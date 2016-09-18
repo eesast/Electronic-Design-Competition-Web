@@ -110,7 +110,8 @@ a:active {
 											   
 											   
 											   
-											   
+											{% if user.in_team %}
+		
 										       {% if is_leader %}
 											   <table class="table table-striped table-bordered">
 											        <thead>
@@ -196,8 +197,9 @@ a:active {
 													 
 													</tbody>
 												</table>
+												{% endif %}
 												
-												{% elseif %}
+												{% if not is_leader %}
 												<table class="table table-striped table-bordered">
 											        <tbody>
 												    <tr>
@@ -226,6 +228,10 @@ a:active {
 											   </table>
 											   
 											   {% endif %}
+											{% endif %}
+											{% if not in_team %}
+											<h3>您还没有加入任何一支队伍</h3>
+											{% endif %}
 									</div>
 								</div>
 							</div>

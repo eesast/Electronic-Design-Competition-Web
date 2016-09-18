@@ -45,7 +45,6 @@ def check_user(data):
         user1 = User.objects.get(username=data['name'])
         user1.profile.student_id = data['student_id']
         user1.profile.save()
-
         return user1
     except:
         user2 = User(username=data['name'])
