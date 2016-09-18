@@ -6,7 +6,7 @@ from login.models import Member
 from .forms import LoginForm
 import urllib
 import json
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login,logout
 
 
 
@@ -52,24 +52,29 @@ def check_user(data):
 		return user2
 
 def Login(request):
-    error = ''
-    access_token=''
-    if request.method =='POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            try:
-                access_token = get_access_token(cd['username'],cd['password'])
-                data = get_user_info(access_token)
-                user = check_user(data)
-                login(request,user)
-                return render_to_response('logindone.html',{'mes':"您已成功登陆！"})
-            except Exception:
-                error = '登录申请失败！请先注册！'
-                print(error)
-    else:
-        form = LoginForm()
-    return render(request, 'login.html', {'error':error})
+	error = ''
+	access_token=''
+	if_logout=''
+	try:
+		if_logout=request.POST.get('logout','')
+		if if_logout=='zhuxiao':
+			Logout(request)
+	except Exception:
+		pass
+	if request.method =='POST':
+		form = LoginForm(request.POST)
+		if form.is_valid():
+			cd = form.cleaned_data
+			try:
+				access_token = get_access_token(cd['username'],cd['password'])
+				data = get_user_info(access_token)
+				user = check_user(data)
+				login(request,user)
+			except Exception:
+				error = '登录申请失败！请先注册！'
+	else:
+		form = LoginForm()
+	return render(request, 'login.html', {'error':error})
 
 def Logout(request):
 	logout(request)

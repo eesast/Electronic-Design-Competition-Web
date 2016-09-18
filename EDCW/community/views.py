@@ -46,7 +46,6 @@ def community_create(request):
 		form = PostForm(request.POST)
 		print(form.errors)
 		if form.is_valid():
-			print (2)
 			cd = form.cleaned_data
 			post = Post(title=cd['title'],content=cd['body'],sender=request.user,summary=cd['outline'],category=cd['category'])
 			post.save()
