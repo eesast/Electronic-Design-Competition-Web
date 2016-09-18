@@ -2,18 +2,17 @@ from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail, mail_admins, BadHeaderError
-
-
+from contact.forms import ContactForm
 def contact(request):
 
     success_submit = False
 
     if request.method == 'POST':
 
-        subject = request.POST.get('reason')
-        message = request.POST.get('message')
-        email = request.POST.get('email')
-        if subject and message and email:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+
             try:
            #     send_mail( subject,
            #               message,
@@ -21,16 +20,14 @@ def contact(request):
            #               ['mildwindyu@hotmail.com'],
            #               fail_silently=False,
            #     )
-                mail_admins(subject, message+'\n'+email)
+                mail_admins(cd['subject'], cd['message']+'\r\n'+cd['email'])
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
 
+            success_submit = True
+    else:
+        form = ContactForm()
 
-
-
-        success_submit = True
-
-
-    return render(request, 'contact.html', {'success_submit' : success_submit})
+    return render(request, 'contact.html', {'form':form, 'success_submit' : success_submit})
 
 # Create your views here.

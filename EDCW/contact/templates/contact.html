@@ -55,10 +55,11 @@ a:active {
                                                 <div class="menu-top-menu-container">
                                                         <ul id="menu-top-menu" class="clearfix">
                                                             <li><a href="{% url 'index:index' %}">主页</a></li>
-                                                                <li><a href="team.html">组建队伍</a></li>
+                                                                <li><a href="{% url 'team:team_index' %}">组建队伍</a></li>
                                                                 <li><a href="{% url 'login:login' %}">登录</a></li>
                                                                 <li><a href="{% url 'community:community_index' %}">论坛</a></li>
                                                                 <li><a href="{% url 'index:notice' %}">文件</a></li>
+																<li><a href="{% url 'index:rule' %}">比赛规则</a></li>
                                                                 <li><a href="#">更多</a>
                                                                         <ul class="sub-menu">
                                                                                 <li><a href="http://www.eesast.com" target="_blank">关于我们</a></li>
@@ -110,20 +111,28 @@ a:active {
                                                 <p>感谢您的反馈，我们将迅速进行处理</p>
                                                 {% endif %}
 
+                                                {% if form.errors %}
+                                                        {% for key, value in form.errors.items %}
+                                                        <p style="color: red;">{{ key}}{{ value }}</p>
+                                                        {% endfor %}
+                                                    
+                                                {% endif %}
+
+
                                                 <form id="contact-form" class="row" action="#" method="post">
                                                        {% csrf_token %}
                                                         <div class="span2">
-                                                                <label for="email">Your Email <span>*</span></label>
+                                                                <label for="email">Your Email </label>
                                                         </div>
                                                         <div class="span6">
                                                                 <input type="text" name="email" id="email" class="email required input-xlarge" value="" title="* Please provide a valid email address">
                                                         </div>
 
                                                         <div class="span2">
-                                                                <label for="reason">Subject </label>
+                                                                <label for="subject">Subject <span>*</span></label>
                                                         </div>
                                                         <div class="span6">
-                                                                <input type="text" name="reason" id="reason" class="input-xlarge" value="">
+                                                                <input type="text" name="subject" id="subject" class="input-xlarge" value="">
                                                         </div>
 
                                                         <div class="span2">

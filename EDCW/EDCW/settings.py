@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'login',
     'contact',
     'community',
+    'teams',
 ]
 
 EESAST_AUTHORIZE_URL = 'www.eesast.com/'
@@ -157,10 +158,10 @@ ADMINS = (
 )
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'hellonowhereah@gmail.com'
-EMAIL_HOST_PASSWORD = 'hellothere'
+EMAIL_HOST_USER = 'eesaster'
+EMAIL_HOST_PASSWORD = 'eesast2016'
 
-SERVER_EMAIL = 'django@eesast.com'
+SERVER_EMAIL = 'alxl@eesast.com'

@@ -41,7 +41,7 @@
 								
                                         <div class="logo-container">
                                                 <!-- Website Logo -->
-                                                <a href="www.eesast.com"  id="eesast" >
+                                                <a href="http://www.eesast.com"  id="eesast" >
                                                       EESAST
                                                 </a>
                                              
@@ -52,20 +52,22 @@
                                         <nav class="main-nav">
                                                 <div class="menu-top-menu-container">
                                                         <ul id="menu-top-menu" class="clearfix">
-                                                               <li><a href="index_after_login.html?username={{username}}">主页</a></li>
-                                                                <li><a href="team_after_login.html?username={{username}}">组建队伍</a></li>
-                                                                <li  class="current-menu-item"><a href="community_index_after_login.html?username={{username}}">论坛</a></li>
-                                                                <li><a href="file_after_login.html?username={{username}}">文件</a></li>
+                                                               <li><a href="{% url 'index:index' %}">主页</a></li>
+                                                                <li><a href="{% url 'team:team_index' %}">组建队伍</a></li>
+                                                                <li><a href="{% url 'login:login' %}">登录</a></li>
+                                                                <li  class="current-menu-item"><a href="{% url 'community:community_index' %}">论坛</a></li>
+                                                                <li><a href="{% url 'index:notice' %}">文件</a></li>
+																<li><a href="{% url 'index:rule' %}">比赛规则</a></li>
                                                                 <li><a href="#">更多</a>
                                                                         <ul class="sub-menu">
-                                                                                <li><a href="www.eesast.com">关于我们</a></li>
-                                                                                <li><a href="contact_after_login.html?username={{username}}">联系我们</a></li>
+                                                                                <li><a href="http://www.eesast.com" target="_blank">关于我们</a></li>
+                                                                                <li><a href="{% url 'contact:contact' %}">联系我们</a></li>
                                                                         </ul>
                                                                 </li>
                                                         </ul>
 														<ul id="menu-top-right" class="clearfix">
-														        <li style="font-size:18px;bold">Welcome! {{request.user.username}}</li>
-														        <li><a href="www.eesast.com">电子系科协</a></li>
+														        <li style="font-size:18px;bold">Welcome!<a href="{% url 'login:login' %}"> {{request.user.username}}</a></li>
+														        <li><a href="http://www.eesast.com" target="_blank">电子系科协</a></li>
 																<li><a href="#">自动化系科协</a></li>
 														</ul>
                                                 </div>
