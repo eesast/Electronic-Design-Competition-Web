@@ -124,13 +124,15 @@ a:active {
 													  <td>{{team.leader.username}}</td>
 													  <td>{{team.intro}}</td>
 													  <td>{{team.members.count}}</td>
-													  <td><a href="{% url 'teams:team_info team.name">查看</a>&nbsp&nbsp<a href="% url 'team:team_join team.name' %">加入</a>
+													  <td><a href="{% url 'teams:team_info team.name">查看</a>&nbsp&nbsp
+													  {% if not request.user.profile.is_leader or request.user.in_team %}
+													  <a href="% url 'team:team_join team.name' %">加入</a></td>
 													</tr>
 												  {% endfor %}
 												  </tbody>
 												</table>
 												
-												{% if request.user.authenticated %}
+												{% if request.user.is_authenticated %}
 												<button class="btn btn-block btn-info" style="font-size:20px; height:50px;"><a href="% url 'team:team_create' %">创建自己的队伍</a></button>
 												<button class="btn btn-block btn-info" style="font-size:20px; height:50px; margin-top:15px;"><a href="% url 'team:team_myteam' %">查看我的队伍</a></button>
 												{% endif %}
