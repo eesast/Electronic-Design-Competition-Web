@@ -95,16 +95,33 @@ def application(request, team_id):
 
 def create(request):
 
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login:login'))
+
+    errors = []
+
     if request.method == 'POST':
         form = CreateForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
             name = cd['name']
             intro = cd['intro']
-            team = Team(name=name, intro=intro, leader=request.user)
-            team.save()
-            request.user.profile.is_leader = True
-            return HttpResponseRedirect(reverse('teams:my_team'))
+            if request.user.profile.is_leader or request.user.in_team:
+                error.append('您已经在队伍中')
+
+            exist = Team.objects.filter(name=name)
+            if not exist.count():
+                errors.append('队名已被使用')
+
+            if errors:
+                return render(request, 'teams/team_create.html', {'errors' : errors })
+
+            else:
+                team = Team(name=name, intro=intro, leader=request.user)
+                team.save()
+                request.user.profile.is_leader = True
+                request.user.profile.save()
+                return HttpResponseRedirect(reverse('teams:my_team'))
 
     return render(request, 'teams/team_create.html')
 

@@ -124,7 +124,7 @@ a:active {
 													  <td>{{team.leader.username}}</td>
 													  <td>{{team.intro}}</td>
 													  <td>{{team.members.count}}</td>
-													  <td><a href="{% url 'teams:team_info team.name">查看</a>&nbsp&nbsp<a href="% url 'team:team_join team.name' %">加入</a>
+                                                      <td><a href="{% url 'teams:info' team.id %}">查看</a>&nbsp&nbsp<a href="{% url 'teams:application' team.id %}">加入</a>
 													</tr>
 												  {% endfor %}
 												  </tbody>
