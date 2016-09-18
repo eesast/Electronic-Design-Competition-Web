@@ -133,9 +133,11 @@
                                                 </form>
 												
 												
-												if 登录了
-												<article class="type-page hentry clearfix">
-												        <h1 class="post-title">用户名，你好！</h1>
+												{% if request.user.authenticated %}
+												<article class="type-page hentry clearfix" id="comment-2">
+												        <img alt="" src="../images/custom.png" class="avatar avatar-60 photo" height="60" width="60" style="display:inline; border-radius:60px;">
+												        <h1 class="post-title" style="display:inline; padding:10px;">用户名，你好！</h1>
+														<p><a href="#">上传头像</a></p>
 														<hr>
 														<table class="table table-striped table-bordered">
 														  <tr>

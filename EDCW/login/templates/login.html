@@ -96,7 +96,10 @@
                                         <div class="span8 page-content">
 											{% if request.user.is_authenticated %}
 												<article class="type-page hentry clearfix">
-												        <h1 class="post-title">{{request.user.username}}，你好！</h1>
+												        <img alt="" src="../images/custom.png" class="avatar avatar-60 photo" height="60" width="60" style="display:inline; border-radius:60px;">
+												        <h1 class="post-title" style="display:inline; padding:10px;">{{request.user.username}}，你好！</h1>
+														<p><a href="#">上传头像</a></p>
+												        
 														<hr>
 														<table class="table table-striped table-bordered">
 														  <tr>

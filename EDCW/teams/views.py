@@ -6,7 +6,15 @@ from django.urls import reverse
 from .forms import CreateForm, AppForm
 def index(request):
     teams = Team.objects.all()
-    return render(request, 'teams/team_index.html', {'teams': teams})
+    in_team = False
+    if request.user.is_authenticated:
+        user = request.user
+        if user.in_team.all() or user.profile.is_leader:
+            in_team = True
+    return render(request, 'teams/team_index.html',
+                  {'teams': teams,
+                   'in_team' : in_team,
+                  })
 
 
 def info(request, team_id):
