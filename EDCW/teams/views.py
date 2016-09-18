@@ -4,22 +4,35 @@ from .models import Team, Application
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .forms import CreateForm, AppForm
+def if_in_team(usr):
+    in_team = False
+    if usr.is_authenticated:
+        if usr.in_team.all() or usr.profile.is_leader:
+            in_team = True
+    return in_team
+
+
+
+
 def index(request):
     teams = Team.objects.all()
-    in_team = False
-    if request.user.is_authenticated:
-        user = request.user
-        if user.in_team.all() or user.profile.is_leader:
-            in_team = True
+    usr = request.user
+    in_team = if_in_team(usr)
     return render(request, 'teams/team_index.html',
                   {'teams': teams,
                    'in_team' : in_team,
                   })
 
 
+
 def info(request, team_id):
     team = Team.objects.get(pk=team_id)
-    return render(request, 'teams/team_info.html', {'team': team })
+    usr = request.user
+    in_team = if_in_team(usr)
+    return render(request, 'teams/team_info.html',
+                  {'team': team,
+                   'in_team': in_team,
+                  })
 
 def my_team(request):
 
