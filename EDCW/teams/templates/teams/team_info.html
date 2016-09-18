@@ -126,7 +126,7 @@ a:active {
 													  <td style="font-weight:bold;">成员数</td>
 													  <td>{{team.members.count}}</td>
 													</tr>
-													{% for member in team.members %}
+													{% for member in team.members.all %}
 													<tr>
 													  <td style="font-weight:bold;">成员</td>
 													  <td>{{member.username}}</td>
@@ -135,9 +135,9 @@ a:active {
 													</tbody>
 											   </table>
 											   
-											   
-											   <button class="btn btn-block btn-info" style="font-size:20px; height:50px;"><a href="% url 'team:team_join team.name' %">申请加入该队伍</a></button>
-											   
+                                               {% if not in_team %}
+                                               <button class="btn btn-block btn-info" style="font-size:20px; height:50px;"><a href="{% url 'teams:application' team.id %}">申请加入该队伍</a></button>
+                                               {% endif %}
 									</div>
 								</div>
 							</div>

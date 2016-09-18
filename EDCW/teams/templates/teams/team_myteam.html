@@ -111,7 +111,7 @@ a:active {
 											   
 											   
 											   
-											{% if user.in_team %}
+											{% if in_team %}
 		
 										       {% if is_leader %}
 											   <table class="table table-striped table-bordered">
@@ -135,7 +135,7 @@ a:active {
 													</tr>
 													<tr>
 													  <td style="font-weight:bold;">队长</td>
-													  <td>{{team.leader.username}}/td>
+													  <td>{{team.leader.username}}</td>
 													  <td>不可改</td>
 													</tr>
 													<tr>
@@ -143,12 +143,12 @@ a:active {
 													  <td>{{team.members.count}}</td>
 													  <td>不可改</td>
 													</tr>
-													{% for member in members %}
+													{% for member in team.members.all %}
 													<tr>
 													  <td style="font-weight:bold;">成员</td>
 													  <td>{{member.username}}</td>
 													  <td>
-													    <form action="#" method="post">
+                                                          <form action="#" method="post">{% csrf_token %}
 											                 <input type="hidden" name="name" value="{{member.username}}"> 
 											                 <button class="btn btn-md btn-info" onclick="form.submit();" title="踢出队伍">踢出队伍</button>
 											            </form>
@@ -159,8 +159,8 @@ a:active {
 													</tbody>
 											   </table>
 											   
-											   <form action="{% url 'teams:dismiss' %}" method="post">
-											     <input type="hidden" name="team_id" value="{{team.name}}"> 
+                                               <form action="{% url 'teams:dismiss' %}" method="post">{% csrf_token %}
+											     <input type="hidden" name="team_id" value="{{team.id}}"> 
 											     <button class="btn btn-lg btn-info" onclick="form.submit();" title="解散队伍">解散队伍</button>
 											   </form>
 											   
@@ -183,6 +183,7 @@ a:active {
 														<td>{{applier.reason}}</td>
 														<td>
 														  <form action="{% url 'teams:acceptOrReject' %}" method="post" style="display:inline;">
+                                                            {% csrf_token %}
 														    <input type="hidden" name="app_id" value="{{applier.id}}"> 
 											                <input type="hidden" name="answer" value="agree"> 
 											                <button class="btn btn-md btn-info" onclick="form.submit();" title="同意">同意</button>
@@ -230,7 +231,7 @@ a:active {
 											   
 											   {% endif %}
 											{% endif %}
-											{% if not in_team %}
+											{% if not in_team  %}
 											<h3>您还没有加入任何一支队伍</h3>
 											{% endif %}
 									</div>
