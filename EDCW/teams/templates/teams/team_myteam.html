@@ -10,10 +10,11 @@
 <title>第十八届电子设计大赛官网</title>
 
 <!-- Bootstrap core CSS -->
-<link rel='stylesheet' id='bootstrap-css-css'  href='../css/bootstrap.css' type='text/css' media='all' />
-<link href="../css/team_index.css" rel="stylesheet">
-
-<link rel='stylesheet' id='responsive-css-css'  href='../css/responsive.css' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-css-css'  href="{% static 'teams/css/bootstrap.css' %}" type='text/css' media='all' />
+                <link rel='stylesheet' id='responsive-css-css'  href="{% static 'teams/css/responsive.css' %}" type='text/css' media='all' /> 
+                <!--<link rel='stylesheet' id='pretty-photo-css-css'  href='js/prettyphoto/prettyPhotoaeb9.css?ver=3.1.4' type='text/css' media='all' />-->
+                <link rel='stylesheet' id='main-css-css'  href="{% static 'teams/css/team_index.css' %}" type='text/css' media='all' />
+                <!--<link rel='stylesheet' id='custom-css-css'  href='css/custom5152.html?ver=1.0' type='text/css' media='all' />-->
 
 
 
@@ -59,20 +60,22 @@ a:active {
                                         <nav class="main-nav">
                                                 <div class="menu-top-menu-container">
                                                         <ul id="menu-top-menu" class="clearfix">
-                                                                <li><a href="index_after_login.html">主页</a></li>
-                                                                <li  class="current-menu-item"><a href="team_index.html">组建队伍</a></li>
-                                                                <li><a href="community_index_after_login.html">论坛</a></li>
-                                                                <li><a href="file_after_login.html">文件</a></li>
+                                                                <li><a href="{% url 'index:index' %}">主页</a></li>
+                                                                <li  class="current-menu-item"><a href="{% url 'teams:index' %}">组建队伍</a></li>
+                                                                <li><a href="{% url 'login:login' %}">登录</a></li>
+                                                                <li><a href="{% url 'community:community_index' %}">论坛</a></li>
+                                                                <li><a href="{% url 'index:notice' %}">文件</a></li>
+																<li><a href="{% url 'index:rule' %}">比赛规则</a></li>
                                                                 <li><a href="#">更多</a>
                                                                         <ul class="sub-menu">
-                                                                                <li><a href="http://www.eesast.com">关于我们</a></li>
-                                                                                <li><a href="contact_after_login.html">联系我们</a></li>
+                                                                                <li><a href="http://www.eesast.com" target="_blank">关于我们</a></li>
+                                                                                <li><a href="{% url 'contact:contact' %}">联系我们</a></li>
                                                                         </ul>
                                                                 </li>
                                                         </ul>
 														<ul id="menu-top-right" class="clearfix">
-														        <li style="font-size:18px;bold">Welcome! {{username}}</li>
-														        <li><a href="http://www.eesast.com">电子系科协</a></li>
+														        <li style="font-size:18px;bold">Welcome!<a href="{% url 'login:login' %}"> {{request.user.username}}</a></li>
+														        <li><a href="http://www.eesast.com" target="_blank">电子系科协</a></li>
 																<li><a href="#">自动化系科协</a></li>
 														</ul>
                                                 </div>
@@ -103,38 +106,12 @@ a:active {
                                         <!-- start of page content -->
                                         <div class="span12 main-listing">
 										       <h2 class="post-title">队伍信息</h2>
-											   if this user is not the team-leader
-											   <table class="table table-striped table-bordered">
-											        <tbody>
-												    <tr>
-													  <td style="font-weight:bold;">队名</td>
-													  <td>这个队也不知道是干嘛的我就测试一下</td>
-													</tr>
-													<tr>
-													  <td style="font-weight:bold;">简介</td>
-													  <td>我们是电设网站开发组</td>
-													</tr>
-													<tr>
-													  <td style="font-weight:bold;">队长</td>
-													  <td>黄羽丰</td>
-													</tr>
-													<tr>
-													  <td style="font-weight:bold;">成员数</td>
-													  <td>2</td>
-													</tr>
-													<tr>
-													  <td style="font-weight:bold;">成员</td>
-													  <td>赵旺</td>
-													</tr>
-													<tr>
-													  <td style="font-weight:bold;">成员</td>
-													  <td>宗泽方</td>
-													</tr>
-													</tbody>
-											   </table>
 											   
 											   
-										       if this user is the team-leader
+											   
+											   
+											   
+										       {% if is_leader %}
 											   <table class="table table-striped table-bordered">
 											        <thead>
 													  <tr>
@@ -146,39 +123,42 @@ a:active {
 											        <tbody>
 												    <tr>
 													  <td style="font-weight:bold;">队名</td>
-													  <td>这个队也不知道是干嘛的我就测试一下</td>
+													  <td>{{team.name}}</td>
 													  <td>不可改</td>
 													</tr>
 													<tr>
 													  <td style="font-weight:bold;">简介</td>
-													  <td>我们是电设网站开发组</td>
+													  <td>{{team.intro}}</td>
 													  <td>不可改</td>
 													</tr>
 													<tr>
 													  <td style="font-weight:bold;">队长</td>
-													  <td>黄羽丰</td>
+													  <td>{{team.leader.username}}/td>
 													  <td>不可改</td>
 													</tr>
 													<tr>
 													  <td style="font-weight:bold;">成员数</td>
-													  <td>2</td>
+													  <td>{{team.members.count}}</td>
 													  <td>不可改</td>
 													</tr>
+													{% for member in members %}
 													<tr>
 													  <td style="font-weight:bold;">成员</td>
-													  <td>赵旺</td>
-													  <td><a href="team_myteam.html?name=name">踢出队伍</a></td>
+													  <td>{{member.username}}</td>
+													  <td>
+													    <form action="#" method="post">
+											                 <input type="hidden" name="name" value="{{member.username}}"> 
+											                 <button class="btn btn-md btn-info" onclick="form.submit();" title="踢出队伍">踢出队伍</button>
+											            </form>
+													  </td>
 													</tr>
-													<tr>
-													  <td style="font-weight:bold;">成员</td>
-													  <td>宗泽方</td>
-													  <td><a href="team_myteam.html?name=name">踢出队伍</a></td>
-													</tr>
+													{% endfor %}
+													
 													</tbody>
 											   </table>
 											   
-											   <form action="#" method="post">
-											     <input type="hidden" name="jiesanteam" value="team.name"> 
+											   <form action="{% url 'teams:dismiss' %}" method="post">
+											     <input type="hidden" name="team_id" value="{{team.name}}"> 
 											     <button class="btn btn-lg btn-info" onclick="form.submit();" title="解散队伍">解散队伍</button>
 											   </form>
 											   
@@ -187,6 +167,7 @@ a:active {
 											   <h2 class="post-title">有人申请加入你的队伍</h2>
 											   <table class="table table-bordered table-striped">
 											        <thead>
+								
 													  <tr>
 													    <td>姓名</td>
 														<td>申请理由</td>
@@ -194,25 +175,57 @@ a:active {
 													  </tr>
 													</thead>
 													<tbody>
+													  {% for applier in app_list %}
 													  <tr>
-													    <td>name</td>
-														<td>message</td>
+													    <td>{{applier.applicant.username}}</td>
+														<td>{{applier.reason}}</td>
 														<td>
-														  <form action="#" method="post" style="display:inline;">
-											                <input type="hidden" name="jiesanteam" value="agree"> 
+														  <form action="{% url 'teams:acceptOrReject' %}" method="post" style="display:inline;">
+														    <input type="hidden" name="app_id" value="{{applier.id}}"> 
+											                <input type="hidden" name="answer" value="agree"> 
 											                <button class="btn btn-md btn-info" onclick="form.submit();" title="同意">同意</button>
 											              </form>
 														  <form action="#" method="post" style="display:inline;" >
-											                <input type="hidden" name="jiesanteam" value="disagree"> 
+														    <input type="hidden" name="app_id" value="{{applier.id}}"> 
+											                <input type="hidden" name="answer" value="disagree"> 
 											                <button class="btn btn-md btn-info" onclick="form.submit();" title="拒绝">拒绝</button>
 											              </form>
 														</td>
 													  </tr>
+													  {% endfor %}
 													 
 													</tbody>
 												</table>
-												<button class="btn btn-block btn-info" style="font-size:20px; height:50px; margin-top: 40px;"><a href="team_invite.html">邀请别人加入你的队伍</a></button>
 												
+												{% elseif %}
+												<table class="table table-striped table-bordered">
+											        <tbody>
+												    <tr>
+													  <td style="font-weight:bold;">队名</td>
+													  <td>{{team.name}}</td>
+													</tr>
+													<tr>
+													  <td style="font-weight:bold;">简介</td>
+													  <td>{{team.intro}}</td>
+													</tr>
+													<tr>
+													  <td style="font-weight:bold;">队长</td>
+													  <td>{{team.leader.username}}</td>
+													</tr>
+													<tr>
+													  <td style="font-weight:bold;">成员数</td>
+													  <td>{{team.members.count}}</td>
+													</tr>
+													{% for member in members %}
+													<tr>
+													  <td style="font-weight:bold;">成员</td>
+													  <td>{{member.username}}</td>
+													</tr>
+													{% endfor %}
+													</tbody>
+											   </table>
+											   
+											   {% endif %}
 									</div>
 								</div>
 							</div>
@@ -240,8 +253,8 @@ a:active {
 				
 
                 <!-- script -->
-                <script type='text/javascript' src='../js/jquery.min.js'></script>
-				<script type='text/javascript' src='../js/custom.js'></script>
+                <script type='text/javascript' src="{% static 'js/jquery.min.js' %}"></script>
+				<script type='text/javascript' src="{% static 'js/custom.js' %}"></script>
 
         </body>
 </html>

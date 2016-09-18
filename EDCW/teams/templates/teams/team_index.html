@@ -10,10 +10,11 @@
 <title>第十八届电子设计大赛官网</title>
 
 <!-- Bootstrap core CSS -->
-<link rel='stylesheet' id='bootstrap-css-css'  href='../css/bootstrap.css' type='text/css' media='all' />
-<link href="../css/team_index.css" rel="stylesheet">
-<link rel='stylesheet' id='responsive-css-css'  href='../css/responsive.css' type='text/css' media='all' />
-
+<link rel='stylesheet' id='bootstrap-css-css'  href="{% static 'css/bootstrap.css' %}" type='text/css' media='all' />
+                <link rel='stylesheet' id='responsive-css-css'  href="{% static 'css/responsive.css' %}" type='text/css' media='all' /> 
+                <!--<link rel='stylesheet' id='pretty-photo-css-css'  href='js/prettyphoto/prettyPhotoaeb9.css?ver=3.1.4' type='text/css' media='all' />-->
+                <link rel='stylesheet' id='main-css-css'  href="{% static 'css/team_index.css' %}" type='text/css' media='all' />
+                <!--<link rel='stylesheet' id='custom-css-css'  href='css/custom5152.html?ver=1.0' type='text/css' media='all' />-->
 
 
 
@@ -59,20 +60,22 @@ a:active {
                                         <nav class="main-nav">
                                                 <div class="menu-top-menu-container">
                                                         <ul id="menu-top-menu" class="clearfix">
-                                                                <li><a href="index_after_login.html">主页</a></li>
-                                                                <li  class="current-menu-item"><a href="team_index.html">组建队伍</a></li>
-                                                                <li><a href="community_index_after_login.html">论坛</a></li>
-                                                                <li><a href="file_after_login.html">文件</a></li>
+                                                                <li><a href="{% url 'index:index' %}">主页</a></li>
+                                                                <li  class="current-menu-item"><a href="{% url 'team:team_index' %}">组建队伍</a></li>
+                                                                <li><a href="{% url 'login:login' %}">登录</a></li>
+                                                                <li><a href="{% url 'community:community_index' %}">论坛</a></li>
+                                                                <li><a href="{% url 'index:notice' %}">文件</a></li>
+																<li><a href="{% url 'index:rule' %}">比赛规则</a></li>
                                                                 <li><a href="#">更多</a>
                                                                         <ul class="sub-menu">
-                                                                                <li><a href="http://www.eesast.com">关于我们</a></li>
-                                                                                <li><a href="contact_after_login.html">联系我们</a></li>
+                                                                                <li><a href="http://www.eesast.com" target="_blank">关于我们</a></li>
+                                                                                <li><a href="{% url 'contact:contact' %}">联系我们</a></li>
                                                                         </ul>
                                                                 </li>
                                                         </ul>
 														<ul id="menu-top-right" class="clearfix">
-														        <li style="font-size:18px;bold">Welcome! {{username}}</li>
-														        <li><a href="http://www.eesast.com">电子系科协</a></li>
+														        <li style="font-size:18px;bold">Welcome!<a href="{% url 'login:login' %}"> {{request.user.username}}</a></li>
+														        <li><a href="http://www.eesast.com" target="_blank">电子系科协</a></li>
 																<li><a href="#">自动化系科协</a></li>
 														</ul>
                                                 </div>
@@ -119,13 +122,13 @@ a:active {
 													  <td>这里写队长</td>
 													  <td>这里写简介</td>
 													  <td>这里写成员数</td>
-													  <td><a href="team_info.html?team.name">查看</a>&nbsp&nbsp<a href="team_join.html?team.name">加入</a>
+													  <td><a href="team_info.html?team.name">查看</a>&nbsp&nbsp<a href="% url 'team:team_join team.name' %">加入</a>
 													</tr>
 												  </tbody>
 												</table>
 												
-												<button class="btn btn-block btn-info" style="font-size:20px; height:50px;"><a href="team_create.html">创建自己的队伍</a></button>
-												<button class="btn btn-block btn-info" style="font-size:20px; height:50px; margin-top:15px;"><a href="team_myteam.html">查看我的队伍</a></button>
+												<button class="btn btn-block btn-info" style="font-size:20px; height:50px;"><a href="% url 'team:team_create' %">创建自己的队伍</a></button>
+												<button class="btn btn-block btn-info" style="font-size:20px; height:50px; margin-top:15px;"><a href="% url 'team:team_myteam' %">查看我的队伍</a></button>
 												
 												
 												
@@ -157,9 +160,8 @@ a:active {
 				
 
                 <!-- script -->
-                <script type='text/javascript' src='../js/jquery.min.js'></script>
-				<script type='text/javascript' src='../js/custom.js'></script>
-
+                <script type='text/javascript' src="{% static 'js/jquery.min.js' %}"></script>
+				<script type='text/javascript' src="{% static 'js/custom.js' %}"></script>
         </body>
 </html>
 										
