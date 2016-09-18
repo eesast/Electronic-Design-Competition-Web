@@ -43,38 +43,41 @@ def get_user_info(access_token):
 def check_user(data):
 	try:
 		user1 = User.objects.get(username=data['name'])
+        user1.profile.student_id = data['student_id']
+        user1.profile.save()
+
 		return user1
 	except:
 		user2 = User(username=data['name'])
 		user2.save()
-		member = Member(user=user2, name=data['name'], student_id=data['student_ID'])
+		member = Member(user=user2, student_id=data['student_ID'])
 		member.save()
 		return user2
 
 def Login(request):
-	error = ''
-	access_token=''
-	if_logout=''
-	try:
-		if_logout=request.POST.get('logout','')
-		if if_logout=='zhuxiao':
-			Logout(request)
-	except Exception:
-		pass
-	if request.method =='POST':
-		form = LoginForm(request.POST)
-		if form.is_valid():
-			cd = form.cleaned_data
-			try:
-				access_token = get_access_token(cd['username'],cd['password'])
-				data = get_user_info(access_token)
-				user = check_user(data)
-				login(request,user)
-			except Exception:
-				error = '登录申请失败！请先注册！'
-	else:
-		form = LoginForm()
-	return render(request, 'login.html', {'error':error})
+    error = ''
+    access_token=''
+    if_logout=''
+    try:
+        if_logout=request.POST.get('logout','')
+        if if_logout=='zhuxiao':
+            Logout(request)
+    except Exception:
+        pass
+    if request.method =='POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            try:
+                access_token = get_access_token(cd['username'],cd['password'])
+                data = get_user_info(access_token)
+                user = check_user(data)
+                login(request,user)
+            except Exception:
+                error = '登录申请失败！请先注册！'
+    else:
+        form = LoginForm()
+    return render(request, 'login.html', {'error':error})
 
 def Logout(request):
 	logout(request)
@@ -104,4 +107,3 @@ def ResetPassword(request):
 
 
 
-# Create your views here.

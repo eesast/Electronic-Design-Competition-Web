@@ -11,18 +11,10 @@
 <title>第十八届电子设计大赛官网</title>
 
 <!-- Bootstrap core CSS -->
-<<<<<<< HEAD
-<link rel='stylesheet' id='bootstrap-css-css'  href="{% static 'css/bootstrap.css' %}" type='text/css' media='all' />
-                <link rel='stylesheet' id='responsive-css-css'  href="{% static 'css/responsive.css' %}" type='text/css' media='all' /> 
-                <!--<link rel='stylesheet' id='pretty-photo-css-css'  href='js/prettyphoto/prettyPhotoaeb9.css?ver=3.1.4' type='text/css' media='all' />-->
-                <link rel='stylesheet' id='main-css-css'  href="{% static 'css/team_index.css' %}" type='text/css' media='all' />
-                <!--<link rel='stylesheet' id='custom-css-css'  href='css/custom5152.html?ver=1.0' type='text/css' media='all' />-->
-=======
 <link rel='stylesheet' id='bootstrap-css-css'  href="{% static 'teams/css/bootstrap.css' %}" type='text/css' media='all' />
 <link href="{% static 'teams/css/team_index.css' %}"  rel="stylesheet">
 <link rel='stylesheet' id='responsive-css-css'  href="{% static 'teams/css/responsive.css' %}" type='text/css' media='all' />
 
->>>>>>> 43cb00a8fef8c75810d709b0fff95fc28edf432c
 
 
 
@@ -69,8 +61,7 @@ a:active {
                                                 <div class="menu-top-menu-container">
                                                         <ul id="menu-top-menu" class="clearfix">
                                                                 <li><a href="{% url 'index:index' %}">主页</a></li>
-<<<<<<< HEAD
-                                                                <li  class="current-menu-item"><a href="{% url 'team:team_index' %}">组建队伍</a></li>
+                                                                <li  class="current-menu-item"><a href="{% url 'teams:index' %}">组建队伍</a></li>
                                                                 <li><a href="{% url 'login:login' %}">登录</a></li>
                                                                 <li><a href="{% url 'community:community_index' %}">论坛</a></li>
                                                                 <li><a href="{% url 'index:notice' %}">文件</a></li>
@@ -78,14 +69,6 @@ a:active {
                                                                 <li><a href="#">更多</a>
                                                                         <ul class="sub-menu">
                                                                                 <li><a href="http://www.eesast.com" target="_blank">关于我们</a></li>
-=======
-                                                                <li  class="current-menu-item"><a href="{% url 'teams:index' %}">组建队伍</a></li>
-                                                                <li><a href="{% url 'community:community_index' %}">论坛</a></li>
-                                                                <li><a href="{% url 'index:notice' %}">文件</a></li>
-                                                                <li><a href="#">更多</a>
-                                                                        <ul class="sub-menu">
-                                                                                <li><a href="http://www.eesast.com">关于我们</a></li>
->>>>>>> 43cb00a8fef8c75810d709b0fff95fc28edf432c
                                                                                 <li><a href="{% url 'contact:contact' %}">联系我们</a></li>
                                                                         </ul>
                                                                 </li>
@@ -177,14 +160,11 @@ a:active {
 				
 
                 <!-- script -->
-<<<<<<< HEAD
-                <script type='text/javascript' src="{% static 'js/jquery.min.js' %}"></script>
-				<script type='text/javascript' src="{% static 'js/custom.js' %}"></script>
-=======
+
                 <script type='text/javascript' src="{% static 'teams/js/jquery.min.js' %}"></script>
 				<script type='text/javascript' src="{% static 'teams/js/custom.js' %}"></script>
 
->>>>>>> 43cb00a8fef8c75810d709b0fff95fc28edf432c
+
         </body>
 </html>
 										
