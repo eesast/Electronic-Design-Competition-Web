@@ -20,5 +20,5 @@ class Member(models.Model):
     is_leader = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name
+        return self.user.username
 

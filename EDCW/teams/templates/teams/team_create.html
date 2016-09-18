@@ -111,7 +111,7 @@ a:active {
 
 
                                                 <form id="contact-form" class="row" action="#" method="post">
-
+                                                        {% csrf_token %}
                                                         <div class="span6">
                                                                 <label for="email">队伍名称 <span>*</span></label>
                                                         </div>
@@ -124,7 +124,7 @@ a:active {
                                                                 <label for="message">队伍简介 <span>*</span> </label>
                                                         </div>
                                                         <div class="span11">
-                                                                <textarea name="message" id="message" class="required span6" rows="6" title="* Please enter your message"></textarea>
+                                                                <textarea name="intro" id="intro" class="required span6" rows="6" title="* Please enter your message"></textarea>
                                                         </div>
 
                                                         <div class="span11 bm30">

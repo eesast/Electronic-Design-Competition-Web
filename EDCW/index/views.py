@@ -13,6 +13,9 @@ def welcome(request):
 
     return render(request, 'index/Welcome.html')
 
+def rule(request):
+
+    return render(request, 'index/rule.html')
 
 def noticeIndex(request):
 

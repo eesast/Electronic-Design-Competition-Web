@@ -2,26 +2,25 @@
 
 
 from __future__ import unicode_literals
-from django.apps import AppConfig
 from django.db import models
-from ..login.models import Member
+from django.contrib.auth.models import User
 
 
 class Team(models.Model):
     name = models.CharField(max_length=20)
     intro = models.CharField(max_length=50)
-    leader = models.OneToOneField('Member', on_delete=models.CASCADE, related_name='lead')
-    members = models.ManyToManyField('Member', related_name='in_team')
+    leader = models.OneToOneField(User, on_delete=models.CASCADE, related_name='leads')
+    members = models.ManyToManyField(User, related_name='in_team')
     is_full = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name + ' -- ' + self.leader
+        return self.name + ' -- ' + self.leader.username
 
 class Application(models.Model):
-    applicant = models.ForeignKey('Member', on_delete=models.CASCADE)
+    applicant = models.ForeignKey(User, on_delete=models.CASCADE)
     team = models.ForeignKey('Team', on_delete=models.CASCADE)
     reason = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.applicant.name + ' --> ' + self.team.name
+        return self.applicant.username + ' --> ' + self.team.name
 

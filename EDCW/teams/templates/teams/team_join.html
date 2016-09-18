@@ -110,7 +110,7 @@ a:active {
 
 
                                                 <form id="contact-form" class="row" action="#" method="post">
-
+                                                        {% csrf_token %}
                                                         <div class="span12">
                                                                 <label for="email">你的姓名<span>*</span></label>
                                                         </div>
@@ -126,10 +126,10 @@ a:active {
                                                         </div>
 
                                                         <div class="span12">
-                                                                <label for="message">申请加入的理由<span>*</span> </label>
+                                                                <label for="reason">申请加入的理由<span>*</span> </label>
                                                         </div>
                                                         <div class="span12">
-                                                                <textarea name="message" id="message" class="required span6" rows="12" title="* Please enter your message"></textarea>
+                                                                <textarea name="reason" id="reason" class="required span6" rows="12" title="* Please enter your message"></textarea>
                                                         </div>
 
                                                         <div class="span12 bm30">
