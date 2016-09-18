@@ -207,21 +207,24 @@
 
                                                 <section class="widget">
                                                         <div class="support-widget">
+															{% if request.user.authenticated %}
+																<div class="comment-reply-link""><button class="clean-gray"><a href="{% url 'community_create' %}">创建新的帖子</a></button></div>
+															{% else %}
                                                                 <div onclick = "document.getElementById('noreply').style.display='block'" class="comment-reply-link""><button class="clean-gray">创建新的帖子</button></div>
+																
                                                         </div>
                                                 </section>
 
                                                                                                 <div id='noreply'>
-																								
 																								<div class="container">
 																								<p style="font-size:20px;">您还没有登录，不能发帖和回复</p>
 																								<p style="font-size:20px;"><a href="{% url 'login:login' %}">点此登录</a></p>
-																								<p style="font-size:20px;"><a href="{% url 'community:community_content' %}">退出</a></p>
+																								<p style="font-size:20px;"><a onclick = "document.getElementById('noreply').style.display='none'">退出</a></p>
 																								</div>
 													
 																								
 																								</div>
-
+															{% endif %}
 
                                                 <section class="widget">
                                                         <h3 class="title">文章分类</h3>
