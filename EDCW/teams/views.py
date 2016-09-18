@@ -43,8 +43,8 @@ def my_team(request):
         thisone = team.members.get(username=name)
         team.members.remove(thisone)
         if team.members.count() < 3:
-             team.is_full = False
-
+            team.is_full = False
+            team.save()
 
     # specify the certain page
     user = request.user
@@ -87,6 +87,7 @@ def acceptOrReject(request):
 
             if team.members.count() >= 3:
                 team.is_full = True
+                team.save()
 
         app.delete()
 

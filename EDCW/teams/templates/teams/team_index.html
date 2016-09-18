@@ -125,7 +125,7 @@ a:active {
 													  <td>{{team.intro}}</td>
 													  <td>{{team.members.count}}</td>
                                                       <td><a href="{% url 'teams:info' team.id %}">查看</a>&nbsp&nbsp
-                                                      {% if not in_team %}
+                                                      {% if not in_team and request.user.is_authenticated %}
                                                           <a href="{% url 'teams:application' team.id %}">加入</a>
                                                       {% endif %}
 													</tr>

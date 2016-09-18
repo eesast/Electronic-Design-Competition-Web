@@ -188,7 +188,8 @@ a:active {
 											                <input type="hidden" name="answer" value="agree"> 
 											                <button class="btn btn-md btn-info" onclick="form.submit();" title="同意">同意</button>
 											              </form>
-														  <form action="#" method="post" style="display:inline;" >
+                                                          <form action="{% url 'teams:acceptOrReject' %}" method="post" style="display:inline;" >
+                                                            {% csrf_token %}
 														    <input type="hidden" name="app_id" value="{{applier.id}}"> 
 											                <input type="hidden" name="answer" value="disagree"> 
 											                <button class="btn btn-md btn-info" onclick="form.submit();" title="拒绝">拒绝</button>
