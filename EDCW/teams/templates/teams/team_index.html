@@ -118,13 +118,15 @@ a:active {
 													</tr>
 												  </thead>
 												  <tbody>
+												  {% for team in teams %}
 												    <tr>
-													  <td>这里写队名</td>
-													  <td>这里写队长</td>
-													  <td>这里写简介</td>
-													  <td>这里写成员数</td>
-													  <td><a href="team_info.html?team.name">查看</a>&nbsp&nbsp<a href="% url 'team:team_join team.name' %">加入</a>
+													  <td>{{team.name}}</td>
+													  <td>{{team.leader.username}}</td>
+													  <td>{{team.intro}}</td>
+													  <td>{{team.members.count}}</td>
+													  <td><a href="{% url 'teams:team_info team.name">查看</a>&nbsp&nbsp<a href="% url 'team:team_join team.name' %">加入</a>
 													</tr>
+												  {% endfor %}
 												  </tbody>
 												</table>
 												
