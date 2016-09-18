@@ -6,13 +6,18 @@ from django import forms
 
 
 class Post(models.Model):
+	Category_List=(
+		('1','赛事公告'),
+		('2','技术讨论'),
+		('3','各路水贴'),
+		)
 	title = models.CharField(u'评论标题',max_length=100)
 	timestamp = models.DateTimeField(auto_now=True)
 	content = models.TextField(u'内容',blank=True, null=True)
 	sender = models.ForeignKey(User,on_delete=models.CASCADE)
 	replycount = models.IntegerField(default=0)
 	summary = models.CharField(u'摘要',blank=True, null=True,max_length=100)
-	category = models.ForeignKey("Category",verbose_name='版块名称',null=True)
+	category = models.CharField(max_length = 1,default=1,choices=Category_List)
 	priority = models.IntegerField(default=1000,verbose_name="优先级")
 	def __unicode__(self):
 		return self.title
@@ -38,10 +43,6 @@ class Comment(models.Model):
 
 
 
-class Category(models.Model):
-    name = models.CharField(max_length=64,unique=True,verbose_name="板块名称")
-    def __unicode__(self):
-        return self.name
 
 
 

@@ -41,7 +41,7 @@
 								
                                         <div class="logo-container">
                                                 <!-- Website Logo -->
-                                                <a href="www.eesast.com"  id="eesast" >
+                                                <a href="http://www.eesast.com"  id="eesast" >
                                                       EESAST
                                                 </a>
                                              
@@ -53,10 +53,11 @@
                                                 <div class="menu-top-menu-container">
                                                         <ul id="menu-top-menu" class="clearfix">
                                                             <li><a href="{% url 'index:index' %}">主页</a></li>
-                                                                <li><a href="team.html">组建队伍</a></li>
+                                                                <li><a href="{% url 'team:team_index' %}">组建队伍</a></li>
                                                                 <li><a href="{% url 'login:login' %}">登录</a></li>
                                                                 <li><a href="{% url 'community:community_index' %}">论坛</a></li>
                                                                 <li  class="current-menu-item"><a href="{% url 'index:notice' %}">文件</a></li>
+																<li><a href="{% url 'index:rule' %}">比赛规则</a></li>
                                                                 <li><a href="#">更多</a>
                                                                         <ul class="sub-menu">
                                                                                 <li><a href="http://www.eesast.com" target="_blank">关于我们</a></li>
@@ -104,7 +105,7 @@
 		    {% for notice in notice_list %}
 			  <div id="notice">
               <li id="lititle">{{notice.title}}</li>
-              <p id="licontent">{{notice.content}}</p>
+              <p id="licontent" style="margin-top:10px;">{{notice.content}}</p>
 			  {% if notice.file_attached %}
               <p id="file">文件：<a href="{% url 'index:download' notice.id %}">{{notice.title}}</a></p>
 
