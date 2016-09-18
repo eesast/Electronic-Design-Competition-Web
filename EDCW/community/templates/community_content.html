@@ -194,35 +194,7 @@
 														{% endif %}
 														<h3 id="comments-title">共计{{post.replycount}} 回复</h3>
 
-                                                        <div id="respond">
-
-                                                                <h3>Leave a Reply</h3>
-
-                                                      
-
-
-                                                                
-
-
-                                                                <form action="#" method="post" id="commentform">
-																	{% csrf_token %}
-
-                                                                       <div>
-                                                                                <label for="comment">Comment</label>
-                                                                                <textarea class="span8" name="comment" id="comment" cols="58" rows="10"></textarea>
-                                                                        </div>
-
-                                                                        
-																		<p style="font-size:20px">您还没有登录，不能发帖和回复</p>
-
-                                                                        <div>
-                                                                                <input class="btn" name="submit" type="submit" id="submit"  value="Submit Comment" >
-                                                                        </div>
-																		
-
-                                                                </form>
-
-                                                        </div>
+                                                       
 
                                                 </section><!-- end of comments -->
 
@@ -235,9 +207,20 @@
 
                                                 <section class="widget">
                                                         <div class="support-widget">
-                                                                <a href="{% url 'community:community_create' %}"><button class="clean-gray">创建新的帖子</button></a>
+                                                                <div onclick = "document.getElementById('noreply').style.display='block'" class="comment-reply-link""><button class="clean-gray">创建新的帖子</button></div>
                                                         </div>
                                                 </section>
+
+                                                                                                <div id='noreply'>
+																								
+																								<div class="container">
+																								<p style="font-size:20px;">您还没有登录，不能发帖和回复</p>
+																								<p style="font-size:20px;"><a href="{% url 'login:login' %}">点此登录</a></p>
+																								<p style="font-size:20px;"><a href="{% url 'community:community_content' %}">退出</a></p>
+																								</div>
+													
+																								
+																								</div>
 
 
                                                 <section class="widget">

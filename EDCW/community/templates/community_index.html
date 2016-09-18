@@ -157,7 +157,7 @@
 
                                                 <section class="widget">
                                                         <div class="support-widget">
-                                                                <a href="{% url 'community:community_create' %}"><button class="clean-gray">创建新的帖子</button></a>
+                                                                <div onclick = "document.getElementById('noreply').style.display='block'" class="comment-reply-link""><button class="clean-gray">创建新的帖子</button></div>
                                                         </div>
                                                 </section>
 
@@ -165,12 +165,15 @@
 																								
 																								<div class="container">
 																								<p style="font-size:20px;">您还没有登录，不能发帖和回复</p>
-																								<p style="font-size:20px;"><a href="login">点此登录</a></p>
-																								<p style="font-size:20px;"><a href="community_index.html">退出</a></p>
+																								<p style="font-size:20px;"><a href="{% url 'login:login' %}">点此登录</a></p>
+																								<p style="font-size:20px;"><a href="{% url 'community:community_index' %}">退出</a></p>
 																								</div>
 													
 																								
 																								</div>
+													
+																								
+																								
                                                 <section class="widget">
                                                         <h3 class="title">文章分类</h3>
                                                         <ul class="articles">
