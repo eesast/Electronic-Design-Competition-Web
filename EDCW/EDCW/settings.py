@@ -164,7 +164,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'eesaster'
 EMAIL_HOST_PASSWORD = 'eesast2016'
 
-SERVER_EMAIL = 'alxl@eesast.com'
+SERVER_EMAIL = 'thedc@eesast.com'
 
 
 
