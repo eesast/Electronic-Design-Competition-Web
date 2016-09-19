@@ -44,10 +44,10 @@ def get_user_info(access_token):
 def check_user(data):
     try:
         user1 = User.objects.get(username=data['name'])
-        user1.profile.student_id = data['student_id']
+        user1.profile.student_id = data['student_ID']
         user1.profile.save()
         return user1
-    except:
+    except User.DoesNotExist :
         user2 = User(username=data['name'])
         user2.save()
         member = Member(user=user2, student_id=data['student_ID'])

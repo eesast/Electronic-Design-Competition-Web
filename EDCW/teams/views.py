@@ -4,29 +4,58 @@ from .models import Team, Application
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .forms import CreateForm, AppForm
-def if_in_team(usr):
+from django.contrib.auth.decorators import login_required
+def if_in_team(user):
     in_team = False
-    if usr.is_authenticated:
-        if usr.in_team.all() or usr.profile.is_leader:
+    if user.is_authenticated:
+        if user.in_team.all() or user.profile.is_leader:
             in_team = True
     return in_team
 
+def get_user_info(user):
+    if user.is_authenticated:
+        in_team = if_in_team(user)
+        is_leader = user.profile.is_leader
+        team = ''
+        if is_leader:
+            team = user.leads
+            app_list = team.application_set.all()
+        else:
+            teams = user.in_team.all()
+            for t in teams:
+                if user in t.members.all():
+                    team = t
+            app_list = []
 
+        return {
+                 'in_team': in_team,
+                 'is_leader': is_leader,
+                 'app_list': app_list,
+                 'team': team,
+                 'errors': [],
+                 'note': '',
+        }
+
+    return None
 
 
 def index(request):
     teams = Team.objects.all()
     usr = request.user
     in_team = if_in_team(usr)
+    if usr.application_set.all():
+        in_team = True
+        note = '您已经提交申请，请等候队长答复'
     return render(request, 'teams/team_index.html',
                   {'teams': teams,
                    'in_team' : in_team,
+                   'note': note
                   })
 
 
 
 def info(request, team_id):
-    team = Team.objects.get(pk=team_id)
+    team = get_object_or_404(Team, pk=team_id)
     usr = request.user
     in_team = if_in_team(usr)
     return render(request, 'teams/team_info.html',
@@ -48,57 +77,65 @@ def my_team(request):
 
     # specify the certain page
     user = request.user
-    team = ''
-    if user.is_authenticated:
-        in_team = False
-        is_leader = user.profile.is_leader
-        if is_leader:
-            team = user.leads
-            app_list = team.application_set.all()
-            in_team = True
-        else:
-            teams = user.in_team.all()
-            for t in teams:
-                if user in t.members.all():
-                    team = t
-                    in_team = True
-            app_list = []
+    user_info_dict = get_user_info(user)
 
+    if user_info_dict:
+        print(user_info_dict)
+        return render(request, 'teams/team_myteam.html', user_info_dict)
 
-        return render(request, 'teams/team_myteam.html',
-                      {'team': team,
-                       'app_list': app_list,
-                       'is_leader': is_leader,
-                       'in_team': in_team,
-                      })
     return HttpResponseRedirect(reverse('teams:index'))
 
 
 def acceptOrReject(request):
 
+
+    user_info_dict = get_user_info(request.user)
+
     if request.method == 'POST':
         app_id = request.POST['app_id']
         answer = request.POST['answer']
-        app = Application.objects.get(pk=app_id)
+        app = get_object_or_404(Application, pk=app_id)
         team = app.team
+        in_team = if_in_team(app.applicant)
+        errors = []
 
-        if answer == 'agree' and not team.is_full:
-            team.members.add(app.applicant)
+        if answer == 'agree':
+            if team.is_full:
+                errors.append('本队伍已满')
+            if in_team:
+                errors.append('该同学已在某个队伍中，该申请已自动删除')
+                app.delete()
 
-            if team.members.count() >= 3:
-                team.is_full = True
-                team.save()
+            if not errors:
+                team.members.add(app.applicant)
+                if team.members.count() >= 3:
+                    team.is_full = True
+                    team.save()
+                app.delete()
 
-        app.delete()
+            user_info_dict['errors'] = errors
 
-    return HttpResponseRedirect(reverse('teams:my_team'))
+        if answer == 'disagree':
+
+            user_info_dict['note'] = '已拒绝该请求'
+            app.delete()
+
+    return render(request, 'teams/team_info.html', user_info_dict)
 
 
-
+@login_required
 def application(request, team_id):
     team = get_object_or_404(Team, pk=team_id)
+    user = request.user
+    apps = user.application_set.all()
+    # Only one app is available
+    in_team = apps or if_in_team(user)
+
+    if in_team:
+        return HttpResponseRedirect(reverse('teams:index'))
 
     if request.method =='POST':
+
         form = AppForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
@@ -113,46 +150,35 @@ def application(request, team_id):
                   {
                       'team' : team,
                       'username' : request.user.username,
-                  }
-                  )
+                      'in_team' : in_team
+                  })
 
+@login_required
 def create(request):
-
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('login:login'))
-
     errors = []
-
     if request.method == 'POST':
         form = CreateForm(request.POST)
         if form.is_valid():
-            print(1)
             cd = form.cleaned_data
             name = cd['name']
             intro = cd['intro']
-            print(2)
             if request.user.in_team.all() or request.user.profile.is_leader:
-                print(3)
                 errors.append('您已经在队伍中')
 
             exist = Team.objects.filter(name=name)
-            print(4)
             if exist.count():
-                print(5)
                 errors.append('队名已被使用')
 
             if errors:
-                print(6)
                 return render(request, 'teams/team_create.html', {'errors' : errors })
 
             else:
-                print(7)
                 team = Team(name=name, intro=intro, leader=request.user)
                 team.save()
                 request.user.profile.is_leader = True
                 request.user.profile.save()
                 return HttpResponseRedirect(reverse('teams:my_team'))
-    print(8)
+
     return render(request, 'teams/team_create.html')
 
 def dismiss(request):
