@@ -92,7 +92,7 @@
                                 <div class="row">
 
                                         <!-- start of page content -->
-                                        <div class="span12 page-content">
+                                        <div class="span8 page-content">
 
                                                 <article class="type-page hentry clearfix">
                                                         <h1 class="post-title">
@@ -105,30 +105,30 @@
 
                                                 <form id="contact-form" class="row" action="#" method="post">
 
-                                                        <div class="span4">
+                                                        <div class="span2">
                                                                 <label for="name">用户名 <span>*</span> </label>
                                                         </div>
-                                                        <div class="span9">
+                                                        <div class="span6">
                                                                 <input type="text" name="name" id="name" class="required input-xlarge" value="" title="* Please provide your name">
                                                         </div>
 
-                                                        <div class="span4">
+                                                        <div class="span2">
                                                                 <label for="password">密码<span>*</span></label>
                                                         </div>
-                                                        <div class="span9">
+                                                        <div class="span6">
                                                                 <input type="password" name="password" id="password" value="">
                                                         </div>
 														
 													
 
 
-                                                        <div class="span9 offset2 bm30">
+                                                        <div class="span6 offset2 bm30">
                                                                 <input type="submit" name="submit" value="Login" class="btn btn-inverse" style="width:150px;margin-top:50px;">
-                                                                <img src="../images/loading.gif" id="contact-loader" alt="Loading...">
+                                                              
                                                         </div>
 
-                                                        <div class="span9 offset2 error-container"></div>
-                                                        <div class="span10 offset2" id="message-sent"></div>
+                                                        <div class="span6 offset2 error-container"></div>
+                                                        <div class="span6 offset2" id="message-sent"></div>
 
                                                 </form>
 												
@@ -137,7 +137,16 @@
 												<article class="type-page hentry clearfix" id="comment-2">
 												        <img alt="" src="../images/custom.png" class="avatar avatar-60 photo" height="60" width="60" style="display:inline; border-radius:60px;">
 												        <h1 class="post-title" style="display:inline; padding:10px;">用户名，你好！</h1>
-														<p><a href="#">上传头像</a></p>
+														<div onclick = "document.getElementById('image_upload').style.display='block'"><button class="clean-gray">上传头像</button></div>
+																
+                                                        
+                                                                                                <div id='image_upload' style="display:none;">
+																								<form action="" method="post" enctype="multipart/form-data">
+																									{% csrf_token %}
+																									<input id="id_image" type="file" class="" name="image"> 
+																									<input type="submit" value="Submit" />
+																								</form>
+																								</div>
 														<hr>
 														<table class="table table-striped table-bordered">
 														  <tr>
@@ -167,11 +176,25 @@
 											     <input type="hidden" name="logout" value="username"> 
 											     <button class="btn btn-lg btn-info" onclick="form.submit();" title="登出">注销</button>
 											   </form>												
-												
-                                        </div>
+												</div>
+                                        
                                         <!-- end of page content -->
+										<!-- start of sidebar -->
+                                        <aside class="span4 page-sidebar">
 
+                                                <section class="widget">
+                                                        <div class="support-widget">
+                                                                <h3 class="title">Welcome</h3>
+                                                                <p class="intro">WHAT HURTS MORE? THE PAIN OF HARD WORK? OR THE PAIN OF REGRET?</p><a href="contact.html">更多鸡汤请————联系我们</a>
+                                                        </div>
+                                                </section>
 
+                                               
+
+                                        </aside>
+                                        <!-- end of sidebar -->
+
+                                     </div>
                                         
                                 </div>
                         </div>
