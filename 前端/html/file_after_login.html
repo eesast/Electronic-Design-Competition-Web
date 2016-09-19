@@ -87,14 +87,12 @@
  <div class="container-fluid bs-docs-container">
 
       <div class="row">
-	    <div class="span4" role="complementary" id="btn-block">
+	    <div class="span2" role="complementary" id="btn-block">
 		 
-			<p><a href="file_after_login.html?username={{username}}" target="_blank"><button type="button" class="button xl glass oval" id="b">文件发布</button></a></p>
-			<p><a href="community_index_after_login.html?username={{username}}" target="_blank"><button type="button" class="button xl glass oval" id="c">进入论坛</button></a></p>
-			<p><a href="contact_after_login.html?username={{username}}" target="_blank"><button type="button" class="button xl glass oval" id="d">联系我们</button></a></p>
+			
 		
 		</div>
-		<div role="file" id="file-block" class="span6">
+		<div role="file" id="file-block" class="span8">
 		  <form action="#" method="post">
 		  {% if notice_list %}
 		  {% csrf_token %}

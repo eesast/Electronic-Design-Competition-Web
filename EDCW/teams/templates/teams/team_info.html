@@ -62,8 +62,14 @@ a:active {
                                                         <ul id="menu-top-menu" class="clearfix">
 
                                                                <li><a href="{% url 'index:index' %}">主页</a></li>
-                                                                <li  class="current-menu-item"><a href="{% url 'teams:index' %}">组建队伍</a></li>
-                                                                <li><a href="{% url 'login:login' %}">登录</a></li>
+                                                                <li><a href="{% url 'index:introduction' %}">赛事介绍</a></li>
+                                                                <li class="current-menu-item"><a href="{% url 'teams:index' %}">组建队伍</a></li>
+																{% if request.user.is_authenticated %}
+                                                                <li><a href="{% url 'login:login' %}">用户</a></li>
+																{% endif %}
+																{% if not request.user.is_authenticated %}
+																<li><a href="{% url 'login:login' %}">登录</a></li>
+																{% endif %}
                                                                 <li><a href="{% url 'community:community_index' %}">论坛</a></li>
                                                                 <li><a href="{% url 'index:notice' %}">文件</a></li>
 																<li><a href="{% url 'index:rule' %}">比赛规则</a></li>
