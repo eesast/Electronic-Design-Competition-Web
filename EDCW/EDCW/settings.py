@@ -166,5 +166,4 @@ EMAIL_HOST_PASSWORD = 'eesast2016'
 
 SERVER_EMAIL = 'thedc@eesast.com'
 
-
-
+LOGIN_URL = '/login/'
