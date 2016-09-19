@@ -59,7 +59,7 @@ def Login(request):
     access_token=''
     if_logout=''
     if request.method=='POST' and request.user.is_authenticated():
-        error=Get_Image(request)
+        Get_Image(request)
         try:
             if_logout=request.POST.get('logout','')
             if if_logout=='zhuxiao':
@@ -87,21 +87,14 @@ def Get_Image(request):
 		photo=request.FILES['image']
 		profile.image=photo
 		profile.save()
-		print(1)
 		initial_path=profile.image.path
-		print(initial_path)
 		type=profile.image.name.split('.')[-1]
-		print(type)
 		profile.image.name=r'\head_images\user_%s.%s' %(request.user.username,type)
-		print(profile.image.name)
 		new_path=settings.MEDIA_ROOT + profile.image.name
-		print(new_path)
 		os.rename(initial_path,new_path)
-		print(2)
 		profile.save()
 	except Exception:
-		return '图片上传失败'
-	return None
+		pass
 			
 	
 	
