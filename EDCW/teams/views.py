@@ -4,51 +4,73 @@ from .models import Team, Application
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .forms import CreateForm, AppForm
+def if_in_team(usr):
+    in_team = False
+    if usr.is_authenticated:
+        if usr.in_team.all() or usr.profile.is_leader:
+            in_team = True
+    return in_team
+
+
+
+
 def index(request):
     teams = Team.objects.all()
-    return render(request, 'teams/team_index.html', {'teams': teams})
+    usr = request.user
+    in_team = if_in_team(usr)
+    return render(request, 'teams/team_index.html',
+                  {'teams': teams,
+                   'in_team' : in_team,
+                  })
+
 
 
 def info(request, team_id):
     team = Team.objects.get(pk=team_id)
-    return render(request, 'teams/team_info.html', {'team': team })
+    usr = request.user
+    in_team = if_in_team(usr)
+    return render(request, 'teams/team_info.html',
+                  {'team': team,
+                   'in_team': in_team,
+                  })
 
 def my_team(request):
 
     # kickout a member in a certain team
     if request.method == 'POST':
-        try:
-            name = request.POST['name']
-            team = request.user.leads
-            thisone = team.members.get(username=name)
-            team.members.remove(thisone)
-            if team.members.count() < 3:
-                team.is_full = False
-        except Exception:
-            pass
+        name = request.POST['name']
+        team = request.user.leads
+        thisone = team.members.get(username=name)
+        team.members.remove(thisone)
+        if team.members.count() < 3:
+            team.is_full = False
+            team.save()
 
     # specify the certain page
-    if request.user.is_authenticated:
-        try:
-            is_leader = request.user.profile.is_leader
-            if is_leader:
-                team = request.user.leads
-                app_list = team.application_set.all()
-            else:
-                team = request.user.in_team.get(pk=1)
-                app_list = []
+    user = request.user
+    team = ''
+    if user.is_authenticated:
+        in_team = False
+        is_leader = user.profile.is_leader
+        if is_leader:
+            team = user.leads
+            app_list = team.application_set.all()
+            in_team = True
+        else:
+            teams = user.in_team.all()
+            for t in teams:
+                if user in t.members.all():
+                    team = t
+                    in_team = True
+            app_list = []
 
-            return render(request, 'teams/team_myteam.html',
-                          {'team': team,
-                           'app_list': app_list,
-                           'is_leader': is_leader,
-                          })
 
-        except Exception:
-            # print you're not in a team
-            return HttpResponseRedirect(reverse('teams:index'))
-
-    # print you're not registered
+        return render(request, 'teams/team_myteam.html',
+                      {'team': team,
+                       'app_list': app_list,
+                       'is_leader': is_leader,
+                       'in_team': in_team,
+                      })
     return HttpResponseRedirect(reverse('teams:index'))
 
 
@@ -61,10 +83,11 @@ def acceptOrReject(request):
         team = app.team
 
         if answer == 'agree' and not team.is_full:
-            team.members.add(request.user)
+            team.members.add(app.applicant)
 
             if team.members.count() >= 3:
                 team.is_full = True
+                team.save()
 
         app.delete()
 
@@ -95,17 +118,41 @@ def application(request, team_id):
 
 def create(request):
 
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login:login'))
+
+    errors = []
+
     if request.method == 'POST':
         form = CreateForm(request.POST)
         if form.is_valid():
+            print(1)
             cd = form.cleaned_data
             name = cd['name']
             intro = cd['intro']
-            team = Team(name=name, intro=intro, leader=request.user)
-            team.save()
-            request.user.profile.is_leader = True
-            return HttpResponseRedirect(reverse('teams:my_team'))
+            print(2)
+            if request.user.in_team.all() or request.user.profile.is_leader:
+                print(3)
+                errors.append('您已经在队伍中')
 
+            exist = Team.objects.filter(name=name)
+            print(4)
+            if exist.count():
+                print(5)
+                errors.append('队名已被使用')
+
+            if errors:
+                print(6)
+                return render(request, 'teams/team_create.html', {'errors' : errors })
+
+            else:
+                print(7)
+                team = Team(name=name, intro=intro, leader=request.user)
+                team.save()
+                request.user.profile.is_leader = True
+                request.user.profile.save()
+                return HttpResponseRedirect(reverse('teams:my_team'))
+    print(8)
     return render(request, 'teams/team_create.html')
 
 def dismiss(request):
