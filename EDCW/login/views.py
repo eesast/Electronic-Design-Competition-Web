@@ -6,6 +6,7 @@ from login.models import Member
 from .forms import LoginForm
 import urllib
 import json
+import os
 from django.contrib.auth import authenticate, login,logout
 
 
@@ -78,19 +79,29 @@ def Login(request):
                 error = '登录申请失败！请先注册！'
     else:
         form = LoginForm()
-        print (request.user.profile.image.url)
     return render(request, 'login.html', {'error':error})
 
 def Get_Image(request):
+	profile=request.user.profile
+	try:
+		photo=request.FILES['image']
+		profile.image=photo
+		profile.save()
 		print(1)
-		try:
-			photo=request.FILES['image']
-			print(2)
-			request.user.profile.image=photo
-			request.user.profile.save()
-		except Exception:
-				return '图片上传失败'
-		return None
+		initial_path=profile.image.path
+		print(initial_path)
+		type=profile.image.name.split('.')[-1]
+		print(type)
+		profile.image.name=r'\head_images\user_%s.%s' %(request.user.username,type)
+		print(profile.image.name)
+		new_path=settings.MEDIA_ROOT + profile.image.name
+		print(new_path)
+		os.rename(initial_path,new_path)
+		print(2)
+		profile.save()
+	except Exception:
+		return '图片上传失败'
+	return None
 			
 	
 	
