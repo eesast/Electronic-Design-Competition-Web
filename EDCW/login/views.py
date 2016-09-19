@@ -57,12 +57,14 @@ def Login(request):
     error = ''
     access_token=''
     if_logout=''
-    try:
-        if_logout=request.POST.get('logout','')
-        if if_logout=='zhuxiao':
-            Logout(request)
-    except Exception:
-        pass
+    if request.method=='POST' and request.user.is_authenticated():
+        error=Get_Image(request)
+        try:
+            if_logout=request.POST.get('logout','')
+            if if_logout=='zhuxiao':
+                Logout(request)
+        except Exception:
+            pass
     if request.method =='POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -76,8 +78,23 @@ def Login(request):
                 error = '登录申请失败！请先注册！'
     else:
         form = LoginForm()
+        print (request.user.profile.image.url)
     return render(request, 'login.html', {'error':error})
 
+def Get_Image(request):
+		print(1)
+		try:
+			photo=request.FILES['image']
+			print(2)
+			request.user.profile.image=photo
+			request.user.profile.save()
+		except Exception:
+				return '图片上传失败'
+		return None
+			
+	
+	
+	
 def Logout(request):
 	logout(request)
 	return HttpResponseRedirect("/index")
