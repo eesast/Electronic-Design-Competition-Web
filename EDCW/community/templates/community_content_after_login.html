@@ -115,7 +115,7 @@
 
                                                         <div class="post-meta clearfix">
                                                                 <span class="date">{{post.timestamp}}</span>
-                                                                <span class="category">{{post.sender}}</span>
+                                                                <span class="category"><img alt="" src="{{request.user.profile.image.url}}" class="avatar avatar-60 photo" height="25" width="25" style="display:inline; border-radius:25px;">&nbsp&nbsp {{post.sender}}</span>
                                                                 <span class="comments">{{post.replycount}} 回复</span>
                                                         </div><!-- end of post meta -->
 
@@ -137,7 +137,7 @@
                                                                 <li class="comment even thread-even depth-1" id="li-comment-2">
                                                                         <article id="comment-2">
 																		                        <a href="#">
-                                                                                                        <img alt="" src="{% static 'images/custom.png' %}" class="avatar avatar-60 photo" height="60" width="60">
+                                                                                                        <img alt="" src="{{request.user.profile.image.url}}" class="avatar avatar-60 photo" height="60" width="60">
                                                                                                 </a>
 
 
