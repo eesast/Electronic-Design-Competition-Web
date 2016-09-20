@@ -116,6 +116,10 @@ h1 {
 }
 
 
+@media (max-width:768px) {
+	
+}
+
 
 #btn1,#btn2,#btn3 { 
    display: inline-block; 
@@ -145,6 +149,8 @@ h1 {
    transform: scale(1.1); 
  } 
  
+ 
+ 
 
 .button {
   color: #666;
@@ -160,7 +166,7 @@ h1 {
   padding: 0 40px;
   margin: 0;
   display: inline-block;
-  appearance: none;
+
   cursor: pointer;
   border: none;
   -webkit-box-sizing: border-box;
