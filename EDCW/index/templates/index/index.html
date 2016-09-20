@@ -32,11 +32,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">Welcome to here</a>
+              <a class="navbar-brand" href="{% url 'index:index' %}">Welcome to here</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li><a href="{% url 'index:index' %}">主页</a></li>
+                <li><a href="{% url 'index:introduction' %}">赛事介绍</a></li>
 				<li><a href="{% url 'login:login' %}">登录</a><li>
                 <li><a href="{% url 'community:community_index' %}">论坛</a></li>
                 <li><a href="{% url 'teams:index' %}">组队</a></li>
