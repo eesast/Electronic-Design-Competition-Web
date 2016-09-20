@@ -5,13 +5,13 @@ from django.urls import reverse
 from .models import Notification
 from django.conf import settings
 import os
+def introduction(request):
+
+    return render(request, 'index/introduction.html')
+
 def index(request):
 
     return render(request, 'index/index.html')
-
-def welcome(request):
-
-    return render(request, 'index/Welcome.html')
 
 def rule(request):
 

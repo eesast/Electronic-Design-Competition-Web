@@ -89,15 +89,11 @@
  <div class="container-fluid bs-docs-container">
 
       <div class="row">
-	    <div class="span4" role="complementary" id="btn-block">
+	    <div class="span3" role="complementary" id="btn-block">
 		 
-		    <p><a href="login.html"><button type="button" class="button xl glass oval" id="a">登录注册</button></a></p>
-			<p><a href="file.html" target="_blank"><button type="button" class="button xl glass oval" id="b">文件发布</button></a></p>
-			<p><a href="community_index.html" target="_blank"><button type="button" class="button xl glass oval" id="c">进入论坛</button></a></p>
-			<p><a href="contact.html" target="_blank"><button type="button" class="button xl glass oval" id="d">联系我们</button></a></p>
 		
 		</div>
-		<div role="file" id="file-block" class="span6">
+		<div role="file" id="file-block" class="span8">
         <form action="{% url 'index:download' %}" method="post" >
 		{% if notice_list %}	
 	  	{% csrf_token %}

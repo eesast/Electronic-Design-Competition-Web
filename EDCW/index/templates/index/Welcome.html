@@ -1,159 +1,282 @@
-{% load static %}
-﻿<!DOCTYPE html>
+﻿{% load static %}
+<!DOCTYPE html>
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="index">
+	<meta name="author" content="zw">
 
-    <meta name="description" content="Welcome Page">
-    <meta name="author" content="zw">
- 
+<title>第十八届电子设计大赛官网</title>
 
-    <title>欢迎来到第十八届电子设计大赛</title>
+<!-- Bootstrap core CSS -->
+<link rel='stylesheet' id='bootstrap-css-css'  href="{% static 'index/css/bootstrap.css' %}" type='text/css' media='all' />
+<link href="{% static 'index/css/docs.min.css' %}" rel="stylesheet" type='text/css' media='all'/>
+<link href="{% static 'index/css/index.css' %}" rel="stylesheet"/>
+<link rel='stylesheet' id='responsive-css-css'  href="{% static 'index/css/responsive.css' %}" type='text/css' media='all' />
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="{% static 'index/css/bootstrap.min.css' %}" type='text/css' media='all' />
-    <link rel="stylesheet" href="{% static 'index/css/Welcome.css' %}" type='text/css' media='all' />
-	<script src="{% static 'index/js/Welcome.js' %}"></script>
-  </head>
+
+
+
+<style type="text/css">
+
+a:link {
+ text-decoration: none;
+}
+a:visited {
+ text-decoration: none;
+}
+a:hover {
+ text-decoration: none;
+}
+a:active {
+ text-decoration: none;
+}
+
+</style> 
+
+
+
+
+<!-- Start of Header -->
+                <div class="header-wrapper">
+                        <header>
+                                <div class="container">
+								
+                                        <div class="logo-container">
+                                                <!-- Website Logo -->
+                                                <a href="http://www.eesast.com"  id="eesast" >
+                                                      EESAST
+                                                </a>
+                                             
+                                        </div>
+
+
+                                        <!-- Start of Main Navigation -->
+                                        <nav class="main-nav">
+                                                <div class="menu-top-menu-container">
+                                                        <ul id="menu-top-menu" class="clearfix">
+                                                            <li  class="current-menu-item"><a href="{% url 'index:index' %}">主页</a></li>
+                                                                <li><a href="{% url 'teams:index' %}">组建队伍</a></li>
+                                                                <li><a href="{% url 'login:login' %}">登录</a></li>
+                                                                <li><a href="{% url 'community:community_index' %}">论坛</a></li>
+                                                                <li><a href="{% url 'index:notice' %}">文件</a></li>
+																<li><a href="{% url 'index:rule' %}">比赛规则</a></li>
+                                                                <li><a href="#">更多</a>
+                                                                        <ul class="sub-menu">
+                                                                                <li><a href="http://www.eesast.com" target="_blank">关于我们</a></li>
+                                                                                <li><a href="{% url 'contact:contact' %}">联系我们</a></li>
+                                                                        </ul>
+                                                                </li>
+                                                        </ul>
+														<ul id="menu-top-right" class="clearfix">
+														        <li><a href="http://www.eesast.com" target="_blank">电子系科协</a></li>
+																<li><a href="#">自动化系科协</a></li>
+														</ul>
+                                                </div>
+                                        </nav>
+                                        <!-- End of Main Navigation -->
+
+                                </div>
+                        </header>
+                </div>
+                <!-- End of Header -->
+
+
+                 <!-- Start of Search Wrapper -->
+                <div class="search-area-wrapper">
+                        <div class="search-area container">
+                                <h2 class="search-header">第十八届电子设计大赛</h2>
+                                <p class="search-tag-line">开始你的设计</p>
+                        </div>
+                </div>
+                <!-- End of Search Wrapper -->
+
+    <div class="container-fluid bs-docs-container">
+
+      <div class="row">
+	    <div class="span1" role="complementary" id="btn-block">
+		 
+		   
+		
+		</div>
+        <div class="span10" role="main">
+         <div class="bs-docs-section">
+          <h3 id="intro-competition" class="page-header">赛事介绍</h3>
+
+          <h3 id="intro-competition-theme">宗旨</h3>
+          <p>&nbsp &nbsp &nbsp &nbsp提高理论联系实际能力，鼓励团结协作，培养创新精神和动手能力，强调“软硬结合”，通过解决实际问题来检验和提高同学们的综合素质。</p>
+
+          <h3 id="intro-competition-main">概况</h3>
   
-<!-- NAVBAR -->
-  <body>
-    <div class="navbar-wrapper">
-      <div class="container">
+          <div class="bs-callout bs-callout-warning" id="intro-competition-maininfo">
+            <p>&nbsp &nbsp &nbsp &nbsp以学科竞赛促进学科建设、以学科竞赛促进学生动手和创新能力的提高，这在清华大学已经蔚然成风。结构设计大赛、数学建模大赛、程序设计大赛、学生创业大赛……风起云涌的赛事引无数清华学子竞折腰，成为学生培养才能的乐土、展示才华的舞台。</p>
+            
+			<p>&nbsp &nbsp &nbsp &nbsp
+             作为校级三星级比赛和挑战杯系列赛事之一，电工电子实验教学中心主办的电子设计大赛也在这个舞台上占据着一席之地。事实上，电子学在国外的发展非常迅猛，在国内也有迫切的需求。在这样的前景下，利用一些集成芯片和分立元件设计一些电子电路，利用一些可编程逻辑器件设计一些专用电路，利用功能强大的单片机或FPGA开发一些电子产品……从而实现通讯、控制等各种丰富实用的功能，这些形式多样、层次不一的活动，将会极大地激发同学们的求知兴趣与创造能力，将课堂上所学的知识与课外的科技制作有机的结合起来，营造出良好的学习、科研氛围。同时通过不断的积累与发现，一些精巧、实用、有较高技术含量的发明、创造就会问世，并有可能走向市场。大屏幕液晶投影电视、盲人阅读器、光标阅读机等的成功都证明了这一点。</p>
+			 <p>&nbsp &nbsp &nbsp &nbsp
+             大赛举办到今年，已经是第十七届了，前十六届大赛的成功举办，在校内引起了良好的反响，很大程度常激发了同学们的求知欲和创造性，也为本届大赛的举办打下了良好的基础，积累了丰富的经验。本届大赛同时也是一门3学分的全校性选修课程(课程名为电子系统设计综合实践，课序号`01550013(90)`)，这将进一步扩大赛事规模与影响力，提高竞赛水平。</p>
 
-        <nav class="navbar navbar-static-top">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">Welcome to here</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                <li><a href="{% url 'index:index' %}">主页</a></li>
-				<li><a href="{% url 'login:login' %}">登录</a><li>
-                <li><a href="{% url 'community:community_index' %}">论坛</a></li>
-                <li><a href="{% url 'teams:index' %}">组队</a></li>
-                <li><a href="{% url 'index:notice' %}">文件</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">更多<span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="{% url 'contact:contact' %}">联系我们</a></li>
-                    <li><a href="http://www.eesast.com" target="_blank">有关我们</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
+            <p> &nbsp &nbsp &nbsp &nbsp          电子设计大赛为“挑战杯”竞赛体系中的系列学科竞赛之一，竞赛组织按照“挑战杯”竞赛体系相关管理规定进行。大赛由教务处、校团委和校学生科协共同指导，由电工电子实验教学中心和清华大学电子工艺实习基地主办，本届赛事由自动化系、电子系两系学生科协承办。
+             </p>
+  
           </div>
-        </nav>
+		  
+		  <div class="bs-callout bs-callout-info" id="intro-competition-maininfo">
+  
+          <h3 id="intro-competition-review">历届赛题回顾（1999-2015）</h3>
+          <ul class="review-list">
+		    <li>第一届——折返跑赛车</li>
+			<li>第二届<br>
+                * 专业组：闲亭漫步——模型车变速竞速<br>
+                * 趣味组：<ul>
+                            <li>爱心礼物——电子饰物设计制作</li>
+                            <li>智慧无限——智能卡应用方案设计</li>
+						  </ul>
+			<li>第三届——赤色要塞</li>
+			<li>第四届——运筹帷幄</li>
+            <li>第五届——飞火流星</li>
+            <li>第六届——乾坤挪移</li>
+            <li>第七届——夺宝奇兵</li>
+            <li>第八届——七面埋伏</li>
+            <li>第九届——星空堡垒</li>
+            <li>第十届——凌波微步</li>
+            <li>第十一届——步步为赢</li>
+            <li>第十二届——热力追踪</li>
+            <li>第十三届——Treasures！</li>
+            <li>第十四届——沐光之城</li>
+            <li>第十五届——装甲精英</li>
+            <li>第十六届——危机四伏</li>
+            <li>第十七届——命悬一线</li>
+		  </ul>
+		  </div>
+		  <p>在历届大赛的组织和竞赛过程中，很多领导和老师亲临现场提出了许多关键性的指导和精辟的点评意见，使参赛选手受益匪浅。</p>
+		 </div>
+         <div class="bs-docs-section">
+         <h3 id="intro-kexie" class="page-header">科协介绍</h3>
+         <h3 id="intro-kexie-ee"><a href="#">电子系科协</a></h3>
+		 <a href="#">
+             <img src="{% static 'index/img/科协图标.png' %}" class="img-responsive" alt="Responsive image"></img>
+		 </a>
+		 <p>&nbsp &nbsp &nbsp &nbsp清华大学电子工程系科协，最初由一批热爱科创的同学创立，如今已成为电子系与学生会、团委并行的三大组织之一。</p>
 
+         <p>  &nbsp &nbsp &nbsp &nbsp 每年，科协都通过举办各项课外科技赛事来促进同学们的课外学习，增强动手能力和创新能力，其中最负盛名的便是一年一度的电子设计大赛。它是由校科创中心统筹，我系科协、自动化系学生科协联合举办的校级的四大顶级科技赛事之一。由于比赛内容充实有趣，每届电子设计大赛都有很多热爱科创的同学参加，关注它的人数更是遍布全校；从第15届起,更是有来自北理、北航乃至中山大学的同学参与其中。</p>
+
+         <p>   &nbsp &nbsp &nbsp &nbsp除电设之外，清华大学新生信息知识竞赛与队式程序大赛也是电子科协承办的重大赛事,它们在新生中激发大家对于电子信息技术的学习兴趣，发现人才，挖掘出了不少编程能手。从2014年起，电子科协还与计算机、自动化、软件学院科协一道组织了AICraft程序设计大赛，受到了校内校外的广泛关注。而挑战杯的科学竞赛与展览上，同学们展示出自己的小发明，亦提高了广大同学对科学技术的兴趣。</p>
+
+         <p>   &nbsp &nbsp &nbsp &nbsp科协同样致力于向同学们提供科技型性的服务工作。科协自己会组织一些科研工程项目，有经验的高年级学生统筹计划一些具有一定趣味和实用价值的项目，给同学们提供参加科技活动的机会；电子系的网站建设亦是出类拔萃的；科协会组织不少关于专业的应用问题的培训，满足同学们的求知欲的同时也增加了联系实际的能力。科协还积极邀请社会各界名人走进电子系，举办一系列讲座活动，与电子系的同学分享自己的人生与事业感悟，启迪同学们的未来发展。</p>
+
+         <p>   &nbsp &nbsp &nbsp &nbsp电子工程系科协将依托学校的社会影响力和自身在同学中的感召力，紧跟时代步伐，锐意创新，发挥人才众多和组织宣传经验丰富的优势，在社会各界的大力支持下，与有识企业一起，更好的服务同学成长成才，让高等院校与现代企业相互交融、携手发展！
+		 </p>
+		 <h3 id="intro-kexie-au"><a href="#">自动化系科协</a></h3>
+		 <p>&nbsp &nbsp &nbsp &nbsp
+		    清华大学自动化系学生科技协会成立于1984年，经过三十年的成长与发展，如今已成为自动化系与学生会、团委并行的三大组织之一，也是清华大学里颇具影响力的一个学生组织。每一年，科协都会通过组织各种科技讲座、培训、赛事等来丰富同学们的课余生活，培养同学们的动手能力和创新能力，使同学们对科技创新产生浓厚的兴趣。</p>
+
+         <p>  &nbsp &nbsp &nbsp &nbsp
+		 1999年，我系倡立校级赛事电子设计大赛。之后，在我系科协与电子系科协的共同努力下，电设大赛迄今已走过15个年头，赛事的水平和影响力也日益扩大，年年成绩斐然。2013年，电设大赛开始接受校外报名，成为了一年一度的科技盛事。</p>
+
+         <p>   &nbsp &nbsp &nbsp &nbsp除电设之外，我系每年还会举办新生C语言大赛，以游戏的方式提高新生对编程的兴趣，培养C语言编程能力、策略构建和团队协作能力，给他们一个接触科技创新的机会，让他们体会到将课本知识转换到实际应用当中的乐趣。</p>
+
+         <p>   &nbsp &nbsp &nbsp &nbsp自动化系科协也与许多科创兴趣团队有着很好的交流与合作。值得一提的是，在清华——德州仪器（TI）“未来智能机器人”兴趣团队成立之后，我系科协便与兴趣团队开展了各个方面的合作，深化了与“未来智能机器人”兴趣团队的一体化建设。兴趣团队中走出了大批人才，在学术科研上取得许多可喜的成果。我们又与清华大学新闻学院共同筹建了“未来新媒体”兴趣团队，希望在相互的资源共享、信息交流中共同取得进步。</p>
+         <p>&nbsp &nbsp &nbsp &nbsp
+            科协的精神是“实干、挑战、创新”，文化是“传承、感情、责任”。在一代又一代科协人的努力拼搏下，自动化系学生科技协会在各个方面都取得了卓越的成就！
+		 </p>
+		 </div>
+		 
+		 
+		 
+
+
+         <div class="bs-docs-section">
+		 <h3 id="photo">精彩照片<h3>
+                 <img class="img-responsive" src="{% static 'index/img/电设/1.jpg' %}"></img>
+                 <img class="img-responsive" src="{% static 'index/img/电设/2.jpg' %}"></img>
+                 <img class="img-responsive" src="{% static 'index/img/电设/3.jpg' %}"></img>
+                 <img class="img-responsive" src="{% static 'index/img/电设/4.jpg' %}"></img>
+                 <img class="img-responsive" src="{% static 'index/img/电设/5.jpg' %}"></img>
+                 <img class="img-responsive" src="{% static 'index/img/电设/6.jpg' %}"></img>
+                 <img class="img-responsive" src="{% static 'index/img/电设/7.jpg' %}"></img>
+                 <img class="img-responsive" src="{% static 'index/img/电设/8.jpg' %}"></img>
+                 <img class="img-responsive" src="{% static 'index/img/电设/9.jpg' %}"></img>
+                 <img class="img-responsive" src="{% static 'index/img/电设/10.jpg' %}"></img>
+                 <img class="img-responsive" src="{% static 'index/img/电设/11.jpg' %}"></img>
+
+		</div>
+			
+		</div>
+  
+        <div class="span2" role="complementary">
+          <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
+            <ul class="nav bs-docs-sidenav">
+              
+                <li>
+                   <a href="#intro-competition" style="font-size:25px; font-family: SimHei; color:#000000; line-height:1.50;">赛事介绍</a>
+				     <ul class="nav">
+					    <li><a href="#intro-compettion-theme" style="font-size:20px; font-family:SimHei;; color:#000000; line-height:1.50;">宗旨</a></li>
+						<li><a href="#intro-competiton-main" style="font-size:20px; font-family:SimHei;; color:#000000; line-height:1.50;">概况</a></li>
+						<li><a href="#intro-competition-review" style="font-size:20px; font-family:SimHei;; color:#000000; line-height:1.50;">历届赛题回顾（1999-2015）</a></li>
+					 </ul>
+                </li>
+                <li>
+                   <a href="#intro-kexie" style="font-size:25px; font-family:SimHei;color:#000000; line-height:1.50;">科协介绍</a>
+                     <ul class="nav">
+                       <li><a href="#intro-kexie-ee" style="font-size:20px; font-family:arial; color:#000000">电子系科协</a></li>
+                       <li><a href="#intro-kexie-au" style="font-size:20px; font-family:arial; color:#000000">自动化系科协</a></li>
+                     </ul>
+                </li>
+                <li>
+                   <a href="#photo" style="font-size:25px; font-family:SimHei;color:#000000; line-height:1.50;">精彩照片</a>
+                </li>
+
+
+              
+            </ul>
+            <a class="back-to-top" href="#top" style="font-size:25px; font-family:SimHei;; color:#000000">
+              返回顶部
+            </a>
+            
+          </nav>
+        </div>
+        
       </div>
     </div>
+	
+	<!-- Footer Bottom -->
+                        <div id="footer-bottom-wrapper">
+                                <div id="footer-bottom" class="container">
+                                        <div class="row">
+                                                <div class="span6">
+                                                        <p class="copyright" style="color:grey">
+                                                                Copyright © All Rights Reserved by EESAST from Tsinghua
+                                                        </p>
+                                                </div>
+                                                
+                                        </div>
+                                </div>
+                        </div>
+                        <!-- End of Footer Bottom -->
 
+                </footer>
+                <!-- End of Footer -->
 
-    <!-- Carousel-->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner" role="listbox">
-        <div class="item active">
-          <img class="first-slide" src="{% static 'index/img/电路6.jpg' %}" alt="First slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>第十八届电子设计大赛</h1>
-              <p>Explore beyond limits</p>
-              <p><a class="btn btn-lg btn-primary" href="{% url 'login:login' %}" role="button">Sign up today</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <img class="second-slide" src="{% static 'index/img/电路4.jpg' %}" alt="Second slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>第十八届电子设计大赛</h1>
-              <p>这是一场灵感的盛宴，智慧的碰撞，团队的比拼</p>
-              <p><a class="btn btn-lg btn-primary" href="{% url 'login:login' %}" role="button">Sign up today</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <img class="third-slide" src="{% static 'index/img/电路1.jpg' %}" alt="Third slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>第十八届电子设计大赛</h1>
-              <p>Begin your design now</p>
-              <p><a class="btn btn-lg btn-primary" href="{% url 'login:login' %}" role="button">Sign up today</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div><!-- /.carousel -->
-
-
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-
-    <div class="container marketing">
-
-      <!-- Three columns of text below the carousel -->
-      <div class="row">
-        <div class="col-lg-4">
-		  <span class="button-wrap">
-          <a href="{% url 'index:index' %}"><button class="button button-circle button-giant button-primary" id="btn1">主页</button></a>
-		  </span>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-		<span class="button-wrap">
-          <a href="{% url 'community:community_index' %}"><button class="button button-circle button-giant button-primary" id="btn2">论坛</button></a>
-		  </span>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-		<span class="button-wrap">
-          <a href="{% url 'login:login' %}"><button class="button button-circle button-giant button-primary" id="btn3">登录</button></a>
-		  </span>
-        </div><!-- /.col-lg-4 -->
-      </div><!-- /.row -->
+                <a href="#top" id="scroll-top"></a>
 
 
     
 
-      <!-- FOOTER -->
-      <footer>
-        <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2016 EESAST, Inc. &middot; </p>
-      </footer>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{% static 'index/js/jquery.min.js' %}"></script>
+<script type='text/javascript' src="{% static 'index/js/custom.js' %}"></script>
+<script type='text/javascript' src="{% static 'index/js/jflickrfeed.js' %}"></script>
+<script type='text/javascript' src="{% static 'index/js/jquery.validate.min.js' %}"></script>
 
-    </div><!-- /.container -->
 
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-	
-    <script src="{% static 'index/js/jquery.min.js' %}"></script>
-    <script src="{% static 'index/js/bootstrap.min.js' %}"></script>
-	<script src="{% static 'index/js/Welcome.js' %}"></script>
- 
-  
 
   </body>
 </html>
+    
+  
+	

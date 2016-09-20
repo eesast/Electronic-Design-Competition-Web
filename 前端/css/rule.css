@@ -106,11 +106,12 @@ span.tag-line {
 }
 .main-nav .sub-menu {
   position: absolute;
-  top: 56px;
-  left: 0px;
+  top: 40px;
+  left: -10px;
   list-style: none;
   margin: 0;
   display: none;
+
 }
 .main-nav .sub-menu li {
   position: relative;
