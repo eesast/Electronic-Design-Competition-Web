@@ -83,13 +83,17 @@ def Login(request):
 
 def Get_Image(request):
 	profile=request.user.profile
-	try:
+	try :
 		photo=request.FILES['image']
 		profile.image=photo
 		profile.save()
 		initial_path=profile.image.path
 		type=profile.image.name.split('.')[-1]
-		profile.image.name=r'\head_images\user_%s.%s' %(request.user.username,type)
+		os.remove(settings.MEDIA_ROOT+r'\head_images\user_%s_%s.%s' %(request.user.username,request.user.id,type))
+	except Exception:
+		pass
+	try:
+		profile.image.name=r'\head_images\user_%s_%s.%s' %(request.user.username,request.user.id,type)
 		new_path=settings.MEDIA_ROOT + profile.image.name
 		os.rename(initial_path,new_path)
 		profile.save()
