@@ -42,10 +42,15 @@ def get_user_info(user):
 def index(request):
     teams = Team.objects.all()
     usr = request.user
-    in_team = if_in_team(usr)
-    if usr.application_set.all():
-        in_team = True
-        note = '您已经提交申请，请等候队长答复'
+    note = ''
+    if not usr.is_authenticated:
+        in_team = False
+        note = '请登录之后进行操作'
+    else:
+        in_team = if_in_team(usr)
+        if usr.application_set.all():
+            in_team = True
+            note = '您已经提交申请，请等候队长答复'
     return render(request, 'teams/team_index.html',
                   {'teams': teams,
                    'in_team' : in_team,
