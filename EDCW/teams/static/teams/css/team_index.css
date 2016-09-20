@@ -705,6 +705,8 @@ input[type=text].error,
 #footer-bottom-wrapper {
   background-color: #353c41;
   width: 100%;
+  position:absolute;
+  bottom:0;
 }
 #footer-bottom-wrapper > #footer-bottom {
   min-height: 25px;
@@ -785,6 +787,7 @@ a#scroll-top:hover {
 
   #footer-bottom-wrapper > #footer-bottom {
     padding: 15px 20px 10px;
+	
   }
 
   .quick-links-widget .menu > li {
