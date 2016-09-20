@@ -137,7 +137,10 @@
                                                                 <li class="comment even thread-even depth-1" id="li-comment-2">
                                                                         <article id="comment-2">
 																		                        <a href="#">
-                                                                                                       <img alt="" src="{{request.user.profile.image.url}}" class="avatar avatar-60 photo" style="display:inline; border-radius:60px; height:60px; width:60px;">
+
+                                                                                                       <img alt="" src="{{comment.replier.profile.image.url}}" class="avatar avatar-60 photo" style="display:inline; border-radius:60px; height:60px; width:60px;">
+
+
                                                                                                 </a>
 
 
@@ -147,14 +150,9 @@
                                                                                                 <cite class="fn">
                                                                                                         {{comment.replier}} 回复 
                                                                                                 </cite>
-																								<form  method="post">
-																									{% csrf_token%}
-																									<input type="hidden" name="delete_id" value="{{comment.id}}"> 
-																									<button class="btn btn-lg btn-info" onclick="form.submit();" title="">删除</button>
-																								</form>
-                                                                                       
+																							
 																								
-																								
+
 																								
 																								
 																								

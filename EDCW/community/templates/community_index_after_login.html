@@ -106,12 +106,13 @@
                                                                 <h3 class="post-title">
                                                                         <a href="community_content/{{post.id}}">{{post.title}}</a>
                                                                 </h3>
-																
+																{% if request.user.id == comment.replier.id %}
 																	<form  method="post">
 																	{% csrf_token%}
 																	<input type="hidden" name="delete_id" value="{{post.id}}"> 
 																	<button class="btn btn-lg btn-info" onclick="form.submit();" title="">删除</button>
 																	</form>
+																{% endif %}
 
                                                                 <div class="post-meta clearfix">
                                                                         <span class="date">{{post.timestamp}}</span>
