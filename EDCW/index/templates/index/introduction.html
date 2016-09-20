@@ -46,7 +46,7 @@ a:active {
 								
                                         <div class="logo-container">
                                                 <!-- Website Logo -->
-                                                <a href="www.eesast.com"  id="eesast" >
+                                                <a href="http://www.eesast.com"  id="eesast" >
                                                       EESAST
                                                 </a>
                                              
@@ -57,20 +57,27 @@ a:active {
                                         <nav class="main-nav">
                                                 <div class="menu-top-menu-container">
                                                         <ul id="menu-top-menu" class="clearfix">
-                                                            <li  class="current-menu-item"><a href="{% url 'index:index' %}">主页</a></li>
-                                                                <li><a href="team.html">组建队伍</a></li>
-                                                                <li><a href="{% url 'login:login' %}">登录</a></li>
+														        <li><a href="{% url 'index:index' %}">主页</a></li>
+                                                                <li  class="current-menu-item"><a href="{% url 'index:introduction' %}">赛事介绍</a></li>
+                                                                <li><a href="{% url 'teams:index' %}">组建队伍</a></li>
+                                                                {% if request.user.is_authenticated %}
+                                                                <li><a href="{% url 'login:login' %}">用户</a></li>
+																{% endif %}
+																{% if not request.user.is_authenticated %}
+																<li><a href="{% url 'login:login' %}">登录</a></li>
+																{% endif %}
                                                                 <li><a href="{% url 'community:community_index' %}">论坛</a></li>
                                                                 <li><a href="{% url 'index:notice' %}">文件</a></li>
+																<li><a href="{% url 'index:rule' %}">比赛规则</a></li>
                                                                 <li><a href="#">更多</a>
                                                                         <ul class="sub-menu">
-                                                                                <li><a href="www.eesast.com">关于我们</a></li>
+                                                                                <li><a href="http://www.eesast.com" target="_blank">关于我们</a></li>
                                                                                 <li><a href="{% url 'contact:contact' %}">联系我们</a></li>
                                                                         </ul>
                                                                 </li>
                                                         </ul>
 														<ul id="menu-top-right" class="clearfix">
-														        <li><a href="www.eesast.com">电子系科协</a></li>
+														        <li><a href="http://www.eesast.com" target="_blank">电子系科协</a></li>
 																<li><a href="#">自动化系科协</a></li>
 														</ul>
                                                 </div>
@@ -95,15 +102,12 @@ a:active {
     <div class="container-fluid bs-docs-container">
 
       <div class="row">
-	    <div class="span3" role="complementary" id="btn-block">
+	    <div class="span1" role="complementary" id="btn-block">
 		 
-		    <p><a href="{% url 'login:login' %}"><button type="button" class="button xl glass oval" id="a">登录注册</button></a></p>
-			<p><a href="{% url 'index:notice' %}" target="_blank"><button type="button" class="button xl glass oval" id="b">文件发布</button></a></p>
-            <p><a href="{% url 'community:community_index' %}" target="_blank"><button type="button" class="button xl glass oval" id="c">进入论坛</button></a></p>
-			<p><a href="{% url 'contact:contact' %}" target="_blank"><button type="button" class="button xl glass oval" id="d">联系我们</button></a></p>
+		   
 		
 		</div>
-        <div class="span9" role="main">
+        <div class="span10" role="main">
          <div class="bs-docs-section">
           <h3 id="intro-competition" class="page-header">赛事介绍</h3>
 
@@ -272,6 +276,9 @@ a:active {
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="{% static 'index/js/jquery.min.js' %}"></script>
 <script type='text/javascript' src="{% static 'index/js/custom.js' %}"></script>
+<script type='text/javascript' src="{% static 'index/js/jflickrfeed.js' %}"></script>
+<script type='text/javascript' src="{% static 'index/js/jquery.validate.min.js' %}"></script>
+
 
 
   </body>
