@@ -4,8 +4,8 @@ import contact
 app_name = 'index'
 
 urlpatterns = [
-    url(r'^$', views.welcome, name='welcome'),
-    url(r'^index$', views.index, name='index'),
+    url(r'^$', views.index, name='index'),
+    url(r'^introduction$', views.introduction, name='introduction'),
     url(r'^notice$', views.noticeIndex, name='notice'),
     url(r'^rule$', views.rule, name='rule'),
     url(r'^download/(?P<notice_id>[0-9]+)', views.download, name='download'),

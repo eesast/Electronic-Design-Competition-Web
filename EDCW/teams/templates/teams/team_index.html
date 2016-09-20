@@ -1,5 +1,5 @@
 {% load static %}
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8">
@@ -139,6 +139,9 @@ a:active {
 												  </tbody>
 												</table>
 												
+                                                {% if note %}
+                                                    <p> {{note}} </p>
+                                                {% endif %}
 												{% if request.user.is_authenticated %}
                                                     {% if not in_team %}
                                                        <a href="{% url 'teams:create' %}"><button class="btn btn-block btn-info" style="font-size:20px; height:50px;">创建自己的队伍</button></a>

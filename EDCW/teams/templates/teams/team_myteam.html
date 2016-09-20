@@ -177,6 +177,16 @@ a:active {
 													  </tr>
 													</thead>
 													<tbody>
+                                                      {% if note %}
+                                                        <p> {{note}} </p>
+                                                      {% endif %}
+
+                                                      {% if errors %}
+                                                        {% for error in errors %}
+                                                          <p> {{error}} </p>
+                                                        {% endfor %}
+                                                      {% endif %}
+
 													  {% for applier in app_list %}
 													  <tr>
 													    <td>{{applier.applicant.username}}</td>
