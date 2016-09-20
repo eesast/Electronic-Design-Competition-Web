@@ -1,7 +1,7 @@
 from django.contrib import admin
 from community import models
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('id','title','sender','timestamp','replycount','category')
+    list_display = ('id','title','sender','timestamp','category')
 
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('id','replier','content','replytime')
