@@ -159,15 +159,12 @@ return false;
 												<article class="type-page hentry clearfix">
 												        <img alt="" src="{{request.user.profile.image.url}}" class="avatar avatar-60 photo" height="60" width="60" style="display:inline; border-radius:60px;">
 												        <h1 class="post-title" style="display:inline; padding:10px;">{{request.user.username}}，你好！</h1>
-<<<<<<< HEAD:EDCW/login/templates/login.html
-														<div onclick = "document.getElementById('image_upload').style.display='block'"><button class="clean-gray" onchange="fileChange(this);">上传头像</button></div>
-																
-=======
+
 														<div onclick = "document.getElementById('image_upload').style.display='block'"><button class="clean-gray">上传头像</button></div>
                                                         {% if error %}	
                                                          <p> {{error}} </p>
                                                         {% endif %}
->>>>>>> fd349a9e3c5fa302db93e49a011dcdb4e3842223:EDCW/login/templates/login/login.html
+
                                                         
                                                                                                 <div id='image_upload' style="display:none;">
 																								<form action="" method="post" enctype="multipart/form-data">
