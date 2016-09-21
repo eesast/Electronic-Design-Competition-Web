@@ -106,7 +106,7 @@
                                                                 <h3 class="post-title">
                                                                         <a href="community_content/{{post.id}}">{{post.title}}</a>
                                                                 </h3>
-																{% if request.user.id == comment.replier.id %}
+																{% if request.user.id == post.sender.id %}
 																	<form  method="post">
 																	{% csrf_token%}
 																	<input type="hidden" name="delete_id" value="{{post.id}}"> 
@@ -116,7 +116,7 @@
 
                                                                 <div class="post-meta clearfix">
                                                                         <span class="date">{{post.timestamp}}</span>
-                                                                        <span class="category"><img alt="" src="{{request.user.profile.image.url}}" class="avatar avatar-60 photo" style="display:inline; border-radius:25px; height:25px; width:25px;">&nbsp&nbsp {{post.sender}}</span>
+                                                                        <span class="category"><img alt="" src="{{post.sender.profile.image.url}}" class="avatar avatar-60 photo" style="display:inline; border-radius:25px; height:25px; width:25px;">&nbsp&nbsp {{post.sender}}</span>
                                                                         <span class="comments">{{post.p_comment.count}} 回复</span>
                                                                      
                                                                 </div><!-- end of post meta -->

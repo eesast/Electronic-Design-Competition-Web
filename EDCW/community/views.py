@@ -15,20 +15,16 @@ def community_content(request,id):
 	post = Post.objects.get(id=int(id))
 	delete_id = None
 	delete_id = request.POST.get('delete_id','')
-	print(0)
 	try:
 		delcomment = Comment.objects.get(id=int(delete_id))
 		delcomment.post.save()
 		delcomment.delete()
 	except Exception:
 		pass
-	print(1)
 	if 	request.user.is_authenticated() :
-		print(2)
 		if request.method=='POST':
 			form = CommentForm(request.POST)
 			if form.is_valid():
-				print(3)
 				cd = form.cleaned_data
 				comment = Comment(content=cd['comment'],post = Post.objects.get(id=int(id)),replier=request.user)
 				comment.save()
