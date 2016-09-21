@@ -2,7 +2,9 @@
   font-family:  "Arial", "HelveticaNeue", "Helvetica Neue", Helvetica, sans-serif;
 }
 
-
+img {
+	margin-top:-25px;
+}
 
 .bs-docs-section > p, .bs-docs-section > ul, 
 .bs-docs-section > ol, .bs-callout > p, 
