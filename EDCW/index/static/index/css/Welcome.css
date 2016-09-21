@@ -9,6 +9,10 @@ h1 {
 	font-size:70px;
 }
 
+img {
+	margin-top:-25px;
+}
+
 
 .navbar-wrapper {
   position: absolute;
