@@ -2,7 +2,9 @@
   font-family:  "Arial", "HelveticaNeue", "Helvetica Neue", Helvetica, sans-serif;
 }
 
-
+img {
+	margin-top:-25px;
+}
 
 .bs-docs-section > p, .bs-docs-section > ul, 
 .bs-docs-section > ol, .bs-callout > p, 
@@ -512,11 +514,29 @@ button.button:hover {
 /* Footer ------------------------------------------------------------------------------------------------------------*/
 
 
+html,body {
+	height:100%;
+	margin:0;
+	padding:0;
+}
+
+.page-container {
+	min-height:100%;
+	height:auto!important;
+	height:100%;
+	margin:0;
+}
+
+#page {
+	padding-bottom:60px;
+}
 #footer-bottom-wrapper {
   background-color: #353c41;
   width: 100%;
-  position:absolute;
-  bottom:0;
+  position:relative;
+  margin-top:-60px;
+  height:65px;
+  
 }
 #footer-bottom-wrapper > #footer-bottom {
   min-height: 25px;
