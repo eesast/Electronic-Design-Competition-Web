@@ -104,10 +104,7 @@ def Get_Image(request):
     profile.image=photo
     profile.save()
     if old_name != 'custom.png':
-        try:
-            os.remove(settings.MEDIA_ROOT+old_name)
-        except Exception:
-            pass
+        os.remove(settings.MEDIA_ROOT+old_name)
 
     initial_path=profile.image.path
 

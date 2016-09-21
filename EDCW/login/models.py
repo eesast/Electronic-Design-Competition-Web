@@ -19,7 +19,7 @@ class Member(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile' )
     student_id = models.CharField(max_length=20, blank=True)
     is_leader = models.BooleanField(default=False)
-    image = models.ImageField(upload_to='head_images',default='head_images/default.png')
+    image = models.ImageField(upload_to='head_images',default='head_images/custom.png')
     def __str__(self):
         return self.user.username
 
