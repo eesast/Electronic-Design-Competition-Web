@@ -42,6 +42,8 @@ def get_user_info(access_token):
 		return none
 
 def check_user(data):
+    if not 'name' in data or not 'student_ID' in data:
+        raise Exception
     try:
         user1 = User.objects.get(username=data['name'])
         user1.profile.student_id = data['student_ID']
@@ -72,11 +74,16 @@ def Login(request):
             cd = form.cleaned_data
             try:
                 access_token = get_access_token(cd['username'],cd['password'])
+                if not access_token:
+                    raise Exception
                 data = get_user_info(access_token)
+                if not data:
+                    raise Exception
+
                 user = check_user(data)
                 login(request,user)
             except Exception:
-                error = '登录申请失败！请先注册！'
+                error = '登录申请失败！请确认用户名与密码是否正确，以及学号与姓名信息是否完整!'
     else:
         form = LoginForm()
     return render(request, 'login.html', {'error':error})
@@ -99,10 +106,10 @@ def Get_Image(request):
 		profile.save()
 	except Exception:
 		pass
-			
-	
-	
-	
+
+
+
+
 def Logout(request):
 	logout(request)
 	return HttpResponseRedirect("/index")
