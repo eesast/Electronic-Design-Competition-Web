@@ -66,6 +66,9 @@
 																<li><a href="{% url 'index:rule' %}">比赛规则</a></li>
                                                                 <li><a href="#">更多</a>
                                                                         <ul class="sub-menu">
+																		        {% if request.user.is_authenticated %}
+                                                                                <li style="font-size:18px;bold"><a href="{% url 'login:login' %}"> {{request.user.username}}</a></li>
+																                {% endif %}
                                                                                 <li><a href="http://www.eesast.com" target="_blank">关于我们</a></li>
                                                                                 <li><a href="{% url 'contact:contact' %}">联系我们</a></li>
                                                                         </ul>
@@ -92,8 +95,8 @@
                         </div>
                 </div>
                 <!-- End of Search Wrapper -->
-
- <div class="container-fluid bs-docs-container">
+ <div class="page-container">
+ <div class="container-fluid bs-docs-container" id="page">
 
       <div class="row">
 	    <div class="span2" role="complementary" id="btn-block">
@@ -123,11 +126,33 @@
           			
 		</div>
 	  </div>
+	  
+	  
 		
 		
 		
 		
     </div>
+	</div>
+	<!-- Footer Bottom -->
+                        <div id="footer-bottom-wrapper">
+                                <div id="footer-bottom" class="container">
+                                        <div class="row">
+                                                <div class="span6">
+                                                        <p class="copyright">
+                                                                Copyright © All Rights Reserved by EESAST from Tsinghua
+                                                        </p>
+                                                </div>
+                                                
+                                        </div>
+                                </div>
+                        </div>
+                        <!-- End of Footer Bottom -->
+
+                </footer>
+                <!-- End of Footer -->
+
+                <a href="#top" id="scroll-top"></a>
 	<!-- script -->
                 <script type='text/javascript' src="{% static 'index/js/jquery.min.js' %}"></script>
                 <script type='text/javascript' src="{% static 'index/js/custom.js' %}"></script>
