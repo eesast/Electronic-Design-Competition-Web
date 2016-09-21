@@ -67,10 +67,11 @@ def Login(request):
     if request.method =='POST':
 
         if request.user.is_authenticated:
-            Get_Image(request)
             if 'logout' in request.POST:
                 Logout(request)
-            HttpResponseRedirect(reverse('login:login'))
+            else:
+                error = Get_Image(request)
+                return render(request, 'login/login.html', {'error':error})
 
         else:
             form = LoginForm(request.POST)
@@ -85,31 +86,38 @@ def Login(request):
                     error = '登录申请失败！请确认用户名与密码是否正确，以及学号与姓名信息是否完整!'
     else:
         form = LoginForm()
-    return render(request, 'login.html', {'error':error})
+        print(error)
+    return render(request, 'login/login.html', {'error':error})
 
 def Get_Image(request):
-	profile=request.user.profile
-	old_name = request.user.profile.image.name
-	try :
-		photo=request.FILES['image']
-		profile.image=photo
-		profile.save()
-		if request.user.profile.image.name != 'custom.png':
-			try:
-				os.remove(settings.MEDIA_ROOT+old_name)
-			except Exception:
-				pass
-		initial_path=profile.image.path
-		type=profile.image.name.split('.')[-1]
-	except Exception:
-		pass
-	try:
-		profile.image.name=os.path.join(settings.MEDIA_ROOT, 'head_images', 'user_%s_%s.%s' %(request.user.username,request.user.id,type))
-		new_path=settings.MEDIA_ROOT + profile.image.name
-		os.rename(initial_path,new_path)
-		profile.save()
-	except Exception:
-		pass
+    profile=request.user.profile
+    old_name = request.user.profile.image.name
+
+    if not 'image' in request.FILES:
+        return '请上传一个文件'
+
+    photo=request.FILES['image']
+    name=photo.name.lower()
+    if not name.endswith(('.jpg', '.png', '.jpeg', '.gif')):
+        return '请上传一个规范格式的图片'
+
+    profile.image=photo
+    profile.save()
+    if old_name != 'custom.png':
+        try:
+            os.remove(settings.MEDIA_ROOT+old_name)
+        except Exception:
+            pass
+
+    initial_path=profile.image.path
+
+    tye = name.split('.')[-1]
+    profile.image.name=os.path.join('/' , 'head_images', 'user_%s_%s.%s' %(request.user.username,request.user.id,tye))
+    new_path=settings.MEDIA_ROOT + profile.image.name
+    os.rename(initial_path,new_path)
+    profile.save()
+
+
 
 
 
