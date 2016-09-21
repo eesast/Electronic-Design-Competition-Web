@@ -5,6 +5,7 @@ from django.conf import settings
 from login.models import Member
 from .forms import LoginForm
 import urllib
+import urllib.request
 import json
 import os
 from django.contrib.auth import login,logout
