@@ -49,7 +49,7 @@ INSTALLED_APPS = [
 ]
 
 EESAST_AUTHORIZE_URL = 'www.eesast.com/'
-EESAST_CLIENTID = 'HJjxmkjuD7yUyaYwqWYNRqxhsBDowOtmYfrVpMEi'
+EESAST_CLIENTID = 'Bmi9gb1i5rsfuIsXwGPxuM1jTxRkNNkgEDaO9znR'
 EESAST_CLIENTSECRET = 'client_secret'
 EESAST_CALLBACK = 'http://localhost:8000/'
 
@@ -103,12 +103,24 @@ WSGI_APPLICATION = 'EDCW.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if socket.gethostname() == 'eesast.com':
+    DATABASES = {
+        'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'thedcweb',
+        'USER': 'thedcweb',
+        'PASSWORD': 'eesastedc' ,
+        'HOST': 'localhost',
+        'PROT': '',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 
 # Password validation

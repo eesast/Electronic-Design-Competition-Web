@@ -7,14 +7,14 @@ from .forms import LoginForm
 import urllib
 import json
 import os
-from django.contrib.auth import authenticate, login,logout
+from django.contrib.auth import login,logout
 
 
 
 def	get_access_token(username,password):
-    auth_url = 'http://www.eesast.com/o/token/'
+    auth_url = 'https://www.eesast.com/o/token/'
     body = urllib.parse.urlencode({
-    'client_id':'HJjxmkjuD7yUyaYwqWYNRqxhsBDowOtmYfrVpMEi',
+    'client_id':settings.EESAST_CLIENTID,
     'grant_type':'password',
     'username':username,
     'password':password,
@@ -31,7 +31,7 @@ def	get_access_token(username,password):
 def get_user_info(access_token):
 	if access_token:
 		headers = {'Authorization': "Bearer %s" %access_token}
-		userinfo_url = 'http://www.eesast.com/account/userinfo/'
+		userinfo_url = 'https://www.eesast.com/account/userinfo/'
 		req = urllib.request.Request(userinfo_url,headers = headers)
 		resp = urllib.request.urlopen(req)
 		resp = resp.read()
@@ -74,12 +74,7 @@ def Login(request):
             cd = form.cleaned_data
             try:
                 access_token = get_access_token(cd['username'],cd['password'])
-                if not access_token:
-                    raise Exception
                 data = get_user_info(access_token)
-                if not data:
-                    raise Exception
-
                 user = check_user(data)
                 login(request,user)
             except Exception:
