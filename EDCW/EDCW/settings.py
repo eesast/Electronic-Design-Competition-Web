@@ -49,7 +49,7 @@ INSTALLED_APPS = [
 ]
 
 EESAST_AUTHORIZE_URL = 'www.eesast.com/'
-EESAST_CLIENTID = 'HJjxmkjuD7yUyaYwqWYNRqxhsBDowOtmYfrVpMEi'
+EESAST_CLIENTID = 'Bmi9gb1i5rsfulsXwGPxuM1jTxRkNNkgEDaO9znR'
 EESAST_CLIENTSECRET = 'client_secret'
 EESAST_CALLBACK = 'http://localhost:8000/'
 
@@ -105,8 +105,12 @@ WSGI_APPLICATION = 'EDCW.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'thedcweb',
+	'USER': 'thedcweb',
+	'PASSWORD': 'eesastedc' ,
+	'HOST': 'localhost',
+	'PROT': '',
     }
 }
 
