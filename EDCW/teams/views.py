@@ -79,6 +79,7 @@ def my_team(request):
         if team.members.count() < 3:
             team.is_full = False
             team.save()
+        HttpResponseRedirect(reverse('teams:my_team'))
 
     # specify the certain page
     user = request.user
@@ -125,7 +126,7 @@ def acceptOrReject(request):
             user_info_dict['note'] = '已拒绝该请求'
             app.delete()
 
-    return render(request, 'teams/team_info.html', user_info_dict)
+    return render(request, 'teams/team_myteam.html', user_info_dict)
 
 
 @login_required

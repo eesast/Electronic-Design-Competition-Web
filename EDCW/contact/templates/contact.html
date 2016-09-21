@@ -63,7 +63,7 @@ a:active {
 																<li><a href="{% url 'index:rule' %}">比赛规则</a></li>
                                                                 <li><a href="#">更多</a>
                                                                         <ul class="sub-menu">
-                                                                                <li><a href="http://www.eesast.com" target="_blank">关于我们</a></li>
+                                                                                <li><a href="https://www.eesast.com" target="_blank">关于我们</a></li>
                                                                                 <li  class="current-menu-item"><a href="{% url 'contact:contact' %}">联系我们</a></li>
                                                                         </ul>
                                                                 </li>
@@ -99,7 +99,7 @@ a:active {
 
                                         <!-- start of page content -->
                                         <div class="span8 page-content">
-
+                                                {% if not success_submit %}
                                                 <article class="type-page hentry clearfix">
                                                         <h1 class="post-title">
                                                                 <a href="#">Contact</a>
@@ -107,7 +107,8 @@ a:active {
                                                         <hr>
                                                         <p>请把您对我们的意见和建议写在下面，我们将会认真研究，并给予您答复，谢谢您的支持！&nbsp&nbsp&nbsp&nbsp&nbsp————电设开发组</p>
                                                 </article>
-                                                
+                                                {% endif %}
+
                                                 {% if success_submit %}
                                                 <p>感谢您的反馈，我们将迅速进行处理</p>
                                                 {% endif %}
@@ -119,7 +120,7 @@ a:active {
                                                     
                                                 {% endif %}
 
-
+                                                {% if not success_submit %}
                                                 <form id="contact-form" class="row" action="#" method="post">
                                                        {% csrf_token %}
                                                         <div class="span2">
@@ -152,6 +153,7 @@ a:active {
                                                         <div class="span8 offset2" id="message-sent"></div>
 
                                                 </form>
+                                                {% endif %}
                                         </div>
                                         <!-- end of page content -->
 
