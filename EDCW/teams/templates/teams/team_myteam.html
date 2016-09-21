@@ -148,7 +148,7 @@ a:active {
 													  <td style="font-weight:bold;">成员</td>
 													  <td>{{member.username}}</td>
 													  <td>
-                                                          <form action="#" method="post">{% csrf_token %}
+                                                          <form action="{% url 'teams:my_team' %}" method="post">{% csrf_token %}
 											                 <input type="hidden" name="name" value="{{member.username}}"> 
 											                 <button class="btn btn-md btn-info" onclick="form.submit();" title="踢出队伍">踢出队伍</button>
 											            </form>
