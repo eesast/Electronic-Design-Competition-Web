@@ -2,6 +2,7 @@
 from django.shortcuts import render, HttpResponseRedirect,render_to_response
 from django.contrib.auth.models import User
 from django.conf import settings
+from django.urls import reverse
 from login.models import Member
 from .forms import LoginForm
 import urllib
@@ -61,25 +62,27 @@ def Login(request):
     error = ''
     access_token=''
     if_logout=''
-    if request.method=='POST' and request.user.is_authenticated():
-        Get_Image(request)
-        try:
-            if_logout=request.POST.get('logout','')
-            if if_logout=='zhuxiao':
-                Logout(request)
-        except Exception:
-            pass
+
+
     if request.method =='POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            try:
-                access_token = get_access_token(cd['username'],cd['password'])
-                data = get_user_info(access_token)
-                user = check_user(data)
-                login(request,user)
-            except Exception:
-                error = '登录申请失败！请确认用户名与密码是否正确，以及学号与姓名信息是否完整!'
+
+        if request.user.is_authenticated:
+            Get_Image(request)
+            if 'logout' in request.POST:
+                Logout(request)
+            HttpResponseRedirect(reverse('login:login'))
+
+        else:
+            form = LoginForm(request.POST)
+            if form.is_valid():
+                cd = form.cleaned_data
+                try:
+                    access_token = get_access_token(cd['username'],cd['password'])
+                    data = get_user_info(access_token)
+                    user = check_user(data)
+                    login(request,user)
+                except Exception:
+                    error = '登录申请失败！请确认用户名与密码是否正确，以及学号与姓名信息是否完整!'
     else:
         form = LoginForm()
     return render(request, 'login.html', {'error':error})
@@ -101,7 +104,7 @@ def Get_Image(request):
 	except Exception:
 		pass
 	try:
-		profile.image.name=r'\head_images\user_%s_%s.%s' %(request.user.username,request.user.id,type)
+		profile.image.name=os.path.join(settings.MEDIA_ROOT, 'head_images', 'user_%s_%s.%s' %(request.user.username,request.user.id,type))
 		new_path=settings.MEDIA_ROOT + profile.image.name
 		os.rename(initial_path,new_path)
 		profile.save()
