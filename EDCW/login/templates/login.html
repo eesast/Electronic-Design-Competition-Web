@@ -72,6 +72,10 @@
                                                                 </li>
                                                         </ul>
 														<ul id="menu-top-right" class="clearfix">
+														        {% if request.user.is_authenticated %}
+                                                                                <li style="font-size:18px;bold"><a href="{% url 'login:login' %}"> {{request.user.username}}</a></li>
+																{% endif %}
+																
 														        <li><a href="http://www.eesast.com">电子系科协</a></li>
 																<li style="font-family:'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 15px; color: #c1cad1;">自动化系科协</li>
 														</ul>
