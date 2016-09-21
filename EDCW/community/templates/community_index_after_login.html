@@ -154,8 +154,10 @@
 
                                                 <section class="widget">
                                                         <div class="support-widget">
-															{% if request.user.authenticated %}
-																<div class="comment-reply-link""><button class="clean-gray"><a href="{% url 'community_create' %}">创建新的帖子</a></button></div>
+															{% if request.user.is_authenticated %}
+																<div class="comment-reply-link""><button class="clean-gray"><a href="{% url 'community:community_create' %}">创建新的帖子</a></button></div>
+														</div>
+                                                </section>
 															{% else %}
                                                                 <div onclick = "document.getElementById('noreply').style.display='block'" class="comment-reply-link""><button class="clean-gray">创建新的帖子</button></div>
 																

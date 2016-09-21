@@ -66,6 +66,8 @@ def community_index(request,page=1):
 	paginator = Paginator(post_list,5)
 	delete_id = None
 	delete_id = request.POST.get('delete_id','')
+	if request.user.is_authenticated():
+		print(1)
 	try:
 		post = Post.objects.get(id=int(delete_id))
 		post.delete()
