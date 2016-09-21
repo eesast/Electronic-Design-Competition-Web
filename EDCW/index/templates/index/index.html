@@ -72,7 +72,7 @@
             <div class="carousel-caption">
               <h1>第十八届电子设计大赛</h1>
               <p>Explore beyond limits</p>
-              <p><a class="btn btn-lg btn-primary" href="{% url 'login:login' %}" role="button">Sign up today</a></p>
+              <p><a class="btn btn-lg btn-primary" href="{% url 'login:login' %}" role="button">{% if not request.user.is_authenticated %}Sign up today{% endif %}{% if request.user.is_authenticated %}查看我的信息{% endif %}</a></p>
             </div>
           </div>
         </div>
@@ -82,7 +82,7 @@
             <div class="carousel-caption">
               <h1>第十八届电子设计大赛</h1>
               <p>这是一场灵感的盛宴，智慧的碰撞，团队的比拼</p>
-              <p><a class="btn btn-lg btn-primary" href="{% url 'login:login' %}" role="button">Sign up today</a></p>
+              <p><a class="btn btn-lg btn-primary" href="{% url 'login:login' %}" role="button">{% if not request.user.is_authenticated %}Sign up today{% endif %}{% if request.user.is_authenticated %}查看我的信息{% endif %}</a></p>
             </div>
           </div>
         </div>
@@ -92,7 +92,7 @@
             <div class="carousel-caption">
               <h1>第十八届电子设计大赛</h1>
               <p>Begin your design now</p>
-              <p><a class="btn btn-lg btn-primary" href="{% url 'login:login' %}" role="button">Sign up today</a></p>
+              <p><a class="btn btn-lg btn-primary" href="{% url 'login:login' %}" role="button">{% if not request.user.is_authenticated %}Sign up today{% endif %}{% if request.user.is_authenticated %}查看我的信息{% endif %}</a></p>
             </div>
           </div>
         </div>
