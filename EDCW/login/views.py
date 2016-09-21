@@ -86,13 +86,18 @@ def Login(request):
 
 def Get_Image(request):
 	profile=request.user.profile
+	old_name = request.user.profile.image.name
 	try :
 		photo=request.FILES['image']
 		profile.image=photo
 		profile.save()
+		if request.user.profile.image.name != 'custom.png':
+			try:
+				os.remove(settings.MEDIA_ROOT+old_name)
+			except Exception:
+				pass
 		initial_path=profile.image.path
 		type=profile.image.name.split('.')[-1]
-		os.remove(settings.MEDIA_ROOT+r'\head_images\user_%s_%s.%s' %(request.user.username,request.user.id,type))
 	except Exception:
 		pass
 	try:
