@@ -12,7 +12,10 @@ Category_List=(
 		)
 
 def community_content(request,id):
-	post = Post.objects.get(id=int(id))
+	try:
+		post = Post.objects.get(id=int(id))
+	except:
+		HttpResponseRedirect('/community_index')
 	delete_id = None
 	delete_id = request.POST.get('delete_id','')
 	try:
