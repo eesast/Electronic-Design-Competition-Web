@@ -2,6 +2,7 @@
 from django.shortcuts import render, HttpResponseRedirect,render_to_response
 from django.contrib.auth.models import User
 from django.conf import settings
+from django.urls import reverse
 from login.models import Member
 from .forms import LoginForm
 import urllib
@@ -61,52 +62,59 @@ def Login(request):
     error = ''
     access_token=''
     if_logout=''
-    if request.method=='POST' and request.user.is_authenticated():
-        Get_Image(request)
-        try:
-            if_logout=request.POST.get('logout','')
-            if if_logout=='zhuxiao':
-                Logout(request)
-        except Exception:
-            pass
+
+
     if request.method =='POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            try:
-                access_token = get_access_token(cd['username'],cd['password'])
-                data = get_user_info(access_token)
-                user = check_user(data)
-                login(request,user)
-            except Exception:
-                error = '登录申请失败！请确认用户名与密码是否正确，以及学号与姓名信息是否完整!'
+
+        if request.user.is_authenticated:
+            if 'logout' in request.POST:
+                Logout(request)
+            else:
+                error = Get_Image(request)
+                return render(request, 'login/login.html', {'error':error})
+
+        else:
+            form = LoginForm(request.POST)
+            if form.is_valid():
+                cd = form.cleaned_data
+                try:
+                    access_token = get_access_token(cd['username'],cd['password'])
+                    data = get_user_info(access_token)
+                    user = check_user(data)
+                    login(request,user)
+                except Exception:
+                    error = '登录申请失败！请确认用户名与密码是否正确，以及学号与姓名信息是否完整!'
     else:
         form = LoginForm()
-    return render(request, 'login.html', {'error':error})
+        print(error)
+    return render(request, 'login/login.html', {'error':error})
 
 def Get_Image(request):
-	profile=request.user.profile
-	old_name = request.user.profile.image.name
-	try :
-		photo=request.FILES['image']
-		profile.image=photo
-		profile.save()
-		if request.user.profile.image.name != 'custom.png':
-			try:
-				os.remove(settings.MEDIA_ROOT+old_name)
-			except Exception:
-				pass
-		initial_path=profile.image.path
-		type=profile.image.name.split('.')[-1]
-	except Exception:
-		pass
-	try:
-		profile.image.name=r'\head_images\user_%s_%s.%s' %(request.user.username,request.user.id,type)
-		new_path=settings.MEDIA_ROOT + profile.image.name
-		os.rename(initial_path,new_path)
-		profile.save()
-	except Exception:
-		pass
+    profile=request.user.profile
+    old_name = request.user.profile.image.name
+
+    if not 'image' in request.FILES:
+        return '请上传一个文件'
+
+    photo=request.FILES['image']
+    name=photo.name.lower()
+    if not name.endswith(('.jpg', '.png', '.jpeg', '.gif')):
+        return '请上传一个规范格式的图片'
+
+    profile.image=photo
+    profile.save()
+    if old_name != 'custom.png':
+        os.remove(settings.MEDIA_ROOT+old_name)
+
+    initial_path=profile.image.path
+
+    tye = name.split('.')[-1]
+    profile.image.name=os.path.join('/' , 'head_images', 'user_%s_%s.%s' %(request.user.username,request.user.id,tye))
+    new_path=settings.MEDIA_ROOT + profile.image.name
+    os.rename(initial_path,new_path)
+    profile.save()
+
+
 
 
 

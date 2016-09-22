@@ -11,6 +11,7 @@
 <title>第十八届电子设计大赛官网</title>
 
 <!-- Bootstrap core CSS -->
+<link rel="shortcut icon" href="{% static 'contact/img/电设18.png' %}" />
 <link rel='stylesheet' id='bootstrap-css-css'  href="{% static 'contact/css/bootstrap.css' %}" type='text/css' media='all' />
 <link rel='stylesheet' id='responsive-css-css'  href="{% static 'contact/css/responsive.css' %}"  type='text/css' media='all' /> 
 <link href="{% static 'contact/css/contact.css' %}" rel="stylesheet" />
@@ -63,13 +64,16 @@ a:active {
 																<li><a href="{% url 'index:rule' %}">比赛规则</a></li>
                                                                 <li><a href="#">更多</a>
                                                                         <ul class="sub-menu">
-                                                                                <li><a href="https://www.eesast.com" target="_blank">关于我们</a></li>
+                                                                                <li><a href="https://www.eesast.com">关于我们</a></li>
                                                                                 <li  class="current-menu-item"><a href="{% url 'contact:contact' %}">联系我们</a></li>
                                                                         </ul>
                                                                 </li>
                                                         </ul>
 														<ul id="menu-top-right" class="clearfix">
-														        <li><a href="http://www.eesast.com" target="_blank">电子系科协</a></li>
+														        {% if request.user.is_authenticated %}
+                                                                                <li style="font-size:18px;bold"><a href="{% url 'login:login' %}"> {{request.user.username}}</a></li>
+																                {% endif %}
+														        <li><a href="https://www.eesast.com" target="_blank">电子系科协</a></li>
 																<li style="font-family:'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 15px; color: #c1cad1;">自动化系科协</li>
 														</ul>
                                                 </div>
