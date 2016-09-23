@@ -11,6 +11,7 @@
 <title>第十八届电子设计大赛官网</title>
 
 <!-- Bootstrap core CSS -->
+<link rel="shortcut icon" href="{% static 'index/img/电设18.png' %}" />
 <link rel='stylesheet' id='bootstrap-css-css'  href="{% static 'index/css/bootstrap.css' %}" type='text/css' media='all' />
 <link href="{% static 'index/css/docs.min.css' %}" rel="stylesheet" type='text/css' media='all'/>
 <link href="{% static 'index/css/rule.css' %}" rel="stylesheet"/>
@@ -75,7 +76,10 @@ a:active {
                                                                 </li>
                                                         </ul>
 														<ul id="menu-top-right" class="clearfix">
-														        <li><a href="http://www.eesast.com">电子系科协</a></li>
+														        {% if request.user.is_authenticated %}
+                                                                                <li style="font-size:18px;bold"><a href="{% url 'login:login' %}"> {{request.user.username}}</a></li>
+																                {% endif %}
+														        <li><a href="https://www.eesast.com">电子系科协</a></li>
 																<li style="font-family:'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 15px; color: #c1cad1;">自动化系科协</li>
 														</ul>
                                                 </div>
