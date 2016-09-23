@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, StreamingHttpResponse
 from django.urls import reverse
 from .models import Notification
@@ -33,7 +33,8 @@ def download(request, notice_id):
                 else:
                     break
 
-    the_partial_file_name = Notification.objects.get(pk=notice_id).file_attached.name
+    notice = get_object_or_404(Notification, pk=notice_id)
+    the_partial_file_name = notice.file_attached.name
     the_file_name = os.path.join(settings.MEDIA_ROOT, the_partial_file_name)
 
     response = StreamingHttpResponse(file_iterator(the_file_name))
