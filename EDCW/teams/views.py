@@ -69,6 +69,7 @@ def info(request, team_id):
                    'in_team': in_team,
                   })
 
+@login_required
 def my_team(request):
 
     # kickout a member in a certain team
@@ -198,6 +199,7 @@ def create(request):
 
     return render(request, 'teams/team_create.html')
 
+@login_required
 def dismiss(request):
 
     if request.method == 'POST':
