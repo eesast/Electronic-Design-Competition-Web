@@ -61,7 +61,7 @@ def community_create(request):
 
 
 def community_index(request,page=1):
-	post_list = Post.objects.all()
+	post_list = Post.objects.order_by('priority','timestamp')
 	paginator = Paginator(post_list,5)
 	delete_id = None
 	delete_id = request.POST.get('delete_id','')
