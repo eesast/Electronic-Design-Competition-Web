@@ -112,7 +112,8 @@ def Get_Image(request):
 
     # delete the previous avatar
     if profile.image.name != os.path.join('head_images', 'custom.png'):
-        os.remove(old_path)
+        if os.path.exists(old_path):
+            os.remove(old_path)
 
     # bind the new avatar to profile
     profile.image=photo
