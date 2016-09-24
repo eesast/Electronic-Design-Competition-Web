@@ -134,7 +134,12 @@
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
 		<span class="button-wrap">
+		  {% if not request.user.is_authenticated %}
           <a href="{% url 'login:login' %}"><button class="button button-circle button-giant button-primary" id="btn3">登录</button></a>
+		  {% endif %}
+		  {% if request.user.is_authenticated %}
+		  <a href="{% url 'login:login' %}"><button class="button button-circle button-giant button-primary" id="btn3">用户</button></a>
+		  {% endif %}
 		  </span>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
