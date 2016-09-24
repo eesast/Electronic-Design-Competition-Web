@@ -82,7 +82,7 @@ a:active {
                                                                 </li>
                                                         </ul>
 														<ul id="menu-top-right" class="clearfix">
-														        <li style="font-size:18px;bold">Welcome!<a href="{% url 'login:login' %}"> {{request.user.username}}</a></li>
+														        <li style="font-size:18px;bold"><a href="{% url 'login:login' %}"> {{request.user.username}}</a></li>
 														        <li><a href="http://www.eesast.com" target="_blank">电子系科协</a></li>
 																<li style="font-family:'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 15px; color: #c1cad1;">自动化系科协</li>
 														</ul>
@@ -117,6 +117,7 @@ a:active {
 											   <table class="table table-striped table-bordered">
 											      <thead>
 												    <tr>
+													  <td>编号</td>
 													  <td>队名</td>
 													  <td>队长</td>
 													  <td>简介</td>
@@ -127,12 +128,13 @@ a:active {
 												  <tbody>
 												  {% for team in teams %}
 												    <tr>
+													  <td>{{ forloop.counter }}</td>
 													  <td>{{team.name}}</td>
 													  <td>{{team.leader.username}}</td>
 													  <td>{{team.intro}}</td>
-													  <td>{{team.members.count}}</td>
+													  <td>{{team.members.count|add:1}}</td>
                                                       <td><a href="{% url 'teams:info' team.id %}">查看</a>&nbsp&nbsp
-                                                      {% if not in_team and request.user.is_authenticated %}
+                                                      {% if not in_team and request.user.is_authenticated and not team.is_full %}
                                                           <a href="{% url 'teams:application' team.id %}">加入</a>
                                                       {% endif %}
 													</tr>

@@ -108,7 +108,7 @@ a:active {
                 <div class="page-container">
                         <div class="container" id="page">
                                 <div class="row">
-
+                                        {%  if not team.is_full %}
                                         <!-- start of page content -->
                                         <div class="span8 page-content">
 
@@ -119,6 +119,9 @@ a:active {
                                                         <hr>
                                                         <p>您的请求将发送给该队队长，队长同意后您将自动进入该队伍</p>
                                                 </article>
+                                                {% if error %}
+                                                  <p> {{error}} </p>
+                                                {% endif %}
 
 
                                                 <form id="contact-form" class="row" action="#" method="post">
@@ -153,9 +156,13 @@ a:active {
                                                 </form>
                                         </div>
                                         <!-- end of page content -->
+                                        {% endif %}
+
+                                        {% if team.is_full %}
+                                          <p> 该队伍已满 </p>
+                                        {% endif %}
 										
-										
-										</div>
+								</div>
                         </div>
                 </div>
                 <!-- End of Page Container -->

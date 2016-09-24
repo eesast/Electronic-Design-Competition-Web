@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, get_object_or_404
 from .models import Team, Application
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from .forms import CreateForm, AppForm
 from django.contrib.auth.decorators import login_required
@@ -51,6 +51,7 @@ def index(request):
         if usr.application_set.all():
             in_team = True
             note = '您已经提交申请，请等候队长答复'
+
     return render(request, 'teams/team_index.html',
                   {'teams': teams,
                    'in_team' : in_team,
@@ -68,6 +69,7 @@ def info(request, team_id):
                    'in_team': in_team,
                   })
 
+@login_required
 def my_team(request):
 
     # kickout a member in a certain team
@@ -92,6 +94,7 @@ def my_team(request):
     return HttpResponseRedirect(reverse('teams:index'))
 
 
+@login_required
 def acceptOrReject(request):
 
 
@@ -107,48 +110,56 @@ def acceptOrReject(request):
 
         if answer == 'agree':
             if team.is_full:
-                errors.append('本队伍已满')
+                errors.append('本队伍已满, 该申请已自动删除')
             if in_team:
                 errors.append('该同学已在某个队伍中，该申请已自动删除')
-                app.delete()
 
             if not errors:
                 team.members.add(app.applicant)
                 if team.members.count() >= 3:
                     team.is_full = True
                     team.save()
-                app.delete()
+                # delete all the applications from this applicant
+                Application.objects.filter(applicant=app.applicant).delete()
+
 
             user_info_dict['errors'] = errors
 
-        if answer == 'disagree':
+        elif answer == 'disagree':
 
             user_info_dict['note'] = '已拒绝该请求'
-            app.delete()
 
-    return render(request, 'teams/team_myteam.html', user_info_dict)
+        app.delete()
 
+        return render(request, 'teams/team_myteam.html', user_info_dict)
+
+    raise Http404
 
 @login_required
 def application(request, team_id):
     team = get_object_or_404(Team, pk=team_id)
     user = request.user
-    apps = user.application_set.all()
-    # Only one app is available
-    in_team = apps or if_in_team(user)
+    in_team = if_in_team(user)
+    error = ''
 
     if in_team:
         return HttpResponseRedirect(reverse('teams:index'))
 
+
     if request.method =='POST':
 
-        form = AppForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            reason = cd['reason']
-            app = Application(applicant=request.user, team=team, reason=reason)
-            app.save()
-            return HttpResponseRedirect(reverse('teams:index'))
+        apps = user.application_set.filter(team=team)
+        if apps.count():
+            error = '您已经申请加入该队伍，请等候队长审核'
+
+        else:
+            form = AppForm(request.POST)
+            if form.is_valid():
+                cd = form.cleaned_data
+                reason = cd['reason']
+                app = Application(applicant=request.user, team=team, reason=reason)
+                app.save()
+                return HttpResponseRedirect(reverse('teams:index'))
 
 
 
@@ -156,7 +167,8 @@ def application(request, team_id):
                   {
                       'team' : team,
                       'username' : request.user.username,
-                      'in_team' : in_team
+                      'in_team' : in_team,
+                      'error' : error
                   })
 
 @login_required
@@ -187,6 +199,7 @@ def create(request):
 
     return render(request, 'teams/team_create.html')
 
+@login_required
 def dismiss(request):
 
     if request.method == 'POST':

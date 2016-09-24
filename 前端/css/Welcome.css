@@ -9,9 +9,7 @@ h1 {
 	font-size:70px;
 }
 
-img {
-	margin-top:-25px;
-}
+
 
 
 .navbar-wrapper {
@@ -41,7 +39,7 @@ img {
 
 
 .carousel {
-  height: 950px;
+  height: 900px;
   margin-bottom: 60px;
 }
 
@@ -57,7 +55,7 @@ img {
 
 
 .carousel .item {
-  height: 950px;
+  height: 900px;
   background-color: #777;
 }
 .carousel-inner > .item > img {
@@ -65,7 +63,7 @@ img {
   top: 0;
   left: 0;
   min-width: 100%;
-  height: 960px;
+  height: 900px;
 }
 
 

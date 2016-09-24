@@ -1,3 +1,4 @@
+# -*-  coding:utf-8 -*-
 from django.shortcuts import render, render_to_response,HttpResponseRedirect
 from community import forms
 from community.models import Post,PostFile,Comment
@@ -35,10 +36,10 @@ def community_content(request,id):
 			else:
 				form = CommentForm()
 			print(4)
-		commentlist = post.p_comment.all()		
+		commentlist = post.p_comment.all()
 		return render(request,'community_content_after_login.html',{'post':post,'commentlist':commentlist})
 	else:
-		commentlist = post.p_comment.all()	
+		commentlist = post.p_comment.all()
 		return render(request,'community_content.html',{'post':post,'commentlist':commentlist})
 
 
@@ -55,7 +56,7 @@ def community_create(request):
 	else:
 		form = PostForm()
 	return render(request,'community_create.html', {'form': form})
-        
+
 
 
 
@@ -125,7 +126,7 @@ def community_index_tongzhi(request,page=1):
 		return render(request,'community_index_after_login.html',{"posts":posts,"pagerange":pagerange,})
 	else:
 		return render(request,'community_index.html',{"posts":posts,"pagerange":pagerange,})
-		
+
 def community_index_jishu(request,page=1):
 	post_list = Post.objects.filter(category='2')
 	paginator = Paginator(post_list,5)
@@ -157,7 +158,7 @@ def community_index_jishu(request,page=1):
 		return render(request,'community_index_after_login.html',{"posts":posts,"pagerange":pagerange,})
 	else:
 		return render(request,'community_index.html',{"posts":posts,"pagerange":pagerange,})
-		
+
 def community_index_shuitie(request,page=1):
 	post_list = Post.objects.filter(category='3')
 	paginator = Paginator(post_list,5)
@@ -189,7 +190,7 @@ def community_index_shuitie(request,page=1):
 		return render(request,'community_index_after_login.html',{"posts":posts,"pagerange":pagerange,})
 	else:
 		return render(request,'community_index.html',{"posts":posts,"pagerange":pagerange,})
-		
+
 def community_index_mypost(request,page=1):
 	post_list = Post.objects.filter(sender=request.user)
 	paginator = Paginator(post_list,5)
