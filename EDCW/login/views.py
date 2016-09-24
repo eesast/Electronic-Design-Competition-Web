@@ -48,6 +48,7 @@ def check_user(data):
         raise Exception
     try:
         user1 = User.objects.get(username=data['name'])
+        print(user1.username)
         user1.profile.student_id = data['student_ID']
         user1.profile.save()
         return user1
@@ -91,26 +92,42 @@ def Login(request):
 
 def Get_Image(request):
     profile=request.user.profile
-    old_name = request.user.profile.image.name
+    old_name = profile.image.name
+    photo=request.FILES['image']
+    name=photo.name.lower()
 
     if not 'image' in request.FILES:
         return '请上传一个文件'
-
-    photo=request.FILES['image']
-    name=photo.name.lower()
     if not name.endswith(('.jpg', '.png', '.jpeg', '.gif')):
         return '请上传一个规范格式的图片'
 
+
+
+    # for compatibale reason
+    if old_name.startswith('/'):
+        profile.image.name = os.path.join('head_images', os.path.split(old_name)[-1])
+        profile.save()
+
+    old_path = profile.image.path
+
+    # delete the previous avatar
+    if profile.image.name != os.path.join('head_images', 'custom.png'):
+        if os.path.exists(old_path):
+            os.remove(old_path)
+
+    # bind the new avatar to profile
     profile.image=photo
     profile.save()
-    if old_name != 'custom.png':
-        os.remove(settings.MEDIA_ROOT+old_name)
-
     initial_path=profile.image.path
 
-    tye = name.split('.')[-1]
-    profile.image.name=os.path.join('/' , 'head_images', 'user_%s_%s.%s' %(request.user.username,request.user.id,tye))
-    new_path=settings.MEDIA_ROOT + profile.image.name
+    # rename the new avatar to a regular name, and meanwhile, place the avatar
+    # at a required place (using os.rename)
+    suffix = name.split('.')[-1]
+    profile.image.name=os.path.join(
+        'head_images',
+        'user_%s_%s.%s' % (request.user.username, request.user.id, suffix)
+    )
+    new_path=os.path.join(settings.MEDIA_ROOT, profile.image.name)
     os.rename(initial_path,new_path)
     profile.save()
 

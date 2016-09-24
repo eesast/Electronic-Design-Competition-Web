@@ -15,6 +15,6 @@ def filename(value):
 def filelink(value):
     try:
         note = Notification.objects.get(file_attached=value)
-        return 'http://127.0.0.1:8000/download/?file={0}'.format(note.file_attached.name)
+        return 'https://thedc.eesast.com/download/?file={0}'.format(note.file_attached.name)
     except:
         return None

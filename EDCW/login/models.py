@@ -13,7 +13,7 @@ class Member(models.Model):
     student_id = models.CharField(max_length=20, blank=True)
     is_leader = models.BooleanField(default=False)
     image = models.ImageField(upload_to='head_images',
-                              default=os.path.join(settings.MEDIA_ROOT, 'head_images', 'custom.png'))
+                              default=os.path.join('head_images', 'custom.png'))
     def __str__(self):
         return self.user.username
 

@@ -128,13 +128,13 @@ a:active {
 												  <tbody>
 												  {% for team in teams %}
 												    <tr>
-													  <td>{{team.id}}</td>
+													  <td>{{ forloop.counter }}</td>
 													  <td>{{team.name}}</td>
 													  <td>{{team.leader.username}}</td>
 													  <td>{{team.intro}}</td>
-													  <td>{{team.members.count}}</td>
+													  <td>{{team.members.count|add:1}}</td>
                                                       <td><a href="{% url 'teams:info' team.id %}">查看</a>&nbsp&nbsp
-                                                      {% if not in_team and request.user.is_authenticated %}
+                                                      {% if not in_team and request.user.is_authenticated and not team.is_full %}
                                                           <a href="{% url 'teams:application' team.id %}">加入</a>
                                                       {% endif %}
 													</tr>
