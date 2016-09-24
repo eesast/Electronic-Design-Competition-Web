@@ -115,7 +115,7 @@
               <li id="lititle">{{notice.title}}</li>
               <p id="licontent" style="margin-top:10px;">{{notice.content}}</p>
 			  {% if notice.file_attached %}
-              <p id="file">文件：<a href="{% url 'index:download' notice.id %}">{{notice.title}}</a></p>
+              <p id="file">文件：<a href="{% url 'index:download' notice.id %}">{{notice.filename}}</a></p>
 
 			  {% endif %} 
 			  </div>

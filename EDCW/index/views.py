@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect, StreamingHttpResponse
+from django.http import HttpResponseRedirect, StreamingHttpResponse, HttpResponse
 from django.urls import reverse
 from .models import Notification
 from django.conf import settings
+from wsgiref.util import FileWrapper
 import os
 def introduction(request):
 
@@ -24,24 +25,19 @@ def noticeIndex(request):
 
 def download(request, notice_id):
 
-    def file_iterator(file_name, chunk_size=512):
-        with open(file_name, 'rb') as f:
-            while True:
-                c = f.read(chunk_size)
-                if c:
-                    yield c
-                else:
-                    break
 
     notice = get_object_or_404(Notification, pk=notice_id)
-    the_partial_file_name = notice.file_attached.name
-    the_file_name = os.path.join(settings.MEDIA_ROOT, the_partial_file_name)
+    path = notice.file_attached.path
+    name = notice.file_attached.name
 
-    response = StreamingHttpResponse(file_iterator(the_file_name))
-    response['Content-Type'] = 'application/octet-stream'
-    response['Content-Disposition'] = 'attachment;filename="{0}"'.format(the_file_name)
-
+    wrapper = FileWrapper(open(path, 'rb'))
+    response = HttpResponse(wrapper, content_type='text/plain')
+    response['Content-Length'] = os.path.getsize(path)
+#    response = StreamingHttpResponse(file_iterator(the_file_name))
+#    response['Content-Type'] = 'application/octet-stream'
+    response['Content-Disposition'] = 'attachment;filename="{0}"'.format(os.path.split(name)[-1])
     return response
+
 #    with open(the_file_name) as f:
 #        c = f.read()
 #    return HttpResponse(c)
