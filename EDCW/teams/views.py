@@ -174,9 +174,11 @@ def application(request, team_id):
 @login_required
 def create(request):
     errors = []
+    form = CreateForm()
     if request.method == 'POST':
         form = CreateForm(request.POST)
         if form.is_valid():
+            print(1)
             cd = form.cleaned_data
             name = cd['name']
             intro = cd['intro']
@@ -188,7 +190,7 @@ def create(request):
                 errors.append('队名已被使用')
 
             if errors:
-                return render(request, 'teams/team_create.html', {'errors' : errors })
+                return render(request, 'teams/team_create.html', {'form': form, 'errors' : errors })
 
             else:
                 team = Team(name=name, intro=intro, leader=request.user)
@@ -197,7 +199,8 @@ def create(request):
                 request.user.profile.save()
                 return HttpResponseRedirect(reverse('teams:my_team'))
 
-    return render(request, 'teams/team_create.html')
+
+    return render(request, 'teams/team_create.html', {'form': form})
 
 @login_required
 def dismiss(request):
