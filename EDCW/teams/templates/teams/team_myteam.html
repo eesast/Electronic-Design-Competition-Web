@@ -144,6 +144,22 @@ a:active {
 													  <td>{{team.members.count}}</td>
 													  <td>不可改</td>
 													</tr>
+													<tr>
+													  <td style="font-weight:bold;">控制器</td>
+													  <td>{{}}</td>
+													  {% if 没有选择控制器 %}
+													  <td><form action="#" method="post">
+											                 <select style="display:inline; margin-top:7px;">
+																  <option>单片机</option>
+																  <option>DSP</option>
+																  <option>FPGA</option>
+																</select>
+											                 <button class="btn btn-md btn-info" onclick="form.submit();" title="踢出队伍" style="display:inline;">提交</button>
+											              </form>
+													  </td>
+													  {% if 选择了控制器 %}
+													  <td>不可改</td>
+													</tr>
 													{% for member in team.members.all %}
 													<tr>
 													  <td style="font-weight:bold;">成员</td>
@@ -232,6 +248,7 @@ a:active {
 													  <td style="font-weight:bold;">成员数</td>
 													  <td>{{team.members.count|add:1}}</td>
 													</tr>
+													
 													{% for member in members %}
 													<tr>
 													  <td style="font-weight:bold;">成员</td>

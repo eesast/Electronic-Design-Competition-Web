@@ -136,12 +136,25 @@ a:active {
 													  <td>{{team.members.count}}</td>
 													  <td>不可改</td>
 													</tr>
+													<tr>
+													  <td style="font-weight:bold;">控制器</td>
+													  <td></td>
+													  <td><form action="#" method="post">
+											                 <select style="display:inline; margin-top:7px;">
+																  <option>单片机</option>
+																  <option>DSP</option>
+																  <option>FPGA</option>
+																</select>
+											                 <button class="btn btn-md btn-info" onclick="form.submit();" title="踢出队伍" style="display:inline;">提交</button>
+											            </form></td>
+													</tr>
+													
 													{% for member in team.members.all %}
 													<tr>
 													  <td style="font-weight:bold;">成员</td>
 													  <td>{{member.username}}</td>
 													  <td>
-                                                          <form action="#" method="post">{% csrf_token %}
+                                                          <form action="#" method="post">
 											                 <input type="hidden" name="name" value="{{member.username}}"> 
 											                 <button class="btn btn-md btn-info" onclick="form.submit();" title="踢出队伍">踢出队伍</button>
 											            </form>
