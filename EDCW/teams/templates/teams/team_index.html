@@ -122,6 +122,7 @@ a:active {
 													  <td>队长</td>
 													  <td>简介</td>
 													  <td>成员</td>
+                                                      <td>控制器</td>
 													  <td>操作</td>
 													</tr>
 												  </thead>
@@ -133,6 +134,7 @@ a:active {
 													  <td>{{team.leader.username}}</td>
 													  <td>{{team.intro}}</td>
 													  <td>{{team.members.count|add:1}}</td>
+                                                      <td>{{team.get_group_display}}
                                                       <td><a href="{% url 'teams:info' team.id %}">查看</a>&nbsp&nbsp
                                                       {% if not in_team and request.user.is_authenticated and not team.is_full %}
                                                           <a href="{% url 'teams:application' team.id %}">加入</a>

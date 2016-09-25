@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Team, Application
 from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
-from .forms import CreateForm, AppForm
+from .forms import CreateForm, AppForm, GroupForm
 from django.contrib.auth.decorators import login_required
 def if_in_team(user):
     in_team = False
@@ -178,10 +178,10 @@ def create(request):
     if request.method == 'POST':
         form = CreateForm(request.POST)
         if form.is_valid():
-            print(1)
             cd = form.cleaned_data
             name = cd['name']
             intro = cd['intro']
+            choice = cd['group']
             if request.user.in_team.all() or request.user.profile.is_leader:
                 errors.append('您已经在队伍中')
 
@@ -193,7 +193,7 @@ def create(request):
                 return render(request, 'teams/team_create.html', {'form': form, 'errors' : errors })
 
             else:
-                team = Team(name=name, intro=intro, leader=request.user)
+                team = Team(name=name, intro=intro, leader=request.user, group=choice)
                 team.save()
                 request.user.profile.is_leader = True
                 request.user.profile.save()
@@ -201,6 +201,21 @@ def create(request):
 
 
     return render(request, 'teams/team_create.html', {'form': form})
+
+@login_required
+def group(request):
+
+    if request.method == 'POST':
+        form = GroupForm(request.POST)
+        if form.is_valid():
+            team = request.user.leads
+            cd = form.cleaned_data
+            choice = cd['group']
+            team.group = choice
+            team.save()
+
+    return HttpResponseRedirect(reverse('teams:my_team'))
+
 
 @login_required
 def dismiss(request):
@@ -215,3 +230,4 @@ def dismiss(request):
         user.profile.save()
 
     return HttpResponseRedirect(reverse('teams:index'))
+
