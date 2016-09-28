@@ -3,7 +3,7 @@ body {
 }
 
 #file-block  {
-	height: 1000px;
+	
 	margin-left:0px;
 	padding-top:60px;
 	line-height: 1.60;
@@ -29,19 +29,6 @@ p {
 	text-indent:2 em;
 }
 
-#btn-block {
-
-	font-size: 20px;
-	font-family: arial;
-	margin-right:20px;
-	background-color: #fff;
-	padding-top:30px;
-
-}
-
-#btn-block > p {
-	margin-top:35px;
-}
 #content {
 	background-color: #4B0091;
 	color:white;
@@ -539,11 +526,31 @@ button.button:hover {
 
 /* Footer ------------------------------------------------------------------------------------------------------------*/
 
+html,body {
+	height:100%;
+	margin:0;
+	padding:0;
+}
 
+.page-container {
+	min-height:100%;
+	height:auto!important;
+	height:100%;
+	margin:0;
+}
+
+#page {
+	padding-bottom:60px;
+}
 #footer-bottom-wrapper {
   background-color: #353c41;
   width: 100%;
+  position:relative;
+  margin-top:-60px;
+  height:65px;
+  
 }
+
 #footer-bottom-wrapper > #footer-bottom {
   min-height: 25px;
   height: auto !important;
@@ -704,6 +711,7 @@ button.button:hover {
   #jquery-live-search #live-search-results {
     width: 248px;
   }
+  
 }
 /* Menu Fix for resizing to Bigger Screen sizes */
 @media (min-width: 980px) {
