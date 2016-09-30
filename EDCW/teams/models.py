@@ -12,14 +12,13 @@ class Team(models.Model):
     FPGA = 'F'
     GROUP_CHOICES = (
         (DSP, 'DSP'),
-        (MCU, 'MCU'),
+        (MCU, '单片机'),
         (FPGA, 'FPGA'),
-        ('U', 'Unknown')
     )
     group = models.CharField(
         max_length=1,
         choices=GROUP_CHOICES,
-        default='U',
+        default='M',
     )
     name = models.CharField(max_length=20)
     intro = models.CharField(max_length=50)

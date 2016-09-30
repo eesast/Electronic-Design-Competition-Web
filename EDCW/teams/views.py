@@ -231,3 +231,4 @@ def dismiss(request):
 
     return HttpResponseRedirect(reverse('teams:index'))
 
+

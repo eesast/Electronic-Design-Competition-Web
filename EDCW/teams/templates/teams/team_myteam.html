@@ -147,7 +147,7 @@ a:active {
 													<tr>
 													  <td style="font-weight:bold;">控制器</td>
 													  <td>{{team.get_group_display}}</td>
-													  {% if team.group == 'U' %}
+													  {% if team.group == 'M' %}
                                                       <td><form action="{% url 'teams:group' %}" method="post">{% csrf_token %}
 											                 <select name='group' id='group' style="display:inline; margin-top:7px;">
 																  <option value='M'>单片机</option>
