@@ -62,7 +62,7 @@ def community_create(request):
 
 
 def community_index(request,page=1):
-	post_list = Post.objects.order_by('priority','timestamp')
+	post_list = Post.objects.order_by('priority','-timestamp')
 	paginator = Paginator(post_list,5)
 	delete_id = None
 	delete_id = request.POST.get('delete_id','')
@@ -192,36 +192,37 @@ def community_index_shuitie(request,page=1):
 		return render(request,'community_index.html',{"posts":posts,"pagerange":pagerange,})
 
 def community_index_mypost(request,page=1):
-	post_list = Post.objects.filter(sender=request.user)
-	paginator = Paginator(post_list,5)
-	delete_id = None
-	delete_id = request.POST.get('delete_id','')
-	try:
-		post = Post.objects.get(id=int(delete_id))
-		post.delete()
-	except Exception:
-		pass
-	try:
-		page = int (request.GET.get('page','1'))
-	except ValueError:
-		page = 1
-	try:
-		posts = paginator.page(page)
-	except (EmptyPage,InvalidPage):
-		posts = paginator.page(paginator.num_pages)
-	for i in range(page,page+3):
-		if i > paginator.num_pages:
-			break
-		maxpage = i
-	for i in range(page,page-3,-1):
-		if i < 1:
-			break
-		minpage = i
-	pagerange=range(minpage,maxpage+1)
-	if request.user.is_authenticated():
+	if request.user.is_authenticated:
+		post_list = Post.objects.filter(sender=request.user)
+		paginator = Paginator(post_list,5)
+		delete_id = None
+		delete_id = request.POST.get('delete_id','')
+		try:
+			post = Post.objects.get(id=int(delete_id))
+			post.delete()
+		except Exception:
+			pass
+		try:
+			page = int (request.GET.get('page','1'))
+		except ValueError:
+			page = 1
+		try:
+			posts = paginator.page(page)
+		except (EmptyPage,InvalidPage):
+			posts = paginator.page(paginator.num_pages)
+		for i in range(page,page+3):
+			if i > paginator.num_pages:
+				break
+			maxpage = i
+		for i in range(page,page-3,-1):
+			if i < 1:
+				break
+			minpage = i
+		pagerange=range(minpage,maxpage+1)
 		return render(request,'community_index_after_login.html',{"posts":posts,"pagerange":pagerange,})
 	else:
-		return render(request,'community_index.html',{"posts":posts,"pagerange":pagerange,})
+		pagerange=range(1,2)
+		return render(request,'community_index.html',{"pagerange":pagerange,})
 
 
 

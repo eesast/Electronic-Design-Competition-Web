@@ -141,7 +141,7 @@
 														<a href="community_index?page={{posts.previous_page_number}}" class="btn">上一页</a>
 													{% endif %}
 														{% for i in pagerange %}
-                                                        <a href="community_index?page=i" class="btn active">i</a>
+                                                        <a href="community_index?page=i" class="btn active">{{i}}</a>
                                                         {% endfor %}
                                                     {%if posts.has_next %}
 														<a href="community_index?page={{posts.next_page_number}}" class="btn">下一页</a>
