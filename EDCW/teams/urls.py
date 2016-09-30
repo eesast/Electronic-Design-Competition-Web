@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^application/(?P<team_id>[0-9]+)$', views.application, name='application'),
     url(r'^myteam$', views.my_team, name='my_team'),
     url(r'^answer$', views.acceptOrReject, name='acceptOrReject'),
-    url(r'^dismiss$', views.dismiss, name='dismiss')
+    url(r'^dismiss$', views.dismiss, name='dismiss'),
+    url(r'group$', views.group, name='group'),
 ]

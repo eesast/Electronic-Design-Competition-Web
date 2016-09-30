@@ -87,19 +87,21 @@ def Login(request):
                     error = '登录申请失败！请确认用户名与密码是否正确，以及学号与姓名信息是否完整!'
     else:
         form = LoginForm()
-        print(error)
     return render(request, 'login/login.html', {'error':error})
 
 def Get_Image(request):
     profile=request.user.profile
     old_name = profile.image.name
-    photo=request.FILES['image']
-    name=photo.name.lower()
 
     if not 'image' in request.FILES:
         return '请上传一个文件'
+
+    photo=request.FILES['image']
+    name=photo.name.lower()
+
     if not name.endswith(('.jpg', '.png', '.jpeg', '.gif')):
         return '请上传一个规范格式的图片'
+
 
 
 

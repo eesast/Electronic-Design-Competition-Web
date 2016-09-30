@@ -1,4 +1,4 @@
-﻿{% load static %}
+﻿
 <!doctype html>
         <!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en-US"> <![endif]-->
         <!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en-US"> <![endif]-->
@@ -17,10 +17,10 @@
 				
                 <!-- Style Sheet-->
                 
-                <link rel='stylesheet' id='bootstrap-css-css'  href="{% static 'index/css/bootstrap.css' %}" type='text/css' media='all' />
-                <link rel='stylesheet' id='responsive-css-css'  href="{% static 'index/css/responsive.css' %}" type='text/css' media='all' /> 
+                <link rel='stylesheet' id='bootstrap-css-css'  href="../css/bootstrap.css" type='text/css' media='all' />
+                <link rel='stylesheet' id='responsive-css-css'  href="../css/responsive.css" type='text/css' media='all' /> 
                 <!--<link rel='stylesheet' id='pretty-photo-css-css'  href='js/prettyphoto/prettyPhotoaeb9.css?ver=3.1.4' type='text/css' media='all' />-->
-                <link rel='stylesheet' id='main-css-css'  href="{% static 'index/css/file.css' %}" type='text/css' media='all' />
+                <link rel='stylesheet' id='main-css-css'  href="../css/file.css" type='text/css' media='all' />
                 <!--<link rel='stylesheet' id='custom-css-css'  href='css/custom5152.html?ver=1.0' type='text/css' media='all' />-->
 
 
@@ -85,11 +85,11 @@
                         </div>
                 </div>
                 <!-- End of Search Wrapper -->
-
- <div class="container-fluid bs-docs-container">
+<div class="page-container">
+ <div class="container-fluid bs-docs-container" id="page">
 
       <div class="row">
-	    <div class="span3" role="complementary" id="btn-block">
+	    <div class="span3" role="complementary">
 		 
 		
 		</div>
@@ -104,6 +104,35 @@
 			  {% if notice.file_attached %}
               <p id="file">文件：<input type="submit" name="choice" value="{{notice.id}}"></p>
 			  {% endif %} 
+			  <li id="lititle">{{notice.title}}</li>
+              <p id="licontent">{{notice.content}}</p>
+			  {% if notice.file_attached %}
+              <p id="file">文件：<input type="submit" name="choice" value="{{notice.id}}"></p>
+			  {% endif %} <li id="lititle">{{notice.title}}</li>
+              <p id="licontent">{{notice.content}}</p>
+			  {% if notice.file_attached %}
+              <p id="file">文件：<input type="submit" name="choice" value="{{notice.id}}"></p>
+			  {% endif %} <li id="lititle">{{notice.title}}</li>
+              <p id="licontent">{{notice.content}}</p>
+			  {% if notice.file_attached %}
+              <p id="file">文件：<input type="submit" name="choice" value="{{notice.id}}"></p>
+			  {% endif %} <li id="lititle">{{notice.title}}</li>
+              <p id="licontent">{{notice.content}}</p>
+			  {% if notice.file_attached %}
+              <p id="file">文件：<input type="submit" name="choice" value="{{notice.id}}"></p>
+			  {% endif %} <li id="lititle">{{notice.title}}</li>
+              <p id="licontent">{{notice.content}}</p>
+			  {% if notice.file_attached %}
+              <p id="file">文件：<input type="submit" name="choice" value="{{notice.id}}"></p>
+			  {% endif %} <li id="lititle">{{notice.title}}</li>
+              <p id="licontent">{{notice.content}}</p>
+			  {% if notice.file_attached %}
+              <p id="file">文件：<input type="submit" name="choice" value="{{notice.id}}"></p>
+			  {% endif %} <li id="lititle">{{notice.title}}</li>
+              <p id="licontent">{{notice.content}}</p>
+			  {% if notice.file_attached %}
+              <p id="file">文件：<input type="submit" name="choice" value="{{notice.id}}"></p>
+			  {% endif %} 
 			  </div>
             {% endfor %} 
           </form> 
@@ -114,14 +143,34 @@
 		 
           			
 		</div>
+				
 	  </div>
-		
+	</div>	
 		
 		
 		
     </div>
+	<!-- Footer Bottom -->
+                        <div id="footer-bottom-wrapper">
+                                <div id="footer-bottom" class="container">
+                                        <div class="row">
+                                                <div class="span6">
+                                                        <p class="copyright">
+                                                                Copyright © All Rights Reserved by EESAST from Tsinghua
+                                                        </p>
+                                                </div>
+                                                
+                                        </div>
+                                </div>
+                        </div>
+                        <!-- End of Footer Bottom -->
+
+                </footer>
+                <!-- End of Footer -->
+
+                <a href="#top" id="scroll-top"></a>
 	<!-- script -->
-                <script type='text/javascript' src="{% static 'index/js/jquery.min.js' %}"></script>
-                <script type='text/javascript' src="{% static 'index/js/custom.js' %}"></script>
+                <script type='text/javascript' src="../js/jquery.min.js"></script>
+                <script type='text/javascript' src="../js/custom.js"></script>
   </body>
   </html>
