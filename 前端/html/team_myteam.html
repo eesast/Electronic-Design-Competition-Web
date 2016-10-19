@@ -216,6 +216,32 @@ a:active {
 													 
 													</tbody>
 												</table>
+												<h2>请选择预审时间（预审将在10月23日，即周日9:30-11:30和13:30-17：00进行）</h2>
+												<br>
+												                <table class="table table-bordered table-striped">
+																  <thead>
+																    <tr>
+																	  <td>预审时间</td>
+																	  <td>操作</td>
+																	</tr>
+																  </thead>
+																  <tbody>
+																   <!--这里开始时间循环 -->
+																    <tr>
+																	  <td>9:30-9:35</td>
+																	  <td>
+																	  <form action="{% url 'teams:acceptOrReject' %}" method="post" style="display:inline;">
+                                                                          {% csrf_token %}
+														                  <input type="hidden" name="time" value=""> 
+																		  <!--这里需要判断时间是否被选过了 -->
+											                              <button class="btn btn-md btn-info" onclick="form.submit();" title="选择">选择</button>
+											                          </form>
+																      </td>
+																	</tr>
+																	<!--这里结束时间循环 -->
+                                                                  
+																  </tbody>																	
+																</table>	  
 												{% endif %}
 												
 												{% if not is_leader %}
