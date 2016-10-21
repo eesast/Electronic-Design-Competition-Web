@@ -18,6 +18,7 @@ def export_xls(modeladmin, request, queryset):
         ('MemberName', 5000),
         ('MemberID', 5000),
         ('Is_leader?', 5000),
+        ('first_time', 5000),
     ]
 
     font_style = xlwt.XFStyle()
@@ -41,6 +42,7 @@ def export_xls(modeladmin, request, queryset):
             obj.leader.username,
             obj.leader.profile.student_id,
             'Yes',
+            obj.get_pre_time_display(),
         ]
         for col_num in range(len(row1)):
             ws.write(row_num, col_num, row1[col_num], font_style)
