@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^answer$', views.acceptOrReject, name='acceptOrReject'),
     url(r'^dismiss$', views.dismiss, name='dismiss'),
     url(r'group$', views.group, name='group'),
+    url(r'choose_pre_time$', views.choose_pre_time, name='choose_pre_time')
 ]
