@@ -136,9 +136,9 @@ a:active {
 													  <td>{{team.members.count|add:1}}</td>
                                                       <td>{{team.get_group_display}}
                                                       <td><a href="{% url 'teams:info' team.id %}">查看</a>&nbsp&nbsp
-                                                      {% if not in_team and request.user.is_authenticated and not team.is_full %}
+                                                  <!--    {% if not in_team and request.user.is_authenticated and not team.is_full %}
                                                           <a href="{% url 'teams:application' team.id %}">加入</a>
-                                                      {% endif %}
+                                                      {% endif %}    -->
 													</tr>
 												  {% endfor %}
 												  </tbody>
@@ -148,9 +148,9 @@ a:active {
                                                     <p> {{note}} </p>
                                                 {% endif %}
 												{% if request.user.is_authenticated %}
-                                                    {% if not in_team %}
+                                          <!--          {% if not in_team %}
                                                        <a href="{% url 'teams:create' %}"><button class="btn btn-block btn-info" style="font-size:20px; height:50px;">创建自己的队伍</button></a>
-                                                    {% endif %}
+                                                    {% endif %}     -->
                                                     {% if in_team %}
                                                     <a href="{% url 'teams:my_team' %}"><button class="btn btn-block btn-info" style="font-size:20px; height:50px; margin-top:15px;">查看我的队伍</button></a>
                                                     {% endif %}

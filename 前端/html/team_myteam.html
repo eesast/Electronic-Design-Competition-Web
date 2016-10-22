@@ -216,6 +216,9 @@ a:active {
 													 
 													</tbody>
 												</table>
+												
+												<!--这里需要判断是否被选过时间了 -->
+												{% if not select %}
 												<h2>请选择预审时间（预审将在10月23日，即周日9:30-11:30和13:30-17：00进行）</h2>
 												<br>
 												                <table class="table table-bordered table-striped">
@@ -241,9 +244,14 @@ a:active {
 																	<!--这里结束时间循环 -->
                                                                   
 																  </tbody>																	
-																</table>	  
+																</table>
+                                                {% endif %}	
+                                                {% if select %}	
+                                                 <h3>您的队伍预审时间为{{}}</h3>												
 												{% endif %}
 												
+												
+												{% endif %}
 												{% if not is_leader %}
 												<table class="table table-striped table-bordered">
 											        <tbody>
