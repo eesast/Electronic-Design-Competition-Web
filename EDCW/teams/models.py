@@ -6,13 +6,24 @@ from django.db import models
 from django.contrib.auth.models import User
 import datetime
 
-timelist = [datetime.datetime(101, 1, 1, hour=9, minute=30)
+timelist = [datetime.datetime(2016, 11, 12, hour=9, minute=30)
             + i*datetime.timedelta(minutes=6) for i in range(20)]
-timelist = timelist + [datetime.datetime(101, 1, 1, hour=13, minute=30)
+timelist = timelist + [datetime.datetime(2016, 11, 12, hour=13, minute=30)
                       + i*datetime.timedelta(minutes=6) for i in range(35)]
+					  
 pre = zip(range(len(timelist)),
-          [p.strftime("%H:%M")+'---'+(p+datetime.timedelta(minutes=6)).strftime("%H:%M") for p in timelist])
+          [p.strftime("%d")+'日'+p.strftime("%H:%M")+'---'+(p+datetime.timedelta(minutes=6)).strftime("%H:%M") for p in timelist])
 pre_time_choice = [(-1, 'None') ] + [p for p in pre]
+					  
+timelist = timelist + [datetime.datetime(2016, 11, 13, hour=9, minute=30)
+            + i*datetime.timedelta(minutes=6) for i in range(20)]
+timelist = timelist + [datetime.datetime(2016, 11, 13, hour=13, minute=30)
+                      + i*datetime.timedelta(minutes=6) for i in range(35)]
+					  
+first = zip(range(len(timelist)),
+          [p.strftime("%d")+'日'+p.strftime("%H:%M")+'---'+(p+datetime.timedelta(minutes=6)).strftime("%H:%M") for p in timelist])
+first_time_choice = [(-1, 'None') ] + [p for p in first]
+
 
 class Team(models.Model):
     DSP = 'D'
@@ -29,6 +40,7 @@ class Team(models.Model):
         default='M',
     )
     pre_time = models.IntegerField(choices = pre_time_choice, default=-1)
+    first_time = models.IntegerField(choices = first_time_choice, default=-1)
     name = models.CharField(max_length=20)
     intro = models.CharField(max_length=50)
     leader = models.OneToOneField(User, on_delete=models.CASCADE, related_name='leads')

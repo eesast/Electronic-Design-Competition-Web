@@ -234,7 +234,7 @@ def dismiss(request):
 
 
 @login_required
-def choose_pre_time(request):
+def choose_first_time(request):
 
     if request.method == 'POST':
         usr = request.user
@@ -244,7 +244,7 @@ def choose_pre_time(request):
         form = FirstTimeForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            team.pre_time = cd['choice']
+            team.first_time = cd['choice']
             team.save()
 
     return HttpResponseRedirect(reverse('teams:my_team'))

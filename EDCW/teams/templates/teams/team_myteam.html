@@ -147,29 +147,15 @@ a:active {
 													<tr>
 													  <td style="font-weight:bold;">控制器</td>
 													  <td>{{team.get_group_display}}</td>
-													  {% if team.group == 'M' %}
-                                                      <td><form action="{% url 'teams:group' %}" method="post">{% csrf_token %}
-											                 <select name='group' id='group' style="display:inline; margin-top:7px;">
-																  <option value='M'>单片机</option>
-																  <option value='D'>DSP</option>
-																  <option value='F'>FPGA</option>
-																</select>
-											                 <button class="btn btn-md btn-info" onclick="form.submit();" title="选择控制器" style="display:inline;">提交</button>
-											              </form>
-													  </td>
-                                                      {% else %}
 													  <td>不可改</td>
-                                                      {% endif %}
+                                                      
 													</tr>
 													{% for member in team.members.all %}
 													<tr>
 													  <td style="font-weight:bold;">成员</td>
 													  <td>{{member.username}}</td>
 													  <td>
-                                                          <form action="{% url 'teams:my_team' %}" method="post">{% csrf_token %}
-											                 <input type="hidden" name="name" value="{{member.username}}"> 
-											                 <button class="btn btn-md btn-info" onclick="form.submit();" title="踢出队伍">踢出队伍</button>
-											            </form>
+                                                          踢出队伍
 													  </td>
 													</tr>
 													{% endfor %}
@@ -177,10 +163,7 @@ a:active {
 													</tbody>
 											   </table>
 											   
-                                               <form action="{% url 'teams:dismiss' %}" method="post">{% csrf_token %}
-											     <input type="hidden" name="team_id" value="{{team.id}}"> 
-											     <button class="btn btn-lg btn-info" onclick="form.submit();" title="解散队伍">解散队伍</button>
-											   </form>
+                                              
 											   
 											   
 											   <!--
@@ -232,18 +215,18 @@ a:active {
 
 												
 												<!--这里需要判断是否被选过时间了 -->
-												{% if team.pre_time == -1 %}
-												<h2>请选择预审时间（预审将在10月23日，即周日9:30-11:30和13:30-17：00进行）</h2>
-                                                <form action="{% url 'teams:choose_pre_time' %}" method="post", style="display:inline;">
+												{% if team.first_time == -1 %}
+												<h2>请选择初赛时间（初赛将在11月10日及11日，9:30--11:30和13:30--17:00进行）</h2>
+                                                <form action="{% url 'teams:choose_first_time' %}" method="post", style="display:inline;">
                                                 {% csrf_token %}
                                                     {{form.choice}}
                                                 <button class="btn btn-md btn-info" onclick="form.submit();" title="选择">选择</button>
                                                 </form>
 
                                                 {% endif %}
-                                                {% if team.pre_time != -1 %}
+                                                {% if team.first_time != -1 %}
                                                  <h3>您的队伍预审时间为</h3>												
-                                                 <h3>{{ team.get_pre_time_display }}</h3>
+                                                 <h3>{{ team.get_first_time_display }}</h3>
 												{% endif %}	  
 											                
 												
