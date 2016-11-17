@@ -1,5 +1,5 @@
 from django import forms
-from .models import Team, first_time_choice
+from .models import Team, fuhuo_time_choice
 
 class AppForm(forms.Form):
     reason = forms.CharField(max_length=300, required=False)
@@ -15,14 +15,13 @@ class GroupForm(forms.Form):
 
 
 
-class FirstTimeForm(forms.Form):
+class FuhuoTimeForm(forms.Form):
     def __init__(self, *args, **kwargs):
-        super(FirstTimeForm, self).__init__(*args, **kwargs)
-        s = first_time_choice
-        for team in Team.objects.filter(first_time__gte = 1):
-            print(team)
-            print(s)
-            s = [choice for choice in s if choice[0] != team.first_time]
+        super(FuhuoTimeForm, self).__init__(*args, **kwargs)
+        s = fuhuo_time_choice
+        for team in Team.objects.filter(fuhuo_time__gte = 1):
+            s = [choice for choice in s if choice[0] != team.fuhuo_time]
         self.fields['choice'].choices = s
 
     choice = forms.ChoiceField(choices=())
+    other = forms.CharField(required=False, max_length=30, widget=forms.TextInput(attrs={'placeholder': u'若都不合适，请输入合适时间'}))

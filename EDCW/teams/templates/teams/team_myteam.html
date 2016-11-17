@@ -215,20 +215,25 @@ a:active {
 
 												
 												<!--这里需要判断是否被选过时间了 -->
-												{% if team.first_time == -1 %}
-												<h2>请选择初赛时间（初赛将在11月10日及11日，9:30--11:30和13:30--17:00进行）</h2>
+												{% if team.fuhuo_time == -1 %}
+												<h2>请选择复活赛时间（复活赛将在11月19日及20日，9:30--11:30和13:30--17:00进行）</h2>
                                                 <form action="{% url 'teams:choose_first_time' %}" method="post", style="display:inline;">
                                                 {% csrf_token %}
                                                     {{form.choice}}
+													{{form.other}}
                                                 <button class="btn btn-md btn-info" onclick="form.submit();" title="选择">选择</button>
                                                 </form>
 
                                                 {% endif %}
-                                                {% if team.first_time != -1 %}
-                                                 <h3>您的队伍预审时间为</h3>												
-                                                 <h3>{{ team.get_first_time_display }}</h3>
+                                                {% if team.fuhuo_time != -1 and team.fuhuo_time != -2 %}
+                                                 <h3>您的队伍复活赛时间为</h3>												
+                                                 <h3>{{ team.get_fuhuo_time_display }}</h3>
 												{% endif %}	  
-											                
+											    {% if team.fuhuo_time == -2 %}
+                                                 <h3>您的队伍选择其他复活赛时间为</h3>												
+                                                 <h3>{{ team.other_fuhuo_time }}</h3>
+												 <h3>我们将尽量协调</h3>	
+												{% endif %} 
 												
 												{% endif %}
 												

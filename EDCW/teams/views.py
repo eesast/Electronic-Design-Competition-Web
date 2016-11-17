@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Team, Application, pre_time_choice
 from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
-from .forms import CreateForm, AppForm, GroupForm, FirstTimeForm
+from .forms import CreateForm, AppForm, GroupForm, FuhuoTimeForm
 from django.contrib.auth.decorators import login_required
 def if_in_team(user):
     in_team = False
@@ -88,7 +88,7 @@ def my_team(request):
     user_info_dict = get_user_info(user)
 
     if user_info_dict:
-        form = FirstTimeForm()
+        form = FuhuoTimeForm()
         user_info_dict['form'] = form
         return render(request, 'teams/team_myteam.html', user_info_dict)
 
@@ -241,10 +241,13 @@ def choose_first_time(request):
         if not usr.profile.is_leader:
             return HttpResponseRedirect(reverse('teams:my_team'))
         team = get_object_or_404(Team, leader=usr)
-        form = FirstTimeForm(request.POST)
+        form = FuhuoTimeForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            team.first_time = cd['choice']
+            team.fuhuo_time = cd['choice']
+            if cd['other']:
+                team.other_fuhuo_time = cd['other']
+                team.fuhuo_time = -2
             team.save()
 
     return HttpResponseRedirect(reverse('teams:my_team'))

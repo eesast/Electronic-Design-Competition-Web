@@ -6,23 +6,27 @@ from django.db import models
 from django.contrib.auth.models import User
 import datetime
 
-timelist = [datetime.datetime(2016, 11, 12, hour=9, minute=30)
+timelist = [datetime.datetime(2016, 11, 19, hour=9, minute=30)
             + i*datetime.timedelta(minutes=6) for i in range(20)]
-timelist = timelist + [datetime.datetime(2016, 11, 12, hour=13, minute=30)
+timelist = timelist + [datetime.datetime(2016, 11, 19, hour=13, minute=30)
                       + i*datetime.timedelta(minutes=6) for i in range(35)]
-					  
+
 pre = zip(range(len(timelist)),
           [p.strftime("%d")+'日'+p.strftime("%H:%M")+'---'+(p+datetime.timedelta(minutes=6)).strftime("%H:%M") for p in timelist])
 pre_time_choice = [(-1, 'None') ] + [p for p in pre]
 					  
-timelist = timelist + [datetime.datetime(2016, 11, 13, hour=9, minute=30)
+timelist = timelist + [datetime.datetime(2016, 11, 20, hour=9, minute=30)
             + i*datetime.timedelta(minutes=6) for i in range(20)]
-timelist = timelist + [datetime.datetime(2016, 11, 13, hour=13, minute=30)
+timelist = timelist + [datetime.datetime(2016, 11, 20, hour=13, minute=30)
                       + i*datetime.timedelta(minutes=6) for i in range(35)]
 					  
 first = zip(range(len(timelist)),
           [p.strftime("%d")+'日'+p.strftime("%H:%M")+'---'+(p+datetime.timedelta(minutes=6)).strftime("%H:%M") for p in timelist])
 first_time_choice = [(-1, 'None') ] + [p for p in first]
+
+fuhuo = zip(range(len(timelist)),
+          [p.strftime("%d")+'日'+p.strftime("%H:%M")+'---'+(p+datetime.timedelta(minutes=6)).strftime("%H:%M") for p in timelist])
+fuhuo_time_choice = [(-1, 'None') ] + [p for p in fuhuo]+[(-2, 'Other Time')]
 
 
 class Team(models.Model):
@@ -41,6 +45,8 @@ class Team(models.Model):
     )
     pre_time = models.IntegerField(choices = pre_time_choice, default=-1)
     first_time = models.IntegerField(choices = first_time_choice, default=-1)
+    fuhuo_time = models.IntegerField(choices = fuhuo_time_choice, default=-1, blank=True, null=True)
+    other_fuhuo_time = models.CharField(max_length=30, blank=True, null=True, default=0)
     name = models.CharField(max_length=20)
     intro = models.CharField(max_length=50)
     leader = models.OneToOneField(User, on_delete=models.CASCADE, related_name='leads')

@@ -42,7 +42,7 @@ def export_xls(modeladmin, request, queryset):
             obj.leader.username,
             obj.leader.profile.student_id,
             'Yes',
-            obj.get_pre_time_display(),
+            obj.get_first_time_display(),
         ]
         for col_num in range(len(row1)):
             ws.write(row_num, col_num, row1[col_num], font_style)
