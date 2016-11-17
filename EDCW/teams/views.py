@@ -245,9 +245,6 @@ def choose_first_time(request):
         if form.is_valid():
             cd = form.cleaned_data
             team.fuhuo_time = cd['choice']
-            if cd['other']:
-                team.other_fuhuo_time = cd['other']
-                team.fuhuo_time = -2
             team.save()
 
     return HttpResponseRedirect(reverse('teams:my_team'))

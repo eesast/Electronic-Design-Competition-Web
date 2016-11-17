@@ -24,9 +24,7 @@ first = zip(range(len(timelist)),
           [p.strftime("%d")+'日'+p.strftime("%H:%M")+'---'+(p+datetime.timedelta(minutes=6)).strftime("%H:%M") for p in timelist])
 first_time_choice = [(-1, 'None') ] + [p for p in first]
 
-fuhuo = zip(range(len(timelist)),
-          [p.strftime("%d")+'日'+p.strftime("%H:%M")+'---'+(p+datetime.timedelta(minutes=6)).strftime("%H:%M") for p in timelist])
-fuhuo_time_choice = [(-1, 'None') ] + [p for p in fuhuo]+[(-2, 'Other Time')]
+fuhuo_time_choice = [(-1,'None')]+[(1, '周六') ] + [(2,'周日')]+[(3, '服从调剂')]
 
 
 class Team(models.Model):
@@ -46,7 +44,6 @@ class Team(models.Model):
     pre_time = models.IntegerField(choices = pre_time_choice, default=-1)
     first_time = models.IntegerField(choices = first_time_choice, default=-1)
     fuhuo_time = models.IntegerField(choices = fuhuo_time_choice, default=-1, blank=True, null=True)
-    other_fuhuo_time = models.CharField(max_length=30, blank=True, null=True, default=0)
     name = models.CharField(max_length=20)
     intro = models.CharField(max_length=50)
     leader = models.OneToOneField(User, on_delete=models.CASCADE, related_name='leads')
